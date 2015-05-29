@@ -3,7 +3,7 @@
 
 @interface YTUser : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, readonly) NSString *identifier;
-@property (nonatomic, readonly) NSString *email;
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSString *email;
 
 @end

@@ -5,8 +5,8 @@
 
 @interface YTChannel : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, readonly) NSString *identifier;
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) YTUser *createdBy;
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) YTUser *createdBy;
 
 @end

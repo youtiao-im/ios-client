@@ -6,9 +6,9 @@
 
 @interface YTFeed : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, readonly) NSString *identifier;
-@property (nonatomic, readonly) YTChannel *channel;
-@property (nonatomic, readonly) NSString *text;
-@property (nonatomic, readonly) YTUser *createdBy;
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) YTChannel *channel;
+@property (nonatomic, strong, readonly) NSString *text;
+@property (nonatomic, strong, readonly) YTUser *createdBy;
 
 @end

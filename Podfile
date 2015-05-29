@@ -4,6 +4,7 @@
 target 'Youtiao' do
   pod 'AFNetworking'
   pod 'Mantle'
+  pod 'ReactiveCocoa'
 end
 
 target 'YoutiaoTests' do

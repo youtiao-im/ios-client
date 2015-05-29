@@ -9,10 +9,10 @@
 
 @interface YTAPIContext : NSObject
 
-@property (nonatomic, readonly) YTAPIClient *apiClient;
-@property (nonatomic, readonly) NSURL *apiBaseURL;
+@property (nonatomic, strong, readonly) YTAPIClient *apiClient;
+@property (nonatomic, strong, readonly) NSURL *apiBaseURL;
 @property (nonatomic, readonly) NSInteger version;
-@property (nonatomic) NSString *accessToken;
+@property (nonatomic, strong) NSString *accessToken;
 
 + (YTAPIContext *)sharedInstance;
 

@@ -3,31 +3,36 @@
 #import <AFNetworking/AFNetworking.h>
 #import "YTAPIContext.h"
 
-@implementation YTAPIClient {
-  AFHTTPRequestOperationManager *_manager;
-}
+@interface YTAPIClient ()
+
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+
+@end
+
+@implementation YTAPIClient
 
 - (id)initWithAPIContext:(YTAPIContext *)apiContext {
   self = [super init];
-
-  if (self) {
-    _manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:apiContext.apiBaseURL];
-    _manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    _manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-    [_manager.requestSerializer setValue:[NSString stringWithFormat:@"application/vnd.youtiao.im+json; version=%ld", (long)apiContext.version] forHTTPHeaderField:@"Accept"];
-    [self setAccessToken:apiContext.accessToken];
+  if (self == nil) {
+    return nil;
   }
+
+  _manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:apiContext.apiBaseURL];
+  _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+  _manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+  [_manager.requestSerializer setValue:[NSString stringWithFormat:@"application/vnd.youtiao.im+json; version=%ld", (long)apiContext.version] forHTTPHeaderField:@"Accept"];
+  [self setAccessToken:apiContext.accessToken];
 
   return self;
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
-  [_manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+  [self.manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
 }
 
 - (void)fetchAuthenticatedUserWithSuccess:(void (^)(YTUser *user))success failure:(void (^)(NSError *error))failure {
-  [_manager GET:@"user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.manager GET:@"user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
     YTUser *user = [MTLJSONAdapter modelOfClass:[YTUser class] fromJSONDictionary:responseObject error:&error];
     if (error != nil) {
@@ -41,7 +46,7 @@
 }
 
 - (void)fetchMembershipsOfAuthenticatedUserWithSuccess:(void (^)(NSArray *memberships))success failure:(void (^)(NSError *error))failure {
-  [_manager GET:@"user/memberships" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.manager GET:@"user/memberships" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
     NSArray *memberships = [MTLJSONAdapter modelsOfClass:[YTMembership class] fromJSONArray:responseObject error:&error];
     if (error != nil) {
@@ -55,7 +60,7 @@
 }
 
 - (void)fetchFeedsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure {
-  [_manager GET:[NSString stringWithFormat:@"channels/%@/feeds", channelId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  [self.manager GET:[NSString stringWithFormat:@"channels/%@/feeds", channelId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
     NSArray *feeds = [MTLJSONAdapter modelsOfClass:[YTFeed class] fromJSONArray:responseObject error:&error];
     if (error != nil) {
