@@ -59,6 +59,27 @@
   }];
 }
 
+- (void)createChannel:(YTChannel *)channel success:(void(^)(YTChannel *channel))success failure:(void(^)(NSError *error))failure {
+  NSError *error = nil;
+  NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:channel error:&error];
+  if (error != nil) {
+    failure(error);
+    return;
+  }
+
+  [self.manager POST:@"channels" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    YTChannel *channel = [MTLJSONAdapter modelOfClass:[YTChannel class] fromJSONDictionary:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(channel);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
 - (void)fetchFeedsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure {
   [self.manager GET:[NSString stringWithFormat:@"channels/%@/feeds", channelId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;

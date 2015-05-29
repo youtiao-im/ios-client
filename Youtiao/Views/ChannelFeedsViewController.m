@@ -4,8 +4,8 @@
 #import "ChannelViewModel.h"
 #import "FeedViewModel.h"
 
-#import "ChannelDetailViewController.h"
-#import "FeedDetailViewController.h"
+#import "ChannelViewController.h"
+#import "FeedViewController.h"
 
 @interface ChannelFeedsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -54,11 +54,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   UIViewController *viewController = segue.destinationViewController;
-  if ([viewController isMemberOfClass:[FeedDetailViewController class]]) {
+  if ([viewController isMemberOfClass:[FeedViewController class]]) {
     NSIndexPath *indexPath = [self.feedsTableView indexPathForSelectedRow];
-    ((FeedDetailViewController *) viewController).feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
-  } else if ([viewController isMemberOfClass:[ChannelDetailViewController class]]) {
-    ((ChannelDetailViewController *) viewController).membershipViewModel = self.membershipViewModel;
+    ((FeedViewController *) viewController).feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
+  } else if ([viewController isMemberOfClass:[ChannelViewController class]]) {
+    ((ChannelViewController *) viewController).membershipViewModel = self.membershipViewModel;
   }
 }
 

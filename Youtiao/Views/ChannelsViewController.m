@@ -3,10 +3,12 @@
 #import "AuthenticatedUserViewModel.h"
 #import "MembershipViewModel.h"
 #import "ChannelViewModel.h"
+#import "ChannelNewViewModel.h"
 
 #import "ChannelFeedsViewController.h"
+#import "ChannelNewViewController.h"
 
-@interface ChannelsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ChannelsViewController () <UITableViewDataSource, UITableViewDelegate, ChannelNewViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *channelsTableView;
 
@@ -29,10 +31,15 @@
 }
 
 - (void)bindViewModel {
-  // TODO: do we need weak/strong dance?
-  [[[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil] subscribeCompleted:^{
-    [self.channelsTableView reloadData];
+  @weakify(self);
+  [[self.authenticatedUserViewModel fetchMembershipsCommand].executionSignals subscribeNext:^(RACSignal *signal) {
+    [signal subscribeNext:^(id x) {
+      @strongify(self);
+      [self.channelsTableView reloadData];
+    }];
   }];
+
+  [[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -55,7 +62,19 @@
   if ([viewController isMemberOfClass:[ChannelFeedsViewController class]]) {
     NSIndexPath *indexPath = [self.channelsTableView indexPathForSelectedRow];
     ((ChannelFeedsViewController *) viewController).membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
+  } else if ([viewController isMemberOfClass:[ChannelNewViewController class]]) {
+    ((ChannelNewViewController *) viewController).channelNewViewModel = [[ChannelNewViewModel alloc] init];
+    ((ChannelNewViewController *) viewController).delegate = self;
   }
+}
+
+- (void)channelNewViewController:(ChannelNewViewController *)controller didCreateChannel:(ChannelViewModel *)channelViewModel {
+  [controller dismissViewControllerAnimated:YES completion:nil];
+  [[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil];
+}
+
+- (void)channelNewViewControllerDidCancel:(ChannelNewViewController *)controller {
+  [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

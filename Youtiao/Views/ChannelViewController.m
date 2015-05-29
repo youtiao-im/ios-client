@@ -1,10 +1,10 @@
-#import "ChannelDetailViewController.h"
+#import "ChannelViewController.h"
 
 #import "ChannelViewModel.h"
 #import "MembershipViewModel.h"
 #import "UserViewModel.h"
 
-@interface ChannelDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ChannelViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *membershipsTableView;
 
@@ -12,7 +12,7 @@
 
 @end
 
-@implementation ChannelDetailViewController
+@implementation ChannelViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];

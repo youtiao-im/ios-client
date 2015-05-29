@@ -9,4 +9,6 @@
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) YTUser *createdBy;
 
+- (id)initWithName:(NSString *)name;
+
 @end

@@ -1,16 +1,16 @@
-#import "FeedDetailViewController.h"
+#import "FeedViewController.h"
 
 #import "FeedViewModel.h"
 #import "CommentViewModel.h"
 
-@interface FeedDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet UITableView *commentsTableView;
 
 @end
 
-@implementation FeedDetailViewController
+@implementation FeedViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];

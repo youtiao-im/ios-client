@@ -2,7 +2,7 @@
 
 @class MembershipViewModel;
 
-@interface ChannelDetailViewController : UIViewController
+@interface ChannelViewController : UIViewController
 
 @property (nonatomic, strong) MembershipViewModel *membershipViewModel;
 

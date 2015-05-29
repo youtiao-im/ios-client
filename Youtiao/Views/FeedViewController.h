@@ -2,7 +2,7 @@
 
 @class FeedViewModel;
 
-@interface FeedDetailViewController : UIViewController
+@interface FeedViewController : UIViewController
 
 @property (nonatomic, strong) FeedViewModel *feedViewModel;
 

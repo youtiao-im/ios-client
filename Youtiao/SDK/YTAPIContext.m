@@ -21,7 +21,7 @@
   _apiBaseURL = [NSURL URLWithString:@"http://192.168.200.152:3000/api"];
   _version = 1;
   // TODO:
-  _accessToken = @"dc10bdfacfab9f025aaf9fd11ad391c77534e26768a3b38aba690b28a5098b9b";
+  _accessToken = @"a3071d473601060c1530bce26b6a8c26e32684cd0aab9ca5c6851a907ca69506";
 
   _apiClient = [[YTAPIClient alloc] initWithAPIContext:self];
 
