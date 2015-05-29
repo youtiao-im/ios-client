@@ -4,6 +4,7 @@
 #import "YTMembership.h"
 #import "YTChannel.h"
 #import "YTFeed.h"
+#import "YTComment.h"
 
 #import "YTAPIClient.h"
 

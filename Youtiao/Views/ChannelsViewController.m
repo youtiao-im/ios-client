@@ -1,7 +1,10 @@
 #import "ChannelsViewController.h"
 
-#import "ChannelsViewModel.h"
+#import "AuthenticatedUserViewModel.h"
+#import "MembershipViewModel.h"
 #import "ChannelViewModel.h"
+
+#import "ChannelFeedsViewController.h"
 
 @interface ChannelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -14,26 +17,26 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  self.title = @"Channels";
+
   self.channelsTableView.dataSource = self;
   self.channelsTableView.delegate = self;
 
-  self.channelsViewModel = [[ChannelsViewModel alloc] init];
+  // TODO: move app delegate
+  self.authenticatedUserViewModel = [[AuthenticatedUserViewModel alloc] init];
 
-  [[[self.channelsViewModel fetchChannelsCommand] executionSignals] subscribeNext:^(id x) {
-    NSLog(@"got");
-  } error:^(NSError *error) {
-    NSLog(@"got");
-  }];
+  [self bindViewModel];
+}
 
+- (void)bindViewModel {
   // TODO: do we need weak/strong dance?
-  [[[self.channelsViewModel fetchChannelsCommand] execute:nil] subscribeCompleted:^{
-    NSLog(@"fetched channels");
+  [[[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil] subscribeCompleted:^{
     [self.channelsTableView reloadData];
   }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.channelsViewModel numberOfChannels];
+  return [self.authenticatedUserViewModel numberOfMemberships];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,9 +45,17 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ChannelCell"];
   }
 
-  ChannelViewModel *channelViewModel = [self.channelsViewModel channelViewModelAtIndex:indexPath.row];
-  cell.textLabel.text = channelViewModel.name;
+  MembershipViewModel *membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
+  cell.textLabel.text = [membershipViewModel channelViewModel].name;
   return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  UIViewController *viewController = segue.destinationViewController;
+  if ([viewController isMemberOfClass:[ChannelFeedsViewController class]]) {
+    NSIndexPath *indexPath = [self.channelsTableView indexPathForSelectedRow];
+    ((ChannelFeedsViewController *) viewController).membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
+  }
 }
 
 @end

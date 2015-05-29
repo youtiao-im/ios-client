@@ -22,8 +22,16 @@
 		9C20A4231B17231500BE1FF4 /* YTMembership.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A41E1B17231500BE1FF4 /* YTMembership.m */; };
 		9C20A4241B17231500BE1FF4 /* YTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A4201B17231500BE1FF4 /* YTUser.m */; };
 		9C78E4411B180AFD00512259 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C78E4401B180AFD00512259 /* ChannelsViewController.m */; };
-		9C78E4441B180B0400512259 /* ChannelsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C78E4431B180B0400512259 /* ChannelsViewModel.m */; };
 		9C78E4471B181B4A00512259 /* ChannelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C78E4461B181B4A00512259 /* ChannelViewModel.m */; };
+		9C78E44D1B18315000512259 /* FeedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C78E44C1B18315000512259 /* FeedViewModel.m */; };
+		9C78E4501B18315B00512259 /* ChannelFeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C78E44F1B18315B00512259 /* ChannelFeedsViewController.m */; };
+		9C823BEF1B1841D10074752E /* CommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BEC1B1841D10074752E /* CommentViewModel.m */; };
+		9C823BF31B1842210074752E /* FeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BF21B1842210074752E /* FeedDetailViewController.m */; };
+		9C823BF61B1843710074752E /* YTComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BF51B1843710074752E /* YTComment.m */; };
+		9C823BF91B184C3B0074752E /* ChannelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BF81B184C3B0074752E /* ChannelDetailViewController.m */; };
+		9C823BFE1B1859660074752E /* AuthenticatedUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BFC1B1859660074752E /* AuthenticatedUserViewModel.m */; };
+		9C823BFF1B1859660074752E /* MembershipViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823BFD1B1859660074752E /* MembershipViewModel.m */; };
+		9C823C021B185C470074752E /* UserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823C011B185C470074752E /* UserViewModel.m */; };
 		DF5FCCC5C1B05FF326826FBB /* libPods-Youtiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */; };
 /* End PBXBuildFile section */
 
@@ -69,10 +77,26 @@
 		9C20A4201B17231500BE1FF4 /* YTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTUser.m; sourceTree = "<group>"; };
 		9C78E43F1B180AFD00512259 /* ChannelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
 		9C78E4401B180AFD00512259 /* ChannelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
-		9C78E4421B180B0400512259 /* ChannelsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewModel.h; sourceTree = "<group>"; };
-		9C78E4431B180B0400512259 /* ChannelsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewModel.m; sourceTree = "<group>"; };
 		9C78E4451B181B4A00512259 /* ChannelViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelViewModel.h; sourceTree = "<group>"; };
 		9C78E4461B181B4A00512259 /* ChannelViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelViewModel.m; sourceTree = "<group>"; };
+		9C78E44B1B18315000512259 /* FeedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewModel.h; sourceTree = "<group>"; };
+		9C78E44C1B18315000512259 /* FeedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewModel.m; sourceTree = "<group>"; };
+		9C78E44E1B18315B00512259 /* ChannelFeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelFeedsViewController.h; sourceTree = "<group>"; };
+		9C78E44F1B18315B00512259 /* ChannelFeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelFeedsViewController.m; sourceTree = "<group>"; };
+		9C823BEB1B1841D10074752E /* CommentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewModel.h; sourceTree = "<group>"; };
+		9C823BEC1B1841D10074752E /* CommentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewModel.m; sourceTree = "<group>"; };
+		9C823BF11B1842210074752E /* FeedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailViewController.h; sourceTree = "<group>"; };
+		9C823BF21B1842210074752E /* FeedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailViewController.m; sourceTree = "<group>"; };
+		9C823BF41B1843710074752E /* YTComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTComment.h; sourceTree = "<group>"; };
+		9C823BF51B1843710074752E /* YTComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTComment.m; sourceTree = "<group>"; };
+		9C823BF71B184C3B0074752E /* ChannelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelDetailViewController.h; sourceTree = "<group>"; };
+		9C823BF81B184C3B0074752E /* ChannelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelDetailViewController.m; sourceTree = "<group>"; };
+		9C823BFA1B18570A0074752E /* AuthenticatedUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticatedUserViewModel.h; sourceTree = "<group>"; };
+		9C823BFB1B18570A0074752E /* MembershipViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembershipViewModel.h; sourceTree = "<group>"; };
+		9C823BFC1B1859660074752E /* AuthenticatedUserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticatedUserViewModel.m; sourceTree = "<group>"; };
+		9C823BFD1B1859660074752E /* MembershipViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembershipViewModel.m; sourceTree = "<group>"; };
+		9C823C001B185C470074752E /* UserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewModel.h; sourceTree = "<group>"; };
+		9C823C011B185C470074752E /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewModel.m; sourceTree = "<group>"; };
 		CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Youtiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,11 +143,11 @@
 		9C20A3D71B16EB0C00BE1FF4 = {
 			isa = PBXGroup;
 			children = (
+				4AD6927FC2AF9AEED46B98A0 /* Frameworks */,
+				18E9D11980FB524982DD7BAD /* Pods */,
+				9C20A3E11B16EB0C00BE1FF4 /* Products */,
 				9C20A3E21B16EB0C00BE1FF4 /* Youtiao */,
 				9C20A3FC1B16EB0C00BE1FF4 /* YoutiaoTests */,
-				9C20A3E11B16EB0C00BE1FF4 /* Products */,
-				18E9D11980FB524982DD7BAD /* Pods */,
-				4AD6927FC2AF9AEED46B98A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,15 +163,15 @@
 		9C20A3E21B16EB0C00BE1FF4 /* Youtiao */ = {
 			isa = PBXGroup;
 			children = (
-				9C20A42A1B172B3600BE1FF4 /* Views */,
-				9C20A4291B172B2E00BE1FF4 /* ViewModels */,
-				9C20A4091B16EBCD00BE1FF4 /* SDK */,
 				9C20A3E71B16EB0C00BE1FF4 /* AppDelegate.h */,
 				9C20A3E81B16EB0C00BE1FF4 /* AppDelegate.m */,
-				9C20A3ED1B16EB0C00BE1FF4 /* Main.storyboard */,
 				9C20A3F01B16EB0C00BE1FF4 /* Images.xcassets */,
 				9C20A3F21B16EB0C00BE1FF4 /* LaunchScreen.xib */,
+				9C20A3ED1B16EB0C00BE1FF4 /* Main.storyboard */,
+				9C20A4091B16EBCD00BE1FF4 /* SDK */,
 				9C20A3E31B16EB0C00BE1FF4 /* Supporting Files */,
+				9C20A4291B172B2E00BE1FF4 /* ViewModels */,
+				9C20A42A1B172B3600BE1FF4 /* Views */,
 			);
 			path = Youtiao;
 			sourceTree = "<group>";
@@ -182,6 +206,8 @@
 		9C20A4091B16EBCD00BE1FF4 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				9C823BF41B1843710074752E /* YTComment.h */,
+				9C823BF51B1843710074752E /* YTComment.m */,
 				9C20A4191B17231500BE1FF4 /* YTChannel.h */,
 				9C20A41A1B17231500BE1FF4 /* YTChannel.m */,
 				9C20A41B1B17231500BE1FF4 /* YTFeed.h */,
@@ -209,10 +235,18 @@
 		9C20A4291B172B2E00BE1FF4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9C823BFA1B18570A0074752E /* AuthenticatedUserViewModel.h */,
+				9C823BFC1B1859660074752E /* AuthenticatedUserViewModel.m */,
 				9C78E4451B181B4A00512259 /* ChannelViewModel.h */,
 				9C78E4461B181B4A00512259 /* ChannelViewModel.m */,
-				9C78E4421B180B0400512259 /* ChannelsViewModel.h */,
-				9C78E4431B180B0400512259 /* ChannelsViewModel.m */,
+				9C823BEB1B1841D10074752E /* CommentViewModel.h */,
+				9C823BEC1B1841D10074752E /* CommentViewModel.m */,
+				9C78E44B1B18315000512259 /* FeedViewModel.h */,
+				9C78E44C1B18315000512259 /* FeedViewModel.m */,
+				9C823BFB1B18570A0074752E /* MembershipViewModel.h */,
+				9C823BFD1B1859660074752E /* MembershipViewModel.m */,
+				9C823C001B185C470074752E /* UserViewModel.h */,
+				9C823C011B185C470074752E /* UserViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -220,8 +254,14 @@
 		9C20A42A1B172B3600BE1FF4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9C823BF71B184C3B0074752E /* ChannelDetailViewController.h */,
+				9C823BF81B184C3B0074752E /* ChannelDetailViewController.m */,
+				9C78E44E1B18315B00512259 /* ChannelFeedsViewController.h */,
+				9C78E44F1B18315B00512259 /* ChannelFeedsViewController.m */,
 				9C78E43F1B180AFD00512259 /* ChannelsViewController.h */,
 				9C78E4401B180AFD00512259 /* ChannelsViewController.m */,
+				9C823BF11B1842210074752E /* FeedDetailViewController.h */,
+				9C823BF21B1842210074752E /* FeedDetailViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,17 +433,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C823BF91B184C3B0074752E /* ChannelDetailViewController.m in Sources */,
+				9C823BEF1B1841D10074752E /* CommentViewModel.m in Sources */,
 				9C20A40F1B16ED5B00BE1FF4 /* YTAPIContext.m in Sources */,
 				9C20A4221B17231500BE1FF4 /* YTFeed.m in Sources */,
-				9C78E4441B180B0400512259 /* ChannelsViewModel.m in Sources */,
 				9C78E4411B180AFD00512259 /* ChannelsViewController.m in Sources */,
 				9C20A4231B17231500BE1FF4 /* YTMembership.m in Sources */,
 				9C20A4211B17231500BE1FF4 /* YTChannel.m in Sources */,
+				9C78E4501B18315B00512259 /* ChannelFeedsViewController.m in Sources */,
+				9C823BFF1B1859660074752E /* MembershipViewModel.m in Sources */,
 				9C20A3E91B16EB0C00BE1FF4 /* AppDelegate.m in Sources */,
 				9C20A4121B170F9000BE1FF4 /* YTAPIClient.m in Sources */,
 				9C20A4241B17231500BE1FF4 /* YTUser.m in Sources */,
+				9C823C021B185C470074752E /* UserViewModel.m in Sources */,
+				9C823BF31B1842210074752E /* FeedDetailViewController.m in Sources */,
+				9C78E44D1B18315000512259 /* FeedViewModel.m in Sources */,
 				9C78E4471B181B4A00512259 /* ChannelViewModel.m in Sources */,
+				9C823BF61B1843710074752E /* YTComment.m in Sources */,
 				9C20A3E61B16EB0C00BE1FF4 /* main.m in Sources */,
+				9C823BFE1B1859660074752E /* AuthenticatedUserViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

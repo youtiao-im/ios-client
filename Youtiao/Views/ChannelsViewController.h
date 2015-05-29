@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class ChannelsViewModel;
+@class AuthenticatedUserViewModel;
 
 @interface ChannelsViewController : UIViewController
 
-@property (nonatomic, strong) ChannelsViewModel *channelsViewModel;
+@property (nonatomic, strong) AuthenticatedUserViewModel *authenticatedUserViewModel;
 
 @end

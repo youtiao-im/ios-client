@@ -73,4 +73,32 @@
   }];
 }
 
+- (void)fetchMembershipsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure {
+  [self.manager GET:[NSString stringWithFormat:@"channels/%@/memberships", channelId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    NSArray *memberships = [MTLJSONAdapter modelsOfClass:[YTMembership class] fromJSONArray:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(memberships);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)fetchCommentsOfFeed:(NSString *)feedId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure {
+  [self.manager GET:[NSString stringWithFormat:@"feeds/%@/comments", feedId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    NSArray *comments = [MTLJSONAdapter modelsOfClass:[YTComment class] fromJSONArray:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(comments);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
 @end

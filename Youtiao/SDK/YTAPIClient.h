@@ -4,6 +4,7 @@
 @class YTMembership;
 @class YTChannel;
 @class YTFeed;
+@class YTComment;
 
 @class YTAPIContext;
 
@@ -17,5 +18,8 @@
 - (void)fetchMembershipsOfAuthenticatedUserWithSuccess:(void(^)(NSArray *memberships))success failure:(void(^)(NSError *error))failure;
 
 - (void)fetchFeedsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
+- (void)fetchMembershipsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
+
+- (void)fetchCommentsOfFeed:(NSString *)feedId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
 
 @end
