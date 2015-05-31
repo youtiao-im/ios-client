@@ -3,3 +3,6 @@ xcode_workspace: Youtiao.xcworkspace
 xcode_scheme: Youtiao
 xcode_sdk: iphonesimulator8.1
 
+notifications:
+  slack: youtiao:xg39rsbTOz6OkBSAE0huddDN
+
