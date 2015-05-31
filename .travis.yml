@@ -1,4 +1,4 @@
 language: objective-c
 xcode_workspace: Youtiao.xcworkspace
-xcode_scheme: YoutiaoTests
+xcode_scheme: Youtiao
 
