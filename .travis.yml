@@ -1,4 +1,5 @@
 language: objective-c
 xcode_workspace: Youtiao.xcworkspace
 xcode_scheme: Youtiao
+xcode_sdk: iphonesimulator8.1
 
