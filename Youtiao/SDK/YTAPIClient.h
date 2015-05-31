@@ -21,6 +21,7 @@
 - (void)fetchFeedsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
 - (void)fetchMembershipsOfChannel:(NSString *)channelId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
 
+- (void)createFeed:(YTFeed *)feed forChannel:(NSString *)channelId success:(void(^)(YTFeed *feed))success failure:(void(^)(NSError *error))failure;
 - (void)fetchCommentsOfFeed:(NSString *)feedId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure;
 
 @end

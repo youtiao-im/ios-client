@@ -2,6 +2,7 @@
 
 #import "FeedViewModel.h"
 #import "MembershipViewModel.h"
+#import "FeedNewViewModel.h"
 
 @interface ChannelViewModel ()
 
@@ -87,6 +88,10 @@
     return [RACDisposable disposableWithBlock:^{
     }];
   }];
+}
+
+- (FeedNewViewModel *)feedNewViewModel {
+  return [[FeedNewViewModel alloc] initWithChannel:self.channel];
 }
 
 @end

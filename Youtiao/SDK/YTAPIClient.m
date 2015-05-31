@@ -108,6 +108,27 @@
   }];
 }
 
+- (void)createFeed:(YTFeed *)feed forChannel:(NSString *)channelId success:(void(^)(YTFeed *feed))success failure:(void(^)(NSError *error))failure {
+  NSError *error = nil;
+  NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:feed error:&error];
+  if (error != nil) {
+    failure(error);
+    return;
+  }
+
+  [self.manager POST:[NSString stringWithFormat:@"channels/%@/feeds", channelId] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    YTFeed *feed = [MTLJSONAdapter modelOfClass:[YTFeed class] fromJSONDictionary:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(feed);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
 - (void)fetchCommentsOfFeed:(NSString *)feedId success:(void(^)(NSArray *feeds))success failure:(void(^)(NSError *error))failure {
   [self.manager GET:[NSString stringWithFormat:@"feeds/%@/comments", feedId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;

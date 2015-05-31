@@ -2,7 +2,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "YTAPIContext.h"
 
-@class FeedViewModel, MembershipViewModel;
+@class FeedViewModel, MembershipViewModel, FeedNewViewModel;
 
 @interface ChannelViewModel : NSObject
 
@@ -18,5 +18,7 @@
 
 - (NSInteger)numberOfMemberships;
 - (MembershipViewModel *)membershipViewModelAtIndex:(NSInteger)index;
+
+- (FeedNewViewModel *)feedNewViewModel;
 
 @end

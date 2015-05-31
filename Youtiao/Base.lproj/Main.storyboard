@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="2530" y="1029"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed New View Controller-->
         <scene sceneID="QGu-jX-4sv">
             <objects>
-                <viewController id="GaV-uq-Wlj" sceneMemberID="viewController">
+                <viewController id="GaV-uq-Wlj" customClass="FeedNewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1qI-0E-1Fm"/>
                         <viewControllerLayoutGuide type="bottom" id="cUI-xT-uIv"/>
@@ -184,6 +184,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancel:" destination="GaV-uq-Wlj" eventType="touchUpInside" id="2Ow-mr-vRY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,6 +205,11 @@
                             <constraint firstItem="4W7-SF-DMD" firstAttribute="leading" secondItem="XdR-Kc-NyS" secondAttribute="leading" id="zQb-69-arl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="mQL-8H-eP3" id="Jfa-1C-FFr"/>
+                        <outlet property="createButton" destination="4W7-SF-DMD" id="OHN-Zy-sjj"/>
+                        <outlet property="textField" destination="XdR-Kc-NyS" id="kRR-l1-xbY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elb-Hy-9gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
