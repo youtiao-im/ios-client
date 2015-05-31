@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EC01A055-4A81-46EF-8DD6-033459CE6858</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Youtiao</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>99D4880716214B4C02C77A1F301034AE4BBBCDCD</key>
+		<string>github.com:youtiao-im/ios-client.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Youtiao.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>99D4880716214B4C02C77A1F301034AE4BBBCDCD</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:youtiao-im/ios-client.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>99D4880716214B4C02C77A1F301034AE4BBBCDCD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>99D4880716214B4C02C77A1F301034AE4BBBCDCD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Youtiao</string>
+		</dict>
+	</array>
+</dict>
+</plist>
