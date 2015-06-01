@@ -14,4 +14,15 @@
   return [MTLJSONAdapter dictionaryTransformerWithModelClass:[YTUser class]];
 }
 
+- (id)initWithText:(NSString *)text {
+  self = [super init];
+  if (self == nil) {
+    return nil;
+  }
+
+  _text = text;
+
+  return self;
+}
+
 @end

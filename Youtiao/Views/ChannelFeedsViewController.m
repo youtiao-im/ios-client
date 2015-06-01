@@ -33,14 +33,14 @@
   self.title = self.channelViewModel.name;
 
   @weakify(self);
-  [[self.channelViewModel fetchFeedsCommand].executionSignals subscribeNext:^(RACSignal *signal) {
+  [self.channelViewModel.fetchFeedsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
     [signal subscribeNext:^(id x) {
       @strongify(self);
       [self.feedsTableView reloadData];
     }];
   }];
 
-  [[self.channelViewModel fetchFeedsCommand] execute:nil];
+  [self.channelViewModel.fetchFeedsCommand execute:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -74,7 +74,7 @@
 - (void)feedNewViewController:(FeedNewViewController *)controller didCreateFeed:(FeedViewModel *)feedViewModel {
   NSLog(@"sadasd");
   [controller dismissViewControllerAnimated:YES completion:nil];
-  [[self.channelViewModel fetchFeedsCommand] execute:nil];
+  [self.channelViewModel.fetchFeedsCommand execute:nil];
 }
 
 - (void)feedNewViewControllerDidCancel:(FeedNewViewController *)controller {

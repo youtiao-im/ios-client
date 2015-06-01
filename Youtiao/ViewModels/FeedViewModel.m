@@ -1,6 +1,7 @@
 #import "FeedViewModel.h"
 
 #import "CommentViewModel.h"
+#import "CommentNewViewModel.h"
 
 @interface FeedViewModel ()
 
@@ -55,6 +56,10 @@
     return [RACDisposable disposableWithBlock:^{
     }];
   }];
+}
+
+- (CommentNewViewModel *)commentNewViewModel {
+  return [[CommentNewViewModel alloc] initWithFeed:self.feed];
 }
 
 @end

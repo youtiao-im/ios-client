@@ -143,4 +143,25 @@
   }];
 }
 
+- (void)createComment:(YTComment *)comment forFeed:(NSString *)feedId success:(void(^)(YTComment *commnt))success failure:(void(^)(NSError *error))failure {
+  NSError *error = nil;
+  NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:comment error:&error];
+  if (error != nil) {
+    failure(error);
+    return;
+  }
+
+  [self.manager POST:[NSString stringWithFormat:@"feeds/%@/comments", feedId] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    YTComment *comment = [MTLJSONAdapter modelOfClass:[YTComment class] fromJSONDictionary:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(comment);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
 @end

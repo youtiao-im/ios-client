@@ -30,7 +30,7 @@
   self.title = self.channelViewModel.name;
 
   // TODO: do we need weak/strong dance?
-  [[[self.channelViewModel fetchMembershipsCommand] execute:nil] subscribeCompleted:^{
+  [[self.channelViewModel.fetchMembershipsCommand execute:nil] subscribeCompleted:^{
     [self.membershipsTableView reloadData];
   }];
 }

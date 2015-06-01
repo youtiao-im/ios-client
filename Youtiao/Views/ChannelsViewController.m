@@ -32,14 +32,14 @@
 
 - (void)bindViewModel {
   @weakify(self);
-  [[self.authenticatedUserViewModel fetchMembershipsCommand].executionSignals subscribeNext:^(RACSignal *signal) {
+  [self.authenticatedUserViewModel.fetchMembershipsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
     [signal subscribeNext:^(id x) {
       @strongify(self);
       [self.channelsTableView reloadData];
     }];
   }];
 
-  [[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil];
+  [self.authenticatedUserViewModel.fetchMembershipsCommand execute:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -70,7 +70,7 @@
 
 - (void)channelNewViewController:(ChannelNewViewController *)controller didCreateChannel:(ChannelViewModel *)channelViewModel {
   [controller dismissViewControllerAnimated:YES completion:nil];
-  [[self.authenticatedUserViewModel fetchMembershipsCommand] execute:nil];
+  [self.authenticatedUserViewModel.fetchMembershipsCommand execute:nil];
 }
 
 - (void)channelNewViewControllerDidCancel:(ChannelNewViewController *)controller {

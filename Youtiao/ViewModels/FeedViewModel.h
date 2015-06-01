@@ -2,7 +2,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "YTAPIContext.h"
 
-@class CommentViewModel;
+@class CommentViewModel, CommentNewViewModel;
 
 @interface FeedViewModel : NSObject
 
@@ -14,5 +14,7 @@
 
 - (NSInteger)numberOfComments;
 - (CommentViewModel *)commentViewModelAtIndex:(NSInteger)index;
+
+- (CommentNewViewModel *)commentNewViewModel;
 
 @end

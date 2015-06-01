@@ -2,11 +2,16 @@
 
 #import "FeedViewModel.h"
 #import "CommentViewModel.h"
+#import "CommentNewViewModel.h"
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet UITableView *commentsTableView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
+
+@property (nonatomic, strong) CommentNewViewModel *commentNewViewModel;
 
 @end
 
@@ -21,16 +26,34 @@
   self.commentsTableView.dataSource = self;
   self.commentsTableView.delegate = self;
 
+  self.commentNewViewModel = [self.feedViewModel commentNewViewModel];
+
   [self bindViewModel];
 }
 
 - (void)bindViewModel {
   self.textLabel.text = self.feedViewModel.text;
 
-  // TODO: do we need weak/strong dance?
-  [[[self.feedViewModel fetchCommentsCommand] execute:nil] subscribeCompleted:^{
-    [self.commentsTableView reloadData];
+  RAC(self.commentNewViewModel, text) = self.textField.rac_textSignal;
+  self.createButton.rac_command = self.commentNewViewModel.createCommentCommand;
+
+  @weakify(self);
+  [self.feedViewModel.fetchCommentsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+    [signal subscribeNext:^(id x) {
+      @strongify(self);
+      [self.commentsTableView reloadData];
+    }];
   }];
+
+  [self.commentNewViewModel.createCommentCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+    [signal subscribeNext:^(id x) {
+      @strongify(self);
+      self.textField.text = nil;
+      [self.feedViewModel.fetchCommentsCommand execute:nil];
+    }];
+  }];
+
+  [self.feedViewModel.fetchCommentsCommand execute:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

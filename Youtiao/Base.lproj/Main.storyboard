@@ -121,23 +121,41 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-ly-L9U">
-                                <rect key="frame" x="0.0" y="85" width="600" height="515"/>
+                                <rect key="frame" x="0.0" y="85" width="600" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TeK-Zd-lqa">
+                                <rect key="frame" x="16" y="562" width="530" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNj-yd-aAI">
+                                <rect key="frame" x="546" y="562" width="38" height="30"/>
+                                <state key="normal" title="Creat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vrb-LT-tyo" firstAttribute="top" secondItem="xMy-2v-Zpi" secondAttribute="bottom" id="0Vk-fe-SmD"/>
+                            <constraint firstItem="QNj-yd-aAI" firstAttribute="trailing" secondItem="auz-f0-GeK" secondAttribute="trailingMargin" id="3FK-Km-olh"/>
+                            <constraint firstItem="TeK-Zd-lqa" firstAttribute="centerY" secondItem="QNj-yd-aAI" secondAttribute="centerY" id="61p-Mg-7c0"/>
                             <constraint firstItem="SP9-ly-L9U" firstAttribute="top" secondItem="vrb-LT-tyo" secondAttribute="bottom" id="OuL-XZ-g8V"/>
+                            <constraint firstItem="QNj-yd-aAI" firstAttribute="leading" secondItem="TeK-Zd-lqa" secondAttribute="trailing" id="Qrr-gS-jVR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vrb-LT-tyo" secondAttribute="trailing" id="Uxw-Ex-HqH"/>
                             <constraint firstItem="SP9-ly-L9U" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leading" id="Vii-hl-Npy"/>
                             <constraint firstAttribute="trailing" secondItem="SP9-ly-L9U" secondAttribute="trailing" id="Xhq-lZ-OsS"/>
-                            <constraint firstItem="B6j-X2-x8Q" firstAttribute="top" secondItem="SP9-ly-L9U" secondAttribute="bottom" id="p5q-EI-4gg"/>
+                            <constraint firstItem="TeK-Zd-lqa" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leadingMargin" id="lAX-kZ-qEL"/>
                             <constraint firstItem="vrb-LT-tyo" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leadingMargin" id="piX-wd-Htw"/>
+                            <constraint firstItem="B6j-X2-x8Q" firstAttribute="top" secondItem="TeK-Zd-lqa" secondAttribute="bottom" constant="8" id="sH5-eB-OZw"/>
+                            <constraint firstItem="TeK-Zd-lqa" firstAttribute="top" secondItem="SP9-ly-L9U" secondAttribute="bottom" constant="8" id="y5K-HX-9kj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="commentsTableView" destination="SP9-ly-L9U" id="mRC-Ab-YJh"/>
+                        <outlet property="createButton" destination="QNj-yd-aAI" id="DEi-Bi-Hfg"/>
+                        <outlet property="textField" destination="TeK-Zd-lqa" id="Gp8-03-F3I"/>
                         <outlet property="textLabel" destination="vrb-LT-tyo" id="nLW-LR-fuF"/>
                     </connections>
                 </viewController>
@@ -335,6 +353,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Wfk-a1-jNt">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mEf-DF-BEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SSr-UL-ckR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LaO-Pb-bPt">
@@ -346,7 +365,6 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="yzM-RL-kLx"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mEf-DF-BEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="310" y="1029"/>
         </scene>

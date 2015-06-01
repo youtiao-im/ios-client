@@ -26,7 +26,7 @@
   self.createButton.rac_command = self.feedNewViewModel.createFeedCommand;
 
   @weakify(self);
-  [[self.feedNewViewModel.createFeedCommand executionSignals] subscribeNext:^(RACSignal *signal) {
+  [self.feedNewViewModel.createFeedCommand.executionSignals subscribeNext:^(RACSignal *signal) {
     [signal subscribeNext:^(id x) {
       @strongify(self);
       if (self.delegate != nil) {

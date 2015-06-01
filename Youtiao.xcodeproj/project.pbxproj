@@ -36,6 +36,7 @@
 		9C823C111B1881E20074752E /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C823C0F1B1881E10074752E /* FeedViewController.m */; };
 		9C8EE9831B1B040700551B76 /* FeedNewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9821B1B040700551B76 /* FeedNewViewModel.m */; };
 		9C8EE9861B1B040E00551B76 /* FeedNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */; };
+		9C8EE9891B1BFE4500551B76 /* CommentNewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9881B1BFE4500551B76 /* CommentNewViewModel.m */; };
 		DF5FCCC5C1B05FF326826FBB /* libPods-Youtiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,8 @@
 		9C8EE9821B1B040700551B76 /* FeedNewViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedNewViewModel.m; sourceTree = "<group>"; };
 		9C8EE9841B1B040E00551B76 /* FeedNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedNewViewController.h; sourceTree = "<group>"; };
 		9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedNewViewController.m; sourceTree = "<group>"; };
+		9C8EE9871B1BFE4500551B76 /* CommentNewViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentNewViewModel.h; sourceTree = "<group>"; };
+		9C8EE9881B1BFE4500551B76 /* CommentNewViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentNewViewModel.m; sourceTree = "<group>"; };
 		CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Youtiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -253,6 +256,8 @@
 				9C823C0A1B1881270074752E /* ChannelNewViewModel.m */,
 				9C78E4451B181B4A00512259 /* ChannelViewModel.h */,
 				9C78E4461B181B4A00512259 /* ChannelViewModel.m */,
+				9C8EE9871B1BFE4500551B76 /* CommentNewViewModel.h */,
+				9C8EE9881B1BFE4500551B76 /* CommentNewViewModel.m */,
 				9C823BEB1B1841D10074752E /* CommentViewModel.h */,
 				9C823BEC1B1841D10074752E /* CommentViewModel.m */,
 				9C8EE9811B1B040700551B76 /* FeedNewViewModel.h */,
@@ -471,6 +476,7 @@
 				9C20A4241B17231500BE1FF4 /* YTUser.m in Sources */,
 				9C823C021B185C470074752E /* UserViewModel.m in Sources */,
 				9C78E44D1B18315000512259 /* FeedViewModel.m in Sources */,
+				9C8EE9891B1BFE4500551B76 /* CommentNewViewModel.m in Sources */,
 				9C823C111B1881E20074752E /* FeedViewController.m in Sources */,
 				9C78E4471B181B4A00512259 /* ChannelViewModel.m in Sources */,
 				9C823BF61B1843710074752E /* YTComment.m in Sources */,
