@@ -66,6 +66,8 @@
     ((ChannelNewViewController *) viewController).channelNewViewModel = [[ChannelNewViewModel alloc] init];
     ((ChannelNewViewController *) viewController).delegate = self;
   }
+
+  self.tabBarController.tabBar.hidden = YES;
 }
 
 - (void)channelNewViewController:(ChannelNewViewController *)controller didCreateChannel:(ChannelViewModel *)channelViewModel {
