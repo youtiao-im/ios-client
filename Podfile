@@ -5,6 +5,7 @@ target 'Youtiao' do
   pod 'AFNetworking'
   pod 'Mantle'
   pod 'ReactiveCocoa'
+  pod 'FontAwesomeKit'
 end
 
 target 'YoutiaoTests' do

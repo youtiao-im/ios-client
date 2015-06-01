@@ -37,6 +37,8 @@
 		9C8EE9831B1B040700551B76 /* FeedNewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9821B1B040700551B76 /* FeedNewViewModel.m */; };
 		9C8EE9861B1B040E00551B76 /* FeedNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */; };
 		9C8EE9891B1BFE4500551B76 /* CommentNewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE9881B1BFE4500551B76 /* CommentNewViewModel.m */; };
+		9C8EE98E1B1C242100551B76 /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE98B1B1C242100551B76 /* FeedsViewController.m */; };
+		9C8EE98F1B1C242100551B76 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE98D1B1C242100551B76 /* SettingsViewController.m */; };
 		DF5FCCC5C1B05FF326826FBB /* libPods-Youtiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +114,10 @@
 		9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedNewViewController.m; sourceTree = "<group>"; };
 		9C8EE9871B1BFE4500551B76 /* CommentNewViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentNewViewModel.h; sourceTree = "<group>"; };
 		9C8EE9881B1BFE4500551B76 /* CommentNewViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentNewViewModel.m; sourceTree = "<group>"; };
+		9C8EE98A1B1C242100551B76 /* FeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsViewController.h; sourceTree = "<group>"; };
+		9C8EE98B1B1C242100551B76 /* FeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsViewController.m; sourceTree = "<group>"; };
+		9C8EE98C1B1C242100551B76 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		9C8EE98D1B1C242100551B76 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Youtiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -285,8 +291,12 @@
 				9C823C0D1B1881E10074752E /* ChannelViewController.m */,
 				9C8EE9841B1B040E00551B76 /* FeedNewViewController.h */,
 				9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */,
+				9C8EE98A1B1C242100551B76 /* FeedsViewController.h */,
+				9C8EE98B1B1C242100551B76 /* FeedsViewController.m */,
 				9C823C0E1B1881E10074752E /* FeedViewController.h */,
 				9C823C0F1B1881E10074752E /* FeedViewController.m */,
+				9C8EE98C1B1C242100551B76 /* SettingsViewController.h */,
+				9C8EE98D1B1C242100551B76 /* SettingsViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -482,7 +492,9 @@
 				9C823BF61B1843710074752E /* YTComment.m in Sources */,
 				9C8EE9831B1B040700551B76 /* FeedNewViewModel.m in Sources */,
 				9C20A3E61B16EB0C00BE1FF4 /* main.m in Sources */,
+				9C8EE98E1B1C242100551B76 /* FeedsViewController.m in Sources */,
 				9C823BFE1B1859660074752E /* AuthenticatedUserViewModel.m in Sources */,
+				9C8EE98F1B1C242100551B76 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

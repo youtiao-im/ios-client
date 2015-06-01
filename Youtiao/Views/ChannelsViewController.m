@@ -1,5 +1,7 @@
 #import "ChannelsViewController.h"
 
+#import <FontAwesomeKit/FAKIonIcons.h>
+
 #import "AuthenticatedUserViewModel.h"
 #import "MembershipViewModel.h"
 #import "ChannelViewModel.h"
@@ -10,16 +12,30 @@
 
 @interface ChannelsViewController () <UITableViewDataSource, UITableViewDelegate, ChannelNewViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *channelNewButton;
 @property (nonatomic, weak) IBOutlet UITableView *channelsTableView;
 
 @end
 
 @implementation ChannelsViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if (self == nil) {
+    return nil;
+  }
+
+  self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Channels" image:[[FAKIonIcons iosBellOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)] selectedImage:[[FAKIonIcons iosBellIconWithSize:35] imageWithSize:CGSizeMake(35, 35)]];
+
+  return self;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.title = @"Channels";
+
+  self.channelNewButton.image = [[FAKIonIcons plusRoundIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
 
   self.channelsTableView.dataSource = self;
   self.channelsTableView.delegate = self;

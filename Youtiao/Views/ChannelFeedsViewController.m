@@ -1,5 +1,7 @@
 #import "ChannelFeedsViewController.h"
 
+#import <FontAwesomeKit/FAKIonIcons.h>
+
 #import "MembershipViewModel.h"
 #import "ChannelViewModel.h"
 #import "FeedViewModel.h"
@@ -10,6 +12,7 @@
 
 @interface ChannelFeedsViewController () <UITableViewDataSource, UITableViewDelegate, FeedNewViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *channelSettingsButton;
 @property (nonatomic, weak) IBOutlet UITableView *feedsTableView;
 
 @property (nonatomic, strong) ChannelViewModel *channelViewModel;
@@ -20,6 +23,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.channelSettingsButton.image = [[FAKIonIcons personStalkerIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
 
   self.feedsTableView.dataSource = self;
   self.feedsTableView.delegate = self;
