@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
+#import "ViewModels.h"
 
-@class AuthenticatedUserViewModel;
 
 @interface FeedsViewController : UIViewController
 
-@property (nonatomic, strong) AuthenticatedUserViewModel *authenticatedUserViewModel;
+@property (nonatomic) AuthenticatedUserViewModel *authenticatedUserViewModel;
 
 @end

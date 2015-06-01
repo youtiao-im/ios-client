@@ -1,12 +1,13 @@
 #import "AuthenticatedUserViewModel.h"
-
 #import "MembershipViewModel.h"
+
 
 @interface AuthenticatedUserViewModel ()
 
-@property (nonatomic, strong) NSArray *memberships;
+@property (nonatomic) NSArray *memberships;
 
 @end
+
 
 @implementation AuthenticatedUserViewModel
 
@@ -35,7 +36,7 @@
 - (RACSignal *)fetchMembershipsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[[YTAPIContext sharedInstance] apiClient] fetchMembershipsOfAuthenticatedUserWithSuccess:^(NSArray *memberships) {
+    [[YTAPIContext sharedInstance].apiClient fetchMembershipsOfAuthenticatedUserWithSuccess:^(NSArray *memberships) {
       @strongify(self);
       self.memberships = memberships;
       [subscriber sendNext:nil];

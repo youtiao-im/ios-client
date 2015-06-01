@@ -1,13 +1,13 @@
 #import "CommentNewViewModel.h"
-
 #import "CommentViewModel.h"
+
 
 @interface CommentNewViewModel ()
 
-@property (nonatomic, strong) YTFeed *feed;
-@property (nonatomic, strong) YTComment *createdComment;
+@property (nonatomic) YTFeed *feed;
 
 @end
+
 
 @implementation CommentNewViewModel
 
@@ -30,21 +30,11 @@
   return self;
 }
 
-- (CommentViewModel *)createdCommentViewModel {
-  if (self.createdComment == nil) {
-    return nil;
-  }
-  return [[CommentViewModel alloc] initWithComment:self.createdComment];
-}
-
 - (RACSignal *)createCommentSignal {
-  @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     YTComment *newComment = [[YTComment alloc] initWithText:self.text];
-    [[[YTAPIContext sharedInstance] apiClient] createComment:newComment forFeed:self.feed.identifier success:^(YTComment *comment) {
-      @strongify(self);
-      self.createdComment = comment;
-      [subscriber sendNext:nil];
+    [[YTAPIContext sharedInstance].apiClient createComment:newComment forFeed:self.feed.identifier success:^(YTComment *comment) {
+      [subscriber sendNext:[[CommentViewModel alloc] initWithComment:comment]];
       [subscriber sendCompleted];
     } failure:^(NSError *error) {
       [subscriber sendError:error];

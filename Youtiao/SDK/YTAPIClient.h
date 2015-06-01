@@ -1,11 +1,7 @@
 #import <Foundation/Foundation.h>
 
-@class YTUser;
-@class YTMembership;
-@class YTChannel;
-@class YTFeed;
-@class YTComment;
 
+@class YTUser, YTMembership, YTChannel, YTFeed, YTComment;
 @class YTAPIContext;
 
 @interface YTAPIClient : NSObject

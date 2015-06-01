@@ -1,13 +1,14 @@
 #import "YTAPIClient.h"
-
 #import <AFNetworking/AFNetworking.h>
 #import "YTAPIContext.h"
 
+
 @interface YTAPIClient ()
 
-@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+@property (nonatomic) AFHTTPRequestOperationManager *manager;
 
 @end
+
 
 @implementation YTAPIClient
 

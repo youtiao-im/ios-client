@@ -1,45 +1,37 @@
 #import "ChannelNewViewController.h"
 
-#import "ChannelNewViewModel.h"
 
 @interface ChannelNewViewController ()
 
-@property (nonatomic, weak) IBOutlet UITextField *nameField;
-@property (nonatomic, weak) IBOutlet UIButton *createButton;
-@property (nonatomic, weak) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @end
+
 
 @implementation ChannelNewViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // TODO:
-  self.title = @"New Channel";
-
-  [self bindViewModel];
+  [self bindViewModels];
 }
 
-- (void)bindViewModel {
-  RAC(self.channelNewViewModel, name) = self.nameField.rac_textSignal;
+- (void)bindViewModels {
+  RAC(self.channelNewViewModel, name) = self.nameTextField.rac_textSignal;
   self.createButton.rac_command = self.channelNewViewModel.createChannelCommand;
 
   @weakify(self);
   [[self.channelNewViewModel.createChannelCommand executionSignals] subscribeNext:^(RACSignal *signal) {
-    [signal subscribeNext:^(id x) {
+    [signal subscribeNext:^(ChannelViewModel *channelViewModel) {
       @strongify(self);
-      if (self.delegate != nil) {
-        [self.delegate channelNewViewController:self didCreateChannel:[self.channelNewViewModel createdChannelViewModel]];
-      }
+      [self.delegate channelNewViewController:self didCreateChannel:channelViewModel];
     }];
   }];
 }
 
 - (IBAction)cancel:(id)sender {
-  if (self.delegate != nil) {
-    [self.delegate channelNewViewControllerDidCancel:self];
-  }
+  [self.delegate channelNewViewControllerDidCancel:self];
 }
 
 @end

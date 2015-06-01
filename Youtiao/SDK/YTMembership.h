@@ -1,13 +1,13 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-@class YTChannel;
-@class YTUser;
+
+@class YTChannel, YTUser;
 
 @interface YTMembership : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, strong, readonly) NSString *role;
-@property (nonatomic, strong, readonly) YTChannel *channel;
-@property (nonatomic, strong, readonly) YTUser *user;
+@property (nonatomic, readonly) NSString *role;
+@property (nonatomic, readonly) YTChannel *channel;
+@property (nonatomic, readonly) YTUser *user;
 
 @end

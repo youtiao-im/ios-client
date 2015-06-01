@@ -1,8 +1,9 @@
 #import "UserViewModel.h"
 
+
 @interface UserViewModel ()
 
-@property (nonatomic, strong) YTUser *user;
+@property (nonatomic) YTUser *user;
 
 @end
 

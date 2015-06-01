@@ -1,5 +1,6 @@
 #import "YTUser.h"
 
+
 @implementation YTUser
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {

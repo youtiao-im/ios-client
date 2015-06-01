@@ -1,12 +1,10 @@
 #import "FeedNewViewController.h"
 
-#import "FeedNewViewModel.h"
 
 @interface FeedNewViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textField;
-@property (nonatomic, weak) IBOutlet UIButton *createButton;
-@property (nonatomic, weak) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UITextView *textTextView;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @end
 
@@ -15,31 +13,24 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  // TODO:
-  self.title = @"New Feed";
-
-  [self bindViewModel];
+  [self bindViewModels];
 }
 
-- (void)bindViewModel {
-  RAC(self.feedNewViewModel, text) = self.textField.rac_textSignal;
+- (void)bindViewModels {
+  RAC(self.feedNewViewModel, text) = self.textTextView.rac_textSignal;
   self.createButton.rac_command = self.feedNewViewModel.createFeedCommand;
 
   @weakify(self);
   [self.feedNewViewModel.createFeedCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-    [signal subscribeNext:^(id x) {
+    [signal subscribeNext:^(FeedViewModel *feedViewModel) {
       @strongify(self);
-      if (self.delegate != nil) {
-        [self.delegate feedNewViewController:self didCreateFeed:[self.feedNewViewModel createdFeedViewModel]];
-      }
+      [self.delegate feedNewViewController:self didCreateFeed:feedViewModel];
     }];
   }];
 }
 
 - (IBAction)cancel:(id)sender {
-  if (self.delegate != nil) {
-    [self.delegate feedNewViewControllerDidCancel:self];
-  }
+  [self.delegate feedNewViewControllerDidCancel:self];
 }
 
 @end

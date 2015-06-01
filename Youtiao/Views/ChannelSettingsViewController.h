@@ -2,7 +2,7 @@
 #import "ViewModels.h"
 
 
-@interface ChannelFeedsViewController : UIViewController
+@interface ChannelSettingsViewController : UIViewController
 
 @property (nonatomic) MembershipViewModel *membershipViewModel;
 

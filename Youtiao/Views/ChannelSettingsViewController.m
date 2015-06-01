@@ -1,34 +1,34 @@
-#import "ChannelViewController.h"
+#import "ChannelSettingsViewController.h"
 
-#import "ChannelViewModel.h"
-#import "MembershipViewModel.h"
-#import "UserViewModel.h"
 
-@interface ChannelViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ChannelSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *membershipsTableView;
-
-@property (nonatomic, strong) ChannelViewModel *channelViewModel;
+@property (weak, nonatomic) IBOutlet UITableView *membershipsTableView;
+@property (nonatomic) ChannelViewModel *channelViewModel;
 
 @end
 
-@implementation ChannelViewController
+@implementation ChannelSettingsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.membershipsTableView.dataSource = self;
-  self.membershipsTableView.delegate = self;
-
-  [self bindViewModel];
-}
-
-- (void)bindViewModel {
   self.channelViewModel = [self.membershipViewModel channelViewModel];
 
-  // TODO:
-  self.title = self.channelViewModel.name;
+  [self configViews];
+  [self bindViewModels];
+}
 
+- (void)configViews {
+  self.title = self.channelViewModel.name;
+  self.navigationItem.backBarButtonItem.title = nil;
+
+  self.membershipsTableView.rowHeight = UITableViewAutomaticDimension;
+  self.membershipsTableView.dataSource = self;
+  self.membershipsTableView.delegate = self;
+}
+
+- (void)bindViewModels {
   // TODO: do we need weak/strong dance?
   [[self.channelViewModel.fetchMembershipsCommand execute:nil] subscribeCompleted:^{
     [self.membershipsTableView reloadData];
@@ -40,13 +40,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  // TODO:
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UserCell"];
   }
 
   MembershipViewModel *membershipViewModel = [self.channelViewModel membershipViewModelAtIndex:indexPath.row];
-
   cell.textLabel.text = [membershipViewModel userViewModel].email;
   return cell;
 }

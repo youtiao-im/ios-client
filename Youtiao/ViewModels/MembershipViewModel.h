@@ -2,6 +2,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "YTAPIContext.h"
 
+
 @class ChannelViewModel, UserViewModel;
 
 @interface MembershipViewModel : NSObject

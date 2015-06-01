@@ -1,16 +1,17 @@
 #import "ChannelViewModel.h"
-
 #import "FeedViewModel.h"
 #import "MembershipViewModel.h"
 #import "FeedNewViewModel.h"
 
+
 @interface ChannelViewModel ()
 
-@property (nonatomic, strong) YTChannel *channel;
-@property (nonatomic, strong) NSArray *feeds;
-@property (nonatomic, strong) NSArray *memberships;
+@property (nonatomic) YTChannel *channel;
+@property (nonatomic) NSArray *feeds;
+@property (nonatomic) NSArray *memberships;
 
 @end
+
 
 @implementation ChannelViewModel
 
@@ -48,7 +49,7 @@
 - (RACSignal *)fetchFeedsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[[YTAPIContext sharedInstance] apiClient] fetchFeedsOfChannel:self.channel.identifier success:^(NSArray *feeds) {
+    [[YTAPIContext sharedInstance].apiClient fetchFeedsOfChannel:self.channel.identifier success:^(NSArray *feeds) {
       @strongify(self);
       self.feeds = feeds;
       [subscriber sendNext:nil];
@@ -75,7 +76,7 @@
 - (RACSignal *)fetchMembershipsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[[YTAPIContext sharedInstance] apiClient] fetchMembershipsOfChannel:self.channel.identifier success:^(NSArray *memberships) {
+    [[YTAPIContext sharedInstance].apiClient fetchMembershipsOfChannel:self.channel.identifier success:^(NSArray *memberships) {
       @strongify(self);
       self.memberships = memberships;
       [subscriber sendNext:nil];

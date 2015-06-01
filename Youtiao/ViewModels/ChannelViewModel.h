@@ -2,14 +2,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "YTAPIContext.h"
 
+
 @class FeedViewModel, MembershipViewModel, FeedNewViewModel;
 
 @interface ChannelViewModel : NSObject
 
-@property (nonatomic, strong, readonly) NSString *name;
-
-@property (nonatomic, strong, readonly) RACCommand *fetchFeedsCommand;
-@property (nonatomic, strong, readonly) RACCommand *fetchMembershipsCommand;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) RACCommand *fetchFeedsCommand;
+@property (nonatomic, readonly) RACCommand *fetchMembershipsCommand;
 
 - (id)initWithChannel:(YTChannel *)channel;
 

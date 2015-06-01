@@ -1,14 +1,15 @@
 #import "FeedViewModel.h"
-
 #import "CommentViewModel.h"
 #import "CommentNewViewModel.h"
 
+
 @interface FeedViewModel ()
 
-@property (nonatomic, strong) YTFeed *feed;
-@property (nonatomic, strong) NSArray *comments;
+@property (nonatomic) YTFeed *feed;
+@property (nonatomic) NSArray *comments;
 
 @end
+
 
 @implementation FeedViewModel
 
@@ -31,6 +32,14 @@
   return self.feed.text;
 }
 
+- (NSString *)createdByName {
+  return self.feed.createdBy.email;
+}
+
+- (NSString *)channelName {
+  return self.feed.channel.name;
+}
+
 - (NSInteger)numberOfComments {
   return self.comments == nil ? 0 : self.comments.count;
 }
@@ -43,7 +52,7 @@
 - (RACSignal *)fetchCommentsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[[YTAPIContext sharedInstance] apiClient] fetchCommentsOfFeed:self.feed.identifier success:^(NSArray *comments) {
+    [[YTAPIContext sharedInstance].apiClient fetchCommentsOfFeed:self.feed.identifier success:^(NSArray *comments) {
       @strongify(self);
       self.comments = comments;
       [subscriber sendNext:nil];

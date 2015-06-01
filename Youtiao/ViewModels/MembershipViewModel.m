@@ -1,13 +1,14 @@
 #import "MembershipViewModel.h"
-
 #import "ChannelViewModel.h"
 #import "UserViewModel.h"
 
+
 @interface MembershipViewModel ()
 
-@property (nonatomic, strong) YTMembership *membership;
+@property (nonatomic) YTMembership *membership;
 
 @end
+
 
 @implementation MembershipViewModel
 

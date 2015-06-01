@@ -1,15 +1,15 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-@class YTFeed;
-@class YTUser;
+
+@class YTFeed, YTUser;
 
 @interface YTComment : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, strong, readonly) NSString *identifier;
-@property (nonatomic, strong, readonly) YTFeed *feed;
-@property (nonatomic, strong, readonly) NSString *text;
-@property (nonatomic, strong, readonly) YTUser *createdBy;
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) YTFeed *feed;
+@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) YTUser *createdBy;
 
 - (id)initWithText:(NSString *)text;
 

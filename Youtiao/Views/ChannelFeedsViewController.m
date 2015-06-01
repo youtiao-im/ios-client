@@ -1,42 +1,43 @@
 #import "ChannelFeedsViewController.h"
-
 #import <FontAwesomeKit/FAKIonIcons.h>
-
-#import "MembershipViewModel.h"
-#import "ChannelViewModel.h"
-#import "FeedViewModel.h"
-
-#import "ChannelViewController.h"
-#import "FeedViewController.h"
+#import "ChannelSettingsViewController.h"
 #import "FeedNewViewController.h"
+#import "FeedViewController.h"
+#import "FeedTableViewCell.h"
+
 
 @interface ChannelFeedsViewController () <UITableViewDataSource, UITableViewDelegate, FeedNewViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *channelSettingsButton;
-@property (nonatomic, weak) IBOutlet UITableView *feedsTableView;
-
-@property (nonatomic, strong) ChannelViewModel *channelViewModel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *channelSettingsBarButtonItem;
+@property (weak, nonatomic) IBOutlet UITableView *feedsTableView;
+@property (nonatomic) ChannelViewModel *channelViewModel;
 
 @end
+
 
 @implementation ChannelFeedsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.channelSettingsButton.image = [[FAKIonIcons personStalkerIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
-
-  self.feedsTableView.dataSource = self;
-  self.feedsTableView.delegate = self;
-
-  [self bindViewModel];
-}
-
-- (void)bindViewModel {
   self.channelViewModel = [self.membershipViewModel channelViewModel];
 
-  self.title = self.channelViewModel.name;
+  [self configViews];
+  [self bindViewModels];
+}
 
+- (void)configViews {
+  self.title = self.channelViewModel.name;
+  self.navigationItem.backBarButtonItem.title = nil;
+  self.channelSettingsBarButtonItem.image = [[FAKIonIcons personStalkerIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
+
+  self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
+  self.feedsTableView.estimatedRowHeight = 160.0;
+  self.feedsTableView.dataSource = self;
+  self.feedsTableView.delegate = self;
+}
+
+- (void)bindViewModels {
   @weakify(self);
   [self.channelViewModel.fetchFeedsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
     [signal subscribeNext:^(id x) {
@@ -53,31 +54,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"FeedCell"];
-  }
-
+  FeedTableViewCell *feedCell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
   FeedViewModel *feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
-  cell.textLabel.text = feedViewModel.text;
-  return cell;
+  feedCell.feedViewModel = feedViewModel;
+  return feedCell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   UIViewController *viewController = segue.destinationViewController;
   if ([viewController isMemberOfClass:[FeedViewController class]]) {
+    FeedViewController * feedViewController = (FeedViewController *) viewController;
     NSIndexPath *indexPath = [self.feedsTableView indexPathForSelectedRow];
-    ((FeedViewController *) viewController).feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
-  } else if ([viewController isMemberOfClass:[ChannelViewController class]]) {
-    ((ChannelViewController *) viewController).membershipViewModel = self.membershipViewModel;
+    feedViewController.feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
+  } else if ([viewController isMemberOfClass:[ChannelSettingsViewController class]]) {
+    ChannelSettingsViewController * channelSettingsViewController = (ChannelSettingsViewController *) viewController;
+    channelSettingsViewController.membershipViewModel = self.membershipViewModel;
   } else if ([viewController isMemberOfClass:[FeedNewViewController class]]) {
-    ((FeedNewViewController *) viewController).feedNewViewModel = [self.channelViewModel feedNewViewModel];
-    ((FeedNewViewController *) viewController).delegate = self;
+    FeedNewViewController *feedNewViewController = (FeedNewViewController *) viewController;
+    feedNewViewController.feedNewViewModel = [self.channelViewModel feedNewViewModel];
+    feedNewViewController.delegate = self;
   }
 }
 
 - (void)feedNewViewController:(FeedNewViewController *)controller didCreateFeed:(FeedViewModel *)feedViewModel {
-  NSLog(@"sadasd");
   [controller dismissViewControllerAnimated:YES completion:nil];
   [self.channelViewModel.fetchFeedsCommand execute:nil];
 }

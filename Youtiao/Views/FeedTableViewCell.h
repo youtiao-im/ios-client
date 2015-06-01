@@ -2,7 +2,7 @@
 #import "ViewModels.h"
 
 
-@interface FeedViewController : UIViewController
+@interface FeedTableViewCell : UITableViewCell
 
 @property (nonatomic) FeedViewModel *feedViewModel;
 

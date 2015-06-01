@@ -1,10 +1,12 @@
 #import "CommentViewModel.h"
 
+
 @interface CommentViewModel ()
 
-@property (nonatomic, strong) YTComment *comment;
+@property (nonatomic) YTComment *comment;
 
 @end
+
 
 @implementation CommentViewModel
 

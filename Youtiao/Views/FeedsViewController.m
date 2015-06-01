@@ -1,14 +1,13 @@
 #import "FeedsViewController.h"
-
 #import <FontAwesomeKit/FAKIonIcons.h>
 
-#import "AuthenticatedUserViewModel.h"
 
 @interface FeedsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *feedsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *feedsTableView;
 
 @end
+
 
 @implementation FeedsViewController
 
@@ -18,15 +17,14 @@
     return nil;
   }
 
-  self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Youtiao" image:[[FAKIonIcons iosHomeOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)] selectedImage:[[FAKIonIcons iosHomeIconWithSize:35] imageWithSize:CGSizeMake(35, 35)]];
+  self.tabBarItem.image = [[FAKIonIcons iosHomeOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
+  self.tabBarItem.selectedImage = [[FAKIonIcons iosHomeIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
 
   return self;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.title = @"Youtiao";
 
   self.feedsTableView.dataSource = self;
   self.feedsTableView.delegate = self;
