@@ -1,4 +1,5 @@
 #import "YTFeed.h"
+#import "YTChannel.h"
 #import "YTUser.h"
 
 
@@ -7,7 +8,12 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{@"identifier": @"id",
            @"text": @"text",
+           @"channel": @"channel",
            @"createdBy": @"created_by"};
+}
+
++ (NSValueTransformer *)channelJSONTransformer {
+  return [MTLJSONAdapter dictionaryTransformerWithModelClass:[YTChannel class]];
 }
 
 + (NSValueTransformer *)createdByJSONTransformer {

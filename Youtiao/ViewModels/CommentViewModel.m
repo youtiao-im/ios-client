@@ -26,7 +26,7 @@
 }
 
 - (NSString *)createdByName {
-  return self.comment.createdBy.email;
+  return self.comment.createdBy.name;
 }
 
 @end

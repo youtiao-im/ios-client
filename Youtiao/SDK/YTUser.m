@@ -8,4 +8,8 @@
            @"email": @"email"};
 }
 
+- (NSString *)name {
+  return [[self.email componentsSeparatedByString:@"@"] objectAtIndex:0];
+}
+
 @end

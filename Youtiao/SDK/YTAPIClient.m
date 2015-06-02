@@ -46,6 +46,20 @@
   }];
 }
 
+- (void)fetchFeedsOfAuthenticatedUserWithSuccess:(void (^)(NSArray *feeds))success failure:(void (^)(NSError *error))failure {
+  [self.manager GET:@"user/feeds" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    NSArray *feeds = [MTLJSONAdapter modelsOfClass:[YTFeed class] fromJSONArray:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(feeds);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
 - (void)fetchMembershipsOfAuthenticatedUserWithSuccess:(void (^)(NSArray *memberships))success failure:(void (^)(NSError *error))failure {
   [self.manager GET:@"user/memberships" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;

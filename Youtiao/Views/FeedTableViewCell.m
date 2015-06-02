@@ -22,7 +22,7 @@
   // TODO:
   [self.createdByAvatarImageView sd_setImageWithURL:[NSURL URLWithString:@"http://7pn5p7.com1.z0.glb.clouddn.com/Fjjevc7FDWqgIHZtiC57nHqnrtMH"]];
   self.createdByNameLabel.text = feedViewModel.createdByName;
-  self.channelNameLabel.text = feedViewModel.channelName;
+  self.channelNameLabel.text = [NSString stringWithFormat:@"#%@", feedViewModel.channelName];
   self.textContentLabel.text = feedViewModel.text;
 }
 

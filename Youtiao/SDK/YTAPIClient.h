@@ -11,6 +11,7 @@
 - (void)setAccessToken:(NSString *)accessToken;
 
 - (void)fetchAuthenticatedUserWithSuccess:(void(^)(YTUser *user))success failure:(void(^)(NSError *error))failure;
+- (void)fetchFeedsOfAuthenticatedUserWithSuccess:(void (^)(NSArray *feeds))success failure:(void (^)(NSError *error))failure;
 - (void)fetchMembershipsOfAuthenticatedUserWithSuccess:(void(^)(NSArray *memberships))success failure:(void(^)(NSError *error))failure;
 
 - (void)createChannel:(YTChannel *)channel success:(void(^)(YTChannel *channel))success failure:(void(^)(NSError *error))failure;

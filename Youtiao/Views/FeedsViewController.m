@@ -1,5 +1,7 @@
 #import "FeedsViewController.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import "FeedViewController.h"
+#import "FeedTableViewCell.h"
 
 
 @interface FeedsViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -26,23 +28,49 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.feedsTableView.dataSource = self;
-  self.feedsTableView.delegate = self;
-
   // TODO: move app delegate
   self.authenticatedUserViewModel = [[AuthenticatedUserViewModel alloc] init];
 
-//  [self bindViewModel];
+  [self configViews];
+  [self bindViewModels];
+}
+
+- (void)configViews {
+  self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
+  self.feedsTableView.estimatedRowHeight = 160.0;
+  self.feedsTableView.dataSource = self;
+  self.feedsTableView.delegate = self;
+}
+
+- (void)bindViewModels {
+  @weakify(self);
+  [self.authenticatedUserViewModel.fetchFeedsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+    [signal subscribeNext:^(id x) {
+      @strongify(self);
+      [self.feedsTableView reloadData];
+    }];
+  }];
+
+  [self.authenticatedUserViewModel.fetchFeedsCommand execute:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // TODO:
-  return 0;
+  return [self.authenticatedUserViewModel numberOfFeeds];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  // TODO:
-  return nil;
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
+  ((FeedTableViewCell *) cell).feedViewModel = [self.authenticatedUserViewModel feedViewModelAtIndex:indexPath.row];
+  return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  UIViewController *viewController = segue.destinationViewController;
+  if ([viewController isMemberOfClass:[FeedViewController class]]) {
+    FeedViewController * feedViewController = (FeedViewController *) viewController;
+    NSIndexPath *indexPath = [self.feedsTableView indexPathForSelectedRow];
+    feedViewController.feedViewModel = [self.authenticatedUserViewModel feedViewModelAtIndex:indexPath.row];
+  }
 }
 
 @end

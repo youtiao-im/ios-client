@@ -33,7 +33,7 @@
 }
 
 - (NSString *)createdByName {
-  return self.feed.createdBy.email;
+  return self.feed.createdBy.name;
 }
 
 - (NSString *)channelName {

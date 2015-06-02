@@ -6,5 +6,6 @@
 
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *email;
+@property (nonatomic, readonly) NSString *name;
 
 @end
