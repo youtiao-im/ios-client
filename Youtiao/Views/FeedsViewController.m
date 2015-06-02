@@ -19,9 +19,6 @@
     return nil;
   }
 
-  self.tabBarItem.image = [[FAKIonIcons iosHomeOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-  self.tabBarItem.selectedImage = [[FAKIonIcons iosHomeIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-
   return self;
 }
 
@@ -36,6 +33,8 @@
 }
 
 - (void)configViews {
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
   self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
   self.feedsTableView.estimatedRowHeight = 160.0;
   self.feedsTableView.dataSource = self;
@@ -52,6 +51,12 @@
   }];
 
   [self.authenticatedUserViewModel.fetchFeedsCommand execute:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  NSIndexPath *selectedIndexPath = [self.feedsTableView indexPathForSelectedRow];
+  [self.feedsTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

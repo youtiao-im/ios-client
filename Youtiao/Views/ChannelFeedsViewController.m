@@ -28,8 +28,12 @@
 
 - (void)configViews {
   self.title = self.channelViewModel.name;
-  self.navigationItem.backBarButtonItem.title = nil;
-  self.channelSettingsBarButtonItem.image = [[FAKIonIcons personStalkerIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+  UIImage *addIconImage = [UIImage imageNamed:@"quill"];
+  UIBarButtonItem *feedNewBarButtonItem = [[UIBarButtonItem alloc] initWithImage:addIconImage style:UIBarButtonItemStylePlain target:self action:@selector(performFeedNewSegue)];
+  [feedNewBarButtonItem setImageInsets:UIEdgeInsetsMake(0, -30, 0, -70)];
+  [self.navigationItem setRightBarButtonItems:@[[self.navigationItem rightBarButtonItem], feedNewBarButtonItem]];
 
   self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
   self.feedsTableView.estimatedRowHeight = 160.0;
@@ -47,6 +51,12 @@
   }];
 
   [self.channelViewModel.fetchFeedsCommand execute:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  NSIndexPath *selectedIndexPath = [self.feedsTableView indexPathForSelectedRow];
+  [self.feedsTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,10 +79,14 @@
   } else if ([viewController isMemberOfClass:[ChannelSettingsViewController class]]) {
     ChannelSettingsViewController * channelSettingsViewController = (ChannelSettingsViewController *) viewController;
     channelSettingsViewController.membershipViewModel = self.membershipViewModel;
-  } else if ([viewController isMemberOfClass:[FeedNewViewController class]]) {
-    FeedNewViewController *feedNewViewController = (FeedNewViewController *) viewController;
-    feedNewViewController.feedNewViewModel = [self.channelViewModel feedNewViewModel];
-    feedNewViewController.delegate = self;
+  } else if ([viewController isMemberOfClass:[UINavigationController class]]) {
+    UINavigationController* navigationController = (UINavigationController *)viewController;
+    UIViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
+    if ([rootViewController isMemberOfClass:[FeedNewViewController class]]) {
+      FeedNewViewController *feedNewViewController = (FeedNewViewController *) rootViewController;
+      feedNewViewController.feedNewViewModel = [self.channelViewModel feedNewViewModel];
+      feedNewViewController.delegate = self;
+    }
   }
 }
 
@@ -83,6 +97,10 @@
 
 - (void)feedNewViewControllerDidCancel:(FeedNewViewController *)controller {
   [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)performFeedNewSegue{
+  [self performSegueWithIdentifier:@"FeedNewSegue" sender:self];
 }
 
 @end

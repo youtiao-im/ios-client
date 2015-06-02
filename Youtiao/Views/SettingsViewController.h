@@ -2,7 +2,7 @@
 #import "ViewModels.h"
 
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UITableViewController
 
 @property (nonatomic) AuthenticatedUserViewModel *authenticatedUserViewModel;
 

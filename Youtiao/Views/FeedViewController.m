@@ -5,7 +5,6 @@
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentCreateButton;
@@ -26,7 +25,7 @@
 }
 
 - (void)configViews {
-  self.textLabel.text = self.feedViewModel.text;
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
   self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
   self.commentsTableView.estimatedRowHeight = 65.0;

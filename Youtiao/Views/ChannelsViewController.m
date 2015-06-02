@@ -21,9 +21,6 @@
     return nil;
   }
 
-  self.tabBarItem.image = [[FAKIonIcons iosBellOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-  self.tabBarItem.selectedImage = [[FAKIonIcons iosBellIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-
   return self;
 }
 
@@ -38,7 +35,7 @@
 }
 
 - (void)configViews {
-  self.channelNewBarButtonItem.image = [[FAKIonIcons plusRoundIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
   self.channelsTableView.rowHeight = UITableViewAutomaticDimension;
   self.channelsTableView.estimatedRowHeight = 65.0;
@@ -56,6 +53,12 @@
   }];
 
   [self.authenticatedUserViewModel.fetchMembershipsCommand execute:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  NSIndexPath *selectedIndexPath = [self.channelsTableView indexPathForSelectedRow];
+  [self.channelsTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -81,10 +84,14 @@
     ChannelFeedsViewController *channelFeedsViewController = ((ChannelFeedsViewController *) viewController);
     NSIndexPath *indexPath = [self.channelsTableView indexPathForSelectedRow];
     channelFeedsViewController.membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
-  } else if ([viewController isMemberOfClass:[ChannelNewViewController class]]) {
-    ChannelNewViewController *channelNewViewController = (ChannelNewViewController *) viewController;
-    channelNewViewController.channelNewViewModel = [[ChannelNewViewModel alloc] init];
-    channelNewViewController.delegate = self;
+  } else if ([viewController isMemberOfClass:[UINavigationController class]]) {
+    UINavigationController *navigationController = (UINavigationController *)viewController;
+    UIViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
+    if ([rootViewController isMemberOfClass:[ChannelNewViewController class]]) {
+      ChannelNewViewController *channelNewViewController = (ChannelNewViewController *) rootViewController;
+      channelNewViewController.channelNewViewModel = [[ChannelNewViewModel alloc] init];
+      channelNewViewController.delegate = self;
+    }
   }
 }
 

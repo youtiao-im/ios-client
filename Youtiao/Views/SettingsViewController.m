@@ -15,8 +15,8 @@
     return nil;
   }
 
-  self.tabBarItem.image = [[FAKIonIcons iosPersonOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-  self.tabBarItem.selectedImage = [[FAKIonIcons iosPersonIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
+//  self.tabBarItem.image = [[FAKIonIcons iosPersonOutlineIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
+//  self.tabBarItem.selectedImage = [[FAKIonIcons iosPersonIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
 
   return self;
 }

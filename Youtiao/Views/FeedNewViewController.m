@@ -3,8 +3,8 @@
 
 @interface FeedNewViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *createBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITextView *textTextView;
-@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @end
 
@@ -18,7 +18,7 @@
 
 - (void)bindViewModels {
   RAC(self.feedNewViewModel, text) = self.textTextView.rac_textSignal;
-  self.createButton.rac_command = self.feedNewViewModel.createFeedCommand;
+  self.createBarButtonItem.rac_command = self.feedNewViewModel.createFeedCommand;
 
   @weakify(self);
   [self.feedNewViewModel.createFeedCommand.executionSignals subscribeNext:^(RACSignal *signal) {

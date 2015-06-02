@@ -3,8 +3,8 @@
 
 @interface ChannelNewViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *createBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 @end
 
@@ -19,7 +19,7 @@
 
 - (void)bindViewModels {
   RAC(self.channelNewViewModel, name) = self.nameTextField.rac_textSignal;
-  self.createButton.rac_command = self.channelNewViewModel.createChannelCommand;
+  self.createBarButtonItem.rac_command = self.channelNewViewModel.createChannelCommand;
 
   @weakify(self);
   [[self.channelNewViewModel.createChannelCommand executionSignals] subscribeNext:^(RACSignal *signal) {
@@ -31,6 +31,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
+  NSLog(@"asdafsa");
   [self.delegate channelNewViewControllerDidCancel:self];
 }
 

@@ -21,7 +21,7 @@
 
 - (void)configViews {
   self.title = self.channelViewModel.name;
-  self.navigationItem.backBarButtonItem.title = nil;
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
   self.membershipsTableView.rowHeight = UITableViewAutomaticDimension;
   self.membershipsTableView.dataSource = self;
