@@ -2,6 +2,7 @@
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "ChannelFeedsViewController.h"
 #import "ChannelNewViewController.h"
+#import "ChannelTableViewCell.h"
 
 
 @interface ChannelsViewController () <UITableViewDataSource, UITableViewDelegate, ChannelNewViewControllerDelegate>
@@ -40,7 +41,7 @@
   self.channelNewBarButtonItem.image = [[FAKIonIcons plusRoundIconWithSize:25] imageWithSize:CGSizeMake(25, 25)];
 
   self.channelsTableView.rowHeight = UITableViewAutomaticDimension;
-  self.channelsTableView.estimatedRowHeight = 160.0;
+  self.channelsTableView.estimatedRowHeight = 65.0;
   self.channelsTableView.dataSource = self;
   self.channelsTableView.delegate = self;
 }
@@ -64,12 +65,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // TODO:
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChannelCell"];
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ChannelCell"];
-  }
+  ((ChannelTableViewCell *) cell).channelViewModel = [[self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row] channelViewModel];
+//  if (cell == nil) {
+//    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ChannelCell"];
+//  }
 
-  MembershipViewModel *membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
-  cell.textLabel.text = [membershipViewModel channelViewModel].name;
+//  MembershipViewModel *membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
+//  cell.textLabel.text = [membershipViewModel channelViewModel].name;
   return cell;
 }
 

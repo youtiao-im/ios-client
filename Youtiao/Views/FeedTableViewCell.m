@@ -1,5 +1,6 @@
 #import "FeedTableViewCell.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
+#import <FontAwesomeKit/FontAwesomeKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface FeedTableViewCell ()
@@ -9,11 +10,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *channelNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textContentLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
-@property (weak, nonatomic) IBOutlet UILabel *commentsCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
-@property (weak, nonatomic) IBOutlet UILabel *starsCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *markIconImageView;
 
 @end
 
@@ -21,12 +17,13 @@
 @implementation FeedTableViewCell
 
 - (void)setFeedViewModel:(FeedViewModel *)feedViewModel {
-  self.createdByNameLabel.text = feedViewModel.createdByName;
-  self.textContentLabel.text = feedViewModel.text;
+  _feedViewModel = feedViewModel;
 
-  _commentIconImageView.image = [[FAKIonIcons chatboxIconWithSize:16] imageWithSize:CGSizeMake(16, 16)];
-  _starIconImageView.image = [[FAKIonIcons starIconWithSize:16] imageWithSize:CGSizeMake(16, 16)];
-  _markIconImageView.image = [[FAKIonIcons moreIconWithSize:16] imageWithSize:CGSizeMake(16, 16)];
+  // TODO:
+  [self.createdByAvatarImageView sd_setImageWithURL:[NSURL URLWithString:@"http://7pn5p7.com1.z0.glb.clouddn.com/Fjjevc7FDWqgIHZtiC57nHqnrtMH"]];
+  self.createdByNameLabel.text = feedViewModel.createdByName;
+  self.channelNameLabel.text = feedViewModel.channelName;
+  self.textContentLabel.text = feedViewModel.text;
 }
 
 @end

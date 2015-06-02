@@ -25,4 +25,8 @@
   return self.comment.text;
 }
 
+- (NSString *)createdByName {
+  return self.comment.createdBy.email;
+}
+
 @end

@@ -1,4 +1,6 @@
 #import "FeedViewController.h"
+#import "FeedTableViewCell.h"
+#import "CommentTableViewCell.h"
 
 
 @interface FeedViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -19,12 +21,15 @@
 
   self.commentNewViewModel = [self.feedViewModel commentNewViewModel];
 
+  [self configViews];
   [self bindViewModels];
 }
 
 - (void)configViews {
   self.textLabel.text = self.feedViewModel.text;
 
+  self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
+  self.commentsTableView.estimatedRowHeight = 65.0;
   self.commentsTableView.dataSource = self;
   self.commentsTableView.delegate = self;
 }
@@ -53,18 +58,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.feedViewModel numberOfComments];
+  return [self.feedViewModel numberOfComments] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // TODO:
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentCell"];
+  UITableViewCell *cell;
+  if (indexPath.row == 0) {
+    cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
+    ((FeedTableViewCell *)cell).feedViewModel = self.feedViewModel;
+  } else {
+    cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    ((CommentTableViewCell *)cell).commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row-1];
   }
 
-  CommentViewModel *commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row];
-  cell.textLabel.text = commentViewModel.text;
+//  if (cell == nil) {
+//    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentCell"];
+//  }
+//
+//  CommentViewModel *commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row];
+//  cell.textLabel.text = commentViewModel.text;
   return cell;
 }
 

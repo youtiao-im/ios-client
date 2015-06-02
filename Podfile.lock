@@ -46,6 +46,9 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - Specta (1.0.0)
 
 DEPENDENCIES:
@@ -54,6 +57,7 @@ DEPENDENCIES:
   - FontAwesomeKit
   - Mantle
   - ReactiveCocoa
+  - SDWebImage
   - Specta
 
 SPEC CHECKSUMS:
@@ -62,6 +66,7 @@ SPEC CHECKSUMS:
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
 
 COCOAPODS: 0.37.2

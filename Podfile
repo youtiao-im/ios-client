@@ -6,6 +6,7 @@ target 'Youtiao' do
   pod 'Mantle'
   pod 'ReactiveCocoa'
   pod 'FontAwesomeKit'
+  pod 'SDWebImage'
 end
 
 target 'YoutiaoTests' do

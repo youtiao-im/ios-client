@@ -6,6 +6,7 @@
 @interface CommentViewModel : NSObject
 
 @property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) NSString *createdByName;
 
 - (id)initWithComment:(YTComment *)comment;
 
