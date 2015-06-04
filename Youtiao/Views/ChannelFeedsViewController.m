@@ -32,8 +32,11 @@
 
   UIImage *addIconImage = [UIImage imageNamed:@"quill"];
   UIBarButtonItem *feedNewBarButtonItem = [[UIBarButtonItem alloc] initWithImage:addIconImage style:UIBarButtonItemStylePlain target:self action:@selector(performFeedNewSegue)];
-  [feedNewBarButtonItem setImageInsets:UIEdgeInsetsMake(0, -30, 0, -70)];
+  [feedNewBarButtonItem setImageInsets:UIEdgeInsetsMake(0, -30, 0, -60)];
   [self.navigationItem setRightBarButtonItems:@[[self.navigationItem rightBarButtonItem], feedNewBarButtonItem]];
+
+  UINib *nib = [UINib nibWithNibName:@"FeedTableViewCell" bundle:nil];
+  [self.feedsTableView registerNib:nib forCellReuseIdentifier:@"FeedCell"];
 
   self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
   self.feedsTableView.estimatedRowHeight = 160.0;
@@ -68,6 +71,25 @@
   FeedViewModel *feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
   feedCell.feedViewModel = feedViewModel;
   return feedCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self performSegueWithIdentifier:@"FeedSegue" sender:self];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+  }
+
+  if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+    [cell setPreservesSuperviewLayoutMargins:NO];
+  }
+
+  if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+  }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

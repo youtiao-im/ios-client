@@ -42,6 +42,7 @@
 		9C8EE9A01B1C411D00551B76 /* ChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE99B1B1C411D00551B76 /* ChannelTableViewCell.m */; };
 		9C8EE9A11B1C411D00551B76 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE99D1B1C411D00551B76 /* CommentTableViewCell.m */; };
 		9C8EE9A21B1C411D00551B76 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE99F1B1C411D00551B76 /* FeedTableViewCell.m */; };
+		9C99ABB61B2017820093986E /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C99ABB51B2017820093986E /* FeedTableViewCell.xib */; };
 		DF5FCCC5C1B05FF326826FBB /* libPods-Youtiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,7 @@
 		9C8EE99E1B1C411D00551B76 /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		9C8EE99F1B1C411D00551B76 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		9C8EE9A31B1C435100551B76 /* ViewModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewModels.h; sourceTree = "<group>"; };
+		9C99ABB51B2017820093986E /* FeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
 		CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Youtiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 			children = (
 				9C20A3E71B16EB0C00BE1FF4 /* AppDelegate.h */,
 				9C20A3E81B16EB0C00BE1FF4 /* AppDelegate.m */,
+				9C99ABB51B2017820093986E /* FeedTableViewCell.xib */,
 				9C20A3F01B16EB0C00BE1FF4 /* Images.xcassets */,
 				9C20A3F21B16EB0C00BE1FF4 /* LaunchScreen.xib */,
 				9C20A3ED1B16EB0C00BE1FF4 /* Main.storyboard */,
@@ -403,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C99ABB61B2017820093986E /* FeedTableViewCell.xib in Resources */,
 				9C20A3EF1B16EB0C00BE1FF4 /* Main.storyboard in Resources */,
 				9C20A3F41B16EB0C00BE1FF4 /* LaunchScreen.xib in Resources */,
 				9C20A3F11B16EB0C00BE1FF4 /* Images.xcassets in Resources */,

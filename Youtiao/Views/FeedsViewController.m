@@ -1,5 +1,4 @@
 #import "FeedsViewController.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
 #import "FeedViewController.h"
 #import "FeedTableViewCell.h"
 
@@ -35,6 +34,9 @@
 - (void)configViews {
   self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
+  UINib *nib = [UINib nibWithNibName:@"FeedTableViewCell" bundle:nil];
+  [self.feedsTableView registerNib:nib forCellReuseIdentifier:@"FeedCell"];
+
   self.feedsTableView.rowHeight = UITableViewAutomaticDimension;
   self.feedsTableView.estimatedRowHeight = 160.0;
   self.feedsTableView.dataSource = self;
@@ -67,6 +69,25 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
   ((FeedTableViewCell *) cell).feedViewModel = [self.authenticatedUserViewModel feedViewModelAtIndex:indexPath.row];
   return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self performSegueWithIdentifier:@"FeedSegue" sender:self];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+  }
+
+  if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+    [cell setPreservesSuperviewLayoutMargins:NO];
+  }
+
+  if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+  }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

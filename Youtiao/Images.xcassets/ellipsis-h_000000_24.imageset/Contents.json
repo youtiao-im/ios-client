@@ -2,16 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "ellipsis-h_000000_24.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "bubble-chat-1@2x.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "ellipsis-h_000000_24@2x.png"
     }
   ],
   "info" : {

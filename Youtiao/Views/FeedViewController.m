@@ -57,7 +57,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.feedViewModel numberOfComments] + 1;
+  return [self.feedViewModel numberOfComments] + 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,10 +66,14 @@
   if (indexPath.row == 0) {
     cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
     ((FeedTableViewCell *)cell).feedViewModel = self.feedViewModel;
+  } else if (indexPath.row == 1) {
+    cell = [tableView dequeueReusableCellWithIdentifier:@"StatusCell"];
+//    ((FeedTableViewCell *)cell).feedViewModel = self.feedViewModel;
   } else {
     cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
-    ((CommentTableViewCell *)cell).commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row-1];
+    ((CommentTableViewCell *)cell).commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row-2];
   }
+
 
 //  if (cell == nil) {
 //    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentCell"];
@@ -78,6 +82,24 @@
 //  CommentViewModel *commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row];
 //  cell.textLabel.text = commentViewModel.text;
   return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  // Remove seperator inset
+  if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+    [cell setSeparatorInset:UIEdgeInsetsZero];
+  }
+
+  // Prevent the cell from inheriting the Table View's margin settings
+  if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+    [cell setPreservesSuperviewLayoutMargins:NO];
+  }
+
+  // Explictly set your cell's layout margins
+  if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+    [cell setLayoutMargins:UIEdgeInsetsZero];
+  }
 }
 
 @end

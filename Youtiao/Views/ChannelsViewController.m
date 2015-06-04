@@ -69,12 +69,6 @@
   // TODO:
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChannelCell"];
   ((ChannelTableViewCell *) cell).channelViewModel = [[self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row] channelViewModel];
-//  if (cell == nil) {
-//    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ChannelCell"];
-//  }
-
-//  MembershipViewModel *membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
-//  cell.textLabel.text = [membershipViewModel channelViewModel].name;
   return cell;
 }
 
