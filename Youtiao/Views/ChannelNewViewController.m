@@ -31,7 +31,6 @@
 }
 
 - (IBAction)cancel:(id)sender {
-  NSLog(@"asdafsa");
   [self.delegate channelNewViewControllerDidCancel:self];
 }
 

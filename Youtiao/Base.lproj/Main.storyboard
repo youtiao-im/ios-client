@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-ly-L9U">
-                                <rect key="frame" x="0.0" y="64" width="600" height="440"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="447"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="QvX-hO-g0U">
                                     <rect key="frame" x="0.0" y="323" width="600" height="0.0"/>
@@ -287,38 +287,50 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tt3-Oe-kcv">
-                                <rect key="frame" x="556" y="513" width="36" height="30"/>
-                                <state key="normal" title="Send">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C1G-Rf-uxN">
-                                <rect key="frame" x="8" y="510" width="540" height="35"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrX-Yk-Odi">
+                                <rect key="frame" x="0.0" y="511" width="600" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xga-T4-Jvb">
+                                        <rect key="frame" x="5" y="5" width="546" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYL-Qu-Iv1">
+                                        <rect key="frame" x="556" y="5" width="36" height="30"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="XkP-FQ-7Sq"/>
+                                    <constraint firstAttribute="trailing" secondItem="NYL-Qu-Iv1" secondAttribute="trailing" constant="8" id="36c-2x-RF0"/>
+                                    <constraint firstItem="NYL-Qu-Iv1" firstAttribute="leading" secondItem="Xga-T4-Jvb" secondAttribute="trailing" constant="5" id="BMM-sW-0v9"/>
+                                    <constraint firstItem="Xga-T4-Jvb" firstAttribute="leading" secondItem="lrX-Yk-Odi" secondAttribute="leading" constant="5" id="X5f-zd-JAg"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xga-T4-Jvb" secondAttribute="bottom" constant="5" id="YpV-QY-X31"/>
+                                    <constraint firstItem="Xga-T4-Jvb" firstAttribute="centerY" secondItem="NYL-Qu-Iv1" secondAttribute="centerY" id="gV3-Nm-4QR"/>
+                                    <constraint firstItem="Xga-T4-Jvb" firstAttribute="top" secondItem="lrX-Yk-Odi" secondAttribute="top" constant="5" id="pfy-g6-9Ph"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SP9-ly-L9U" firstAttribute="top" secondItem="xMy-2v-Zpi" secondAttribute="bottom" id="DH0-gp-Vra"/>
-                            <constraint firstAttribute="trailing" secondItem="Tt3-Oe-kcv" secondAttribute="trailing" constant="8" id="ICV-8N-BZO"/>
-                            <constraint firstItem="Tt3-Oe-kcv" firstAttribute="centerY" secondItem="C1G-Rf-uxN" secondAttribute="centerY" id="JM2-ic-FS3"/>
-                            <constraint firstItem="C1G-Rf-uxN" firstAttribute="top" secondItem="SP9-ly-L9U" secondAttribute="bottom" constant="6" id="LZW-uA-BAP"/>
+                            <constraint firstAttribute="trailing" secondItem="lrX-Yk-Odi" secondAttribute="trailing" id="JDJ-s2-xPh"/>
                             <constraint firstItem="SP9-ly-L9U" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leading" id="Vii-hl-Npy"/>
                             <constraint firstAttribute="trailing" secondItem="SP9-ly-L9U" secondAttribute="trailing" id="Xhq-lZ-OsS"/>
-                            <constraint firstItem="Tt3-Oe-kcv" firstAttribute="leading" secondItem="C1G-Rf-uxN" secondAttribute="trailing" constant="8" id="bQp-wD-h4z"/>
-                            <constraint firstItem="B6j-X2-x8Q" firstAttribute="top" secondItem="C1G-Rf-uxN" secondAttribute="bottom" constant="6" id="rrJ-Bd-ilI"/>
-                            <constraint firstItem="C1G-Rf-uxN" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leading" constant="8" id="zXw-nF-e3C"/>
+                            <constraint firstItem="B6j-X2-x8Q" firstAttribute="top" secondItem="lrX-Yk-Odi" secondAttribute="bottom" id="e4x-j6-QqN"/>
+                            <constraint firstItem="lrX-Yk-Odi" firstAttribute="top" secondItem="SP9-ly-L9U" secondAttribute="bottom" id="exk-vr-zZ9"/>
+                            <constraint firstItem="lrX-Yk-Odi" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leading" id="tCw-mY-XvR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="mlo-Qc-ASr">
                         <barButtonItem key="rightBarButtonItem" image="pie-chart-2" id="Qe6-fI-M1p"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomLayoutConstraint" destination="e4x-j6-QqN" id="VhH-xv-Qt5"/>
+                        <outlet property="commentCreateButton" destination="NYL-Qu-Iv1" id="uSz-ip-ElW"/>
+                        <outlet property="commentTextField" destination="Xga-T4-Jvb" id="lfk-lb-OQj"/>
                         <outlet property="commentsTableView" destination="SP9-ly-L9U" id="mRC-Ab-YJh"/>
                     </connections>
                 </viewController>

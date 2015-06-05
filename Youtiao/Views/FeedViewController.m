@@ -9,6 +9,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIButton *commentCreateButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLayoutConstraint;
+
 @property (nonatomic) CommentNewViewModel *commentNewViewModel;
 
 @end
@@ -23,6 +25,9 @@
 
   [self configViews];
   [self bindViewModels];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 - (void)configViews {
@@ -93,6 +98,18 @@
   if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
     [cell setLayoutMargins:UIEdgeInsetsZero];
   }
+}
+
+- (void)keyboardDidShow:(NSNotification *)sender {
+  CGRect frame = [sender.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+  CGRect newFrame = [self.view convertRect:frame fromView:[[UIApplication sharedApplication] delegate].window];
+  self.bottomLayoutConstraint.constant = CGRectGetHeight(self.view.frame) - newFrame.origin.y;
+  [self.view layoutIfNeeded];
+}
+
+- (void)keyboardWillHide:(NSNotification *)sender {
+  self.bottomLayoutConstraint.constant = 0;
+  [self.view layoutIfNeeded];
 }
 
 @end
