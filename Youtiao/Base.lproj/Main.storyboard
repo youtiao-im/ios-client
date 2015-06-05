@@ -110,7 +110,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="139" id="8zg-Nl-lPm" customClass="FeedTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="139" id="8zg-Nl-lPm" customClass="FeedDetailTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8zg-Nl-lPm" id="xMa-Ze-uQn">
@@ -167,13 +167,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="channelNameLabel" destination="vrb-LT-tyo" id="dOv-6d-L5J"/>
-                                            <outlet property="createdByAvatarImageView" destination="sB5-wG-4LU" id="RNB-j7-dHS"/>
-                                            <outlet property="createdByNameLabel" destination="Xd0-PO-dcY" id="FIf-x4-WQT"/>
-                                            <outlet property="textContentLabel" destination="dfF-Bc-Feh" id="OXn-SX-oQI"/>
+                                            <outlet property="channelNameLabel" destination="vrb-LT-tyo" id="ibh-wN-gdz"/>
+                                            <outlet property="createdAtLabel" destination="IyH-U2-arT" id="an7-pm-WsD"/>
+                                            <outlet property="createdByAvatarImageView" destination="sB5-wG-4LU" id="EJX-EC-tvT"/>
+                                            <outlet property="createdByNameLabel" destination="Xd0-PO-dcY" id="a9N-JQ-qCK"/>
+                                            <outlet property="textContentLabel" destination="dfF-Bc-Feh" id="iiM-hq-9J9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StatusCell" rowHeight="60" id="YxV-5D-DBF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OperationsCell" rowHeight="60" id="YxV-5D-DBF" customClass="FeedOperationsTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YxV-5D-DBF" id="asb-t5-0Db">
@@ -224,6 +225,12 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="6g4-3V-ppx" secondAttribute="trailing" constant="30" id="jy6-7H-XP0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkButton" destination="RJT-Kd-suB" id="mxc-Kh-Ifg"/>
+                                            <outlet property="checksCountLabel" destination="9kY-z3-hBc" id="8Tq-Br-ZvE"/>
+                                            <outlet property="crossButton" destination="wOJ-05-O0W" id="yu1-F6-Tzz"/>
+                                            <outlet property="crossesCountLabel" destination="hEZ-do-3iu" id="SfC-K9-MHf"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="79" id="Xlx-Ym-qAK" customClass="CommentTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -276,7 +283,6 @@
                                             <outlet property="createdByAvatarImageView" destination="Kra-XE-BLa" id="Y0p-fP-oUO"/>
                                             <outlet property="createdByNameLabel" destination="kUc-Xw-1QI" id="wfc-Vf-NqG"/>
                                             <outlet property="textContentLabel" destination="TBJ-3x-2Qg" id="LFe-Lw-IQV"/>
-                                            <outlet property="timestampLabel" destination="WQ9-9h-7r6" id="hl6-kp-P4y"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

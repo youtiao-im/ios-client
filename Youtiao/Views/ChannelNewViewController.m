@@ -1,12 +1,10 @@
 #import "ChannelNewViewController.h"
-#import <CMPopTipView/CMPopTipView.h>
 
 
 @interface ChannelNewViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *createBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *textButton;
 
 @end
 
@@ -36,15 +34,5 @@
   NSLog(@"asdafsa");
   [self.delegate channelNewViewControllerDidCancel:self];
 }
-
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
-
-- (void)customAction:(id)sender {
-    NSLog(@"Custom Action");
-}
-
 
 @end

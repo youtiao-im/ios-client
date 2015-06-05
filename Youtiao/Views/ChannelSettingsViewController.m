@@ -4,7 +4,6 @@
 @interface ChannelSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *membershipsTableView;
-@property (nonatomic) ChannelViewModel *channelViewModel;
 
 @end
 
@@ -12,8 +11,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.channelViewModel = [self.membershipViewModel channelViewModel];
 
   [self configViews];
   [self bindViewModels];

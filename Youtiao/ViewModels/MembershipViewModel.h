@@ -3,13 +3,12 @@
 #import "YTAPIContext.h"
 
 
-@class ChannelViewModel, UserViewModel;
+@class UserViewModel;
 
 @interface MembershipViewModel : NSObject
 
 - (id)initWithMembership:(YTMembership *)membership;
 
-- (ChannelViewModel *)channelViewModel;
 - (UserViewModel *)userViewModel;
 
 @end

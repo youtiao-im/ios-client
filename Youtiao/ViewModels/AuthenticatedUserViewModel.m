@@ -1,12 +1,12 @@
 #import "AuthenticatedUserViewModel.h"
 #import "FeedViewModel.h"
-#import "MembershipViewModel.h"
+#import "ChannelViewModel.h"
 
 
 @interface AuthenticatedUserViewModel ()
 
 @property (nonatomic) NSArray *feeds;
-@property (nonatomic) NSArray *memberships;
+@property (nonatomic) NSArray *channels;
 
 @end
 
@@ -22,8 +22,8 @@
   _fetchFeedsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     return [self fetchFeedsSignal];
   }];
-  _fetchMembershipsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    return [self fetchMembershipsSignal];
+  _fetchChannelsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    return [self fetchChannelsSignal];
   }];
 
   return self;
@@ -56,21 +56,21 @@
   }];
 }
 
-- (NSInteger)numberOfMemberships {
-  return self.memberships == nil ? 0 : self.memberships.count;
+- (NSInteger)numberOfChannels {
+  return self.channels == nil ? 0 : self.channels.count;
 }
 
-- (MembershipViewModel *)membershipViewModelAtIndex:(NSInteger)index {
-  YTMembership *membership = [self.memberships objectAtIndex:index];
-  return [[MembershipViewModel alloc] initWithMembership:membership];
+- (ChannelViewModel *)channelViewModelAtIndex:(NSInteger)index {
+  YTChannel *channel = [self.channels objectAtIndex:index];
+  return [[ChannelViewModel alloc] initWithChannel:channel];
 }
 
-- (RACSignal *)fetchMembershipsSignal {
+- (RACSignal *)fetchChannelsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[YTAPIContext sharedInstance].apiClient fetchMembershipsOfAuthenticatedUserWithSuccess:^(NSArray *memberships) {
+    [[YTAPIContext sharedInstance].apiClient fetchMemberedChannelsWithSuccess:^(NSArray *channels) {
       @strongify(self);
-      self.memberships = memberships;
+      self.channels = channels;
       [subscriber sendNext:nil];
       [subscriber sendCompleted];
     } failure:^(NSError *error) {

@@ -3,17 +3,17 @@
 #import "YTAPIContext.h"
 
 
-@class MembershipViewModel, FeedViewModel;
+@class FeedViewModel, ChannelViewModel;
 
 @interface AuthenticatedUserViewModel : NSObject
 
 @property (nonatomic, readonly) RACCommand *fetchFeedsCommand;
-@property (nonatomic, readonly) RACCommand *fetchMembershipsCommand;
+@property (nonatomic, readonly) RACCommand *fetchChannelsCommand;
 
 - (NSInteger)numberOfFeeds;
 - (FeedViewModel *)feedViewModelAtIndex:(NSInteger)index;
 
-- (NSInteger)numberOfMemberships;
-- (MembershipViewModel *)membershipViewModelAtIndex:(NSInteger)index;
+- (NSInteger)numberOfChannels;
+- (ChannelViewModel *)channelViewModelAtIndex:(NSInteger)index;
 
 @end

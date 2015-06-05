@@ -45,14 +45,14 @@
 
 - (void)bindViewModels {
   @weakify(self);
-  [self.authenticatedUserViewModel.fetchMembershipsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+  [self.authenticatedUserViewModel.fetchChannelsCommand.executionSignals subscribeNext:^(RACSignal *signal) {
     [signal subscribeNext:^(id x) {
       @strongify(self);
       [self.channelsTableView reloadData];
     }];
   }];
 
-  [self.authenticatedUserViewModel.fetchMembershipsCommand execute:nil];
+  [self.authenticatedUserViewModel.fetchChannelsCommand execute:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,13 +62,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.authenticatedUserViewModel numberOfMemberships];
+  return [self.authenticatedUserViewModel numberOfChannels];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // TODO:
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChannelCell"];
-  ((ChannelTableViewCell *) cell).channelViewModel = [[self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row] channelViewModel];
+  ((ChannelTableViewCell *) cell).channelViewModel = [self.authenticatedUserViewModel channelViewModelAtIndex:indexPath.row];
   return cell;
 }
 
@@ -77,7 +77,7 @@
   if ([viewController isMemberOfClass:[ChannelFeedsViewController class]]) {
     ChannelFeedsViewController *channelFeedsViewController = ((ChannelFeedsViewController *) viewController);
     NSIndexPath *indexPath = [self.channelsTableView indexPathForSelectedRow];
-    channelFeedsViewController.membershipViewModel = [self.authenticatedUserViewModel membershipViewModelAtIndex:indexPath.row];
+    channelFeedsViewController.channelViewModel = [self.authenticatedUserViewModel channelViewModelAtIndex:indexPath.row];
   } else if ([viewController isMemberOfClass:[UINavigationController class]]) {
     UINavigationController *navigationController = (UINavigationController *)viewController;
     UIViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
@@ -91,7 +91,7 @@
 
 - (void)channelNewViewController:(ChannelNewViewController *)controller didCreateChannel:(ChannelViewModel *)channelViewModel {
   [controller dismissViewControllerAnimated:YES completion:nil];
-  [self.authenticatedUserViewModel.fetchMembershipsCommand execute:nil];
+  [self.authenticatedUserViewModel.fetchChannelsCommand execute:nil];
 }
 
 - (void)channelNewViewControllerDidCancel:(ChannelNewViewController *)controller {

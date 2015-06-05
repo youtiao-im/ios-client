@@ -111,8 +111,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="channelNameLabel" destination="HsQ-Cn-P1j" id="hbl-Zy-9XD"/>
+                <outlet property="checkButton" destination="rKc-MM-QA4" id="Qtc-id-MJi"/>
+                <outlet property="checksCountLabel" destination="1qo-Ov-ROk" id="7bA-82-vdE"/>
+                <outlet property="commentButton" destination="N3L-Nb-f8X" id="DaU-QN-ptN"/>
+                <outlet property="commentsCountLabel" destination="Ahq-ws-1SN" id="n6T-jr-AA9"/>
+                <outlet property="createdAtLabel" destination="FrU-wo-ldk" id="vHk-Fv-tzn"/>
                 <outlet property="createdByAvatarImageView" destination="kdO-YH-O0Q" id="5gs-BV-swx"/>
                 <outlet property="createdByNameLabel" destination="EFh-3O-XSu" id="arM-63-Ybc"/>
+                <outlet property="crossButton" destination="8EC-DT-jFe" id="3Uk-oX-imv"/>
+                <outlet property="crossesCountLabel" destination="bSC-w6-IJg" id="vxE-Yl-5Qb"/>
                 <outlet property="textContentLabel" destination="DuM-W0-jSc" id="qCu-FO-ux4"/>
             </connections>
             <point key="canvasLocation" x="572" y="295.5"/>

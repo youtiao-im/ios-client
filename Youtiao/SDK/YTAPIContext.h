@@ -4,6 +4,7 @@
 #import "YTChannel.h"
 #import "YTFeed.h"
 #import "YTComment.h"
+#import "YTMark.h"
 #import "YTAPIClient.h"
 
 
@@ -11,7 +12,6 @@
 
 @property (nonatomic, readonly) YTAPIClient *apiClient;
 @property (nonatomic, readonly) NSURL *apiBaseURL;
-@property (nonatomic, readonly) NSInteger version;
 @property (nonatomic) NSString *accessToken;
 
 + (YTAPIContext *)sharedInstance;

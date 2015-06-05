@@ -2,12 +2,11 @@
 #import <Mantle/Mantle.h>
 
 
-@class YTFeed, YTUser;
+@class YTUser;
 
 @interface YTComment : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, readonly) NSString *identifier;
-@property (nonatomic, readonly) YTFeed *feed;
 @property (nonatomic, readonly) NSString *text;
 @property (nonatomic, readonly) YTUser *createdBy;
 

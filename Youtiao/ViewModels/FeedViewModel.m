@@ -24,6 +24,12 @@
   _fetchCommentsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     return [self fetchCommentsSignal];
   }];
+  _checkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    return [self markFeedWithSymbolSignal:@"check"];
+  }];
+  _crossCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    return [self markFeedWithSymbolSignal:@"cross"];
+  }];
 
   return self;
 }
@@ -38,6 +44,18 @@
 
 - (NSString *)channelName {
   return self.feed.channel.name;
+}
+
+- (NSString *)checksCountString {
+  return [NSString stringWithFormat:@"%ld", (long)self.feed.checksCount];
+}
+
+- (NSString *)crossesCountString {
+  return [NSString stringWithFormat:@"%ld", (long)self.feed.crossesCount];
+}
+
+- (NSString *)commentsCountString {
+  return [NSString stringWithFormat:@"%ld", (long)self.feed.commentsCount];
 }
 
 - (NSInteger)numberOfComments {
@@ -56,6 +74,24 @@
       @strongify(self);
       self.comments = comments;
       [subscriber sendNext:nil];
+      [subscriber sendCompleted];
+    } failure:^(NSError *error) {
+      [subscriber sendError:error];
+      [subscriber sendCompleted];
+    }];
+
+    return [RACDisposable disposableWithBlock:^{
+    }];
+  }];
+}
+
+- (RACSignal *)markFeedWithSymbolSignal:(NSString *)symbol {
+  @weakify(self);
+  return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    [[YTAPIContext sharedInstance].apiClient markFeed:self.feed.identifier withSymbol:symbol success:^(YTFeed *feed) {
+      @strongify(self);
+      self.feed = feed;
+      [subscriber sendNext:[[FeedViewModel alloc] initWithFeed:feed]];
       [subscriber sendCompleted];
     } failure:^(NSError *error) {
       [subscriber sendError:error];

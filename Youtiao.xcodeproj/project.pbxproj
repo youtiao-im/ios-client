@@ -43,6 +43,9 @@
 		9C8EE9A11B1C411D00551B76 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE99D1B1C411D00551B76 /* CommentTableViewCell.m */; };
 		9C8EE9A21B1C411D00551B76 /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8EE99F1B1C411D00551B76 /* FeedTableViewCell.m */; };
 		9C99ABB61B2017820093986E /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C99ABB51B2017820093986E /* FeedTableViewCell.xib */; };
+		9C99ABB91B2029E00093986E /* YTMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C99ABB81B2029E00093986E /* YTMark.m */; };
+		9C99ABBE1B21873C0093986E /* FeedDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C99ABBB1B21873B0093986E /* FeedDetailTableViewCell.m */; };
+		9C99ABBF1B21873C0093986E /* FeedOperationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C99ABBD1B21873B0093986E /* FeedOperationsTableViewCell.m */; };
 		DF5FCCC5C1B05FF326826FBB /* libPods-Youtiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +133,12 @@
 		9C8EE99F1B1C411D00551B76 /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		9C8EE9A31B1C435100551B76 /* ViewModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewModels.h; sourceTree = "<group>"; };
 		9C99ABB51B2017820093986E /* FeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
+		9C99ABB71B2029E00093986E /* YTMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTMark.h; sourceTree = "<group>"; };
+		9C99ABB81B2029E00093986E /* YTMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTMark.m; sourceTree = "<group>"; };
+		9C99ABBA1B21873B0093986E /* FeedDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailTableViewCell.h; sourceTree = "<group>"; };
+		9C99ABBB1B21873B0093986E /* FeedDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailTableViewCell.m; sourceTree = "<group>"; };
+		9C99ABBC1B21873B0093986E /* FeedOperationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedOperationsTableViewCell.h; sourceTree = "<group>"; };
+		9C99ABBD1B21873B0093986E /* FeedOperationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedOperationsTableViewCell.m; sourceTree = "<group>"; };
 		CBEB79E313654A2FDCA14312 /* libPods-Youtiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Youtiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -250,6 +259,8 @@
 				9C823BF51B1843710074752E /* YTComment.m */,
 				9C20A41B1B17231500BE1FF4 /* YTFeed.h */,
 				9C20A41C1B17231500BE1FF4 /* YTFeed.m */,
+				9C99ABB71B2029E00093986E /* YTMark.h */,
+				9C99ABB81B2029E00093986E /* YTMark.m */,
 				9C20A41D1B17231500BE1FF4 /* YTMembership.h */,
 				9C20A41E1B17231500BE1FF4 /* YTMembership.m */,
 				9C20A41F1B17231500BE1FF4 /* YTUser.h */,
@@ -307,8 +318,12 @@
 				9C8EE99B1B1C411D00551B76 /* ChannelTableViewCell.m */,
 				9C8EE99C1B1C411D00551B76 /* CommentTableViewCell.h */,
 				9C8EE99D1B1C411D00551B76 /* CommentTableViewCell.m */,
+				9C99ABBA1B21873B0093986E /* FeedDetailTableViewCell.h */,
+				9C99ABBB1B21873B0093986E /* FeedDetailTableViewCell.m */,
 				9C8EE9841B1B040E00551B76 /* FeedNewViewController.h */,
 				9C8EE9851B1B040E00551B76 /* FeedNewViewController.m */,
+				9C99ABBC1B21873B0093986E /* FeedOperationsTableViewCell.h */,
+				9C99ABBD1B21873B0093986E /* FeedOperationsTableViewCell.m */,
 				9C8EE98A1B1C242100551B76 /* FeedsViewController.h */,
 				9C8EE98B1B1C242100551B76 /* FeedsViewController.m */,
 				9C8EE99E1B1C411D00551B76 /* FeedTableViewCell.h */,
@@ -509,14 +524,17 @@
 				9C20A4241B17231500BE1FF4 /* YTUser.m in Sources */,
 				9C823C021B185C470074752E /* UserViewModel.m in Sources */,
 				9C78E44D1B18315000512259 /* FeedViewModel.m in Sources */,
+				9C99ABBF1B21873C0093986E /* FeedOperationsTableViewCell.m in Sources */,
 				9C8EE9891B1BFE4500551B76 /* CommentNewViewModel.m in Sources */,
 				9C8EE9991B1C40BF00551B76 /* ChannelSettingsViewController.m in Sources */,
+				9C99ABB91B2029E00093986E /* YTMark.m in Sources */,
 				9C823C111B1881E20074752E /* FeedViewController.m in Sources */,
 				9C78E4471B181B4A00512259 /* ChannelViewModel.m in Sources */,
 				9C823BF61B1843710074752E /* YTComment.m in Sources */,
 				9C8EE9831B1B040700551B76 /* FeedNewViewModel.m in Sources */,
 				9C20A3E61B16EB0C00BE1FF4 /* main.m in Sources */,
 				9C8EE98E1B1C242100551B76 /* FeedsViewController.m in Sources */,
+				9C99ABBE1B21873C0093986E /* FeedDetailTableViewCell.m in Sources */,
 				9C823BFE1B1859660074752E /* AuthenticatedUserViewModel.m in Sources */,
 				9C8EE98F1B1C242100551B76 /* SettingsViewController.m in Sources */,
 			);

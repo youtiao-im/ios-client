@@ -1,5 +1,4 @@
 #import "MembershipViewModel.h"
-#import "ChannelViewModel.h"
 #import "UserViewModel.h"
 
 
@@ -21,10 +20,6 @@
   _membership = membership;
 
   return self;
-}
-
-- (ChannelViewModel *)channelViewModel {
-  return [[ChannelViewModel alloc] initWithChannel:self.membership.channel];
 }
 
 - (UserViewModel *)userViewModel {

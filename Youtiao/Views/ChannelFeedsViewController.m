@@ -10,7 +10,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *channelSettingsBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView *feedsTableView;
-@property (nonatomic) ChannelViewModel *channelViewModel;
 
 @end
 
@@ -19,8 +18,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.channelViewModel = [self.membershipViewModel channelViewModel];
 
   [self configViews];
   [self bindViewModels];
@@ -100,7 +97,7 @@
     feedViewController.feedViewModel = [self.channelViewModel feedViewModelAtIndex:indexPath.row];
   } else if ([viewController isMemberOfClass:[ChannelSettingsViewController class]]) {
     ChannelSettingsViewController * channelSettingsViewController = (ChannelSettingsViewController *) viewController;
-    channelSettingsViewController.membershipViewModel = self.membershipViewModel;
+    channelSettingsViewController.channelViewModel = self.channelViewModel;
   } else if ([viewController isMemberOfClass:[UINavigationController class]]) {
     UINavigationController* navigationController = (UINavigationController *)viewController;
     UIViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];

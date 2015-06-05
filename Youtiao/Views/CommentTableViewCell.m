@@ -6,7 +6,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *createdByAvatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *createdByNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+@property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textContentLabel;
 
 @end

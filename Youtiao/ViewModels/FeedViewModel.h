@@ -3,6 +3,12 @@
 #import "YTAPIContext.h"
 
 
+typedef enum  {
+  Check,
+  Cross
+} MarkType;
+
+
 @class CommentViewModel, CommentNewViewModel;
 
 @interface FeedViewModel : NSObject
@@ -11,9 +17,12 @@
 @property (nonatomic, readonly) NSString *createdByName;
 @property (nonatomic, readonly) NSString *channelName;
 @property (nonatomic, readonly) NSString *timestamp;
-@property (nonatomic, readonly) NSInteger commentsCount;
-@property (nonatomic, readonly) NSInteger starsCount;
+@property (nonatomic, readonly) NSString *checksCountString;
+@property (nonatomic, readonly) NSString *crossesCountString;
+@property (nonatomic, readonly) NSString *commentsCountString;
 @property (nonatomic, readonly) RACCommand *fetchCommentsCommand;
+@property (nonatomic, readonly) RACCommand *checkCommand;
+@property (nonatomic, readonly) RACCommand *crossCommand;
 
 - (id)initWithFeed:(YTFeed *)feed;
 

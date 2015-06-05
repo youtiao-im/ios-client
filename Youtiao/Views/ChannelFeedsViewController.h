@@ -4,6 +4,6 @@
 
 @interface ChannelFeedsViewController : UIViewController
 
-@property (nonatomic) MembershipViewModel *membershipViewModel;
+@property (nonatomic) ChannelViewModel *channelViewModel;
 
 @end

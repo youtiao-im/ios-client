@@ -19,10 +19,9 @@
     return nil;
   }
 
-  _apiBaseURL = [NSURL URLWithString:@"http://192.168.200.152:3000/api"];
-  _version = 1;
+  _apiBaseURL = [NSURL URLWithString:@"http://192.168.200.152:3000/api/v1"];
   // TODO:
-  _accessToken = @"0852ccaf3aa26354a0b80225109eee09268dc81c7ed37042610ef1e4e24679ae";
+  _accessToken = @"e89a9fedd0b03282a0f944ef37a0cc06014affbc4784958903dd4fe5d42cdf6c";
 
   _apiClient = [[YTAPIClient alloc] initWithAPIContext:self];
 

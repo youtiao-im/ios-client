@@ -22,7 +22,6 @@
   _manager.requestSerializer = [AFJSONRequestSerializer serializer];
   _manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-  [_manager.requestSerializer setValue:[NSString stringWithFormat:@"application/vnd.youtiao.im+json; version=%ld", (long)apiContext.version] forHTTPHeaderField:@"Accept"];
   [self setAccessToken:apiContext.accessToken];
 
   return self;
@@ -60,14 +59,50 @@
   }];
 }
 
-- (void)fetchMembershipsOfAuthenticatedUserWithSuccess:(void (^)(NSArray *memberships))success failure:(void (^)(NSError *error))failure {
-  [self.manager GET:@"user/memberships" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+- (void)fetchMemberedChannelsWithSuccess:(void (^)(NSArray *channels))success failure:(void (^)(NSError *error))failure {
+  [self.manager GET:@"user/membered_channels" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSError *error = nil;
-    NSArray *memberships = [MTLJSONAdapter modelsOfClass:[YTMembership class] fromJSONArray:responseObject error:&error];
+    NSArray *channels = [MTLJSONAdapter modelsOfClass:[YTChannel class] fromJSONArray:responseObject error:&error];
     if (error != nil) {
       failure(error);
     } else {
-      success(memberships);
+      success(channels);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)joinChannel:(NSString *)channelId success:(void(^)(YTChannel *channel))success failure:(void(^)(NSError *error))failure {
+  [self.manager PUT:[NSString stringWithFormat:@"user/membered_channels/%@", channelId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    YTChannel *channel = [MTLJSONAdapter modelOfClass:[YTChannel class] fromJSONDictionary:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(channel);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)markFeed:(NSString *)feedId withSymbol:(NSString *)symbol success:(void(^)(YTFeed *feed))success failure:(void(^)(NSError *error))failure; {
+  YTMark *mark = [[YTMark alloc] initWithSymbol:symbol];
+  NSError *error = nil;
+  NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:mark error:&error];
+  if (error != nil) {
+    failure(error);
+    return;
+  }
+
+  [self.manager PUT:[NSString stringWithFormat:@"user/marked_feeds/%@", feedId] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    YTFeed *feed = [MTLJSONAdapter modelOfClass:[YTFeed class] fromJSONDictionary:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(feed);
     }
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     failure(error);
@@ -152,6 +187,20 @@
       failure(error);
     } else {
       success(comments);
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    failure(error);
+  }];
+}
+
+- (void)fetchMarksOfFeed:(NSString *)feedId success:(void(^)(NSArray *marks))success failure:(void(^)(NSError *error))failure {
+  [self.manager GET:[NSString stringWithFormat:@"feeds/%@/marks", feedId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSError *error = nil;
+    NSArray *marks = [MTLJSONAdapter modelsOfClass:[YTMark class] fromJSONArray:responseObject error:&error];
+    if (error != nil) {
+      failure(error);
+    } else {
+      success(marks);
     }
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     failure(error);

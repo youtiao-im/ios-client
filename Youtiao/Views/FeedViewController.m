@@ -1,5 +1,6 @@
 #import "FeedViewController.h"
-#import "FeedTableViewCell.h"
+#import "FeedDetailTableViewCell.h"
+#import "FeedOperationsTableViewCell.h"
 #import "CommentTableViewCell.h"
 
 
@@ -64,23 +65,15 @@
   // TODO:
   UITableViewCell *cell;
   if (indexPath.row == 0) {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
-    ((FeedTableViewCell *)cell).feedViewModel = self.feedViewModel;
+    cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
+    ((FeedDetailTableViewCell *)cell).feedViewModel = self.feedViewModel;
   } else if (indexPath.row == 1) {
-    cell = [tableView dequeueReusableCellWithIdentifier:@"StatusCell"];
-//    ((FeedTableViewCell *)cell).feedViewModel = self.feedViewModel;
+    cell = [tableView dequeueReusableCellWithIdentifier:@"OperationsCell"];
+    ((FeedOperationsTableViewCell *)cell).feedViewModel = self.feedViewModel;
   } else {
     cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     ((CommentTableViewCell *)cell).commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row-2];
   }
-
-
-//  if (cell == nil) {
-//    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentCell"];
-//  }
-//
-//  CommentViewModel *commentViewModel = [self.feedViewModel commentViewModelAtIndex:indexPath.row];
-//  cell.textLabel.text = commentViewModel.text;
   return cell;
 }
 
