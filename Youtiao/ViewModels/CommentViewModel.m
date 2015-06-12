@@ -26,7 +26,8 @@
 }
 
 - (NSString *)createdByName {
-  return self.comment.createdBy.name;
+  // TODO:
+  return self.comment.createdBy.identifier;
 }
 
 @end

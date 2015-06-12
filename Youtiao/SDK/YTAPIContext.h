@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import "YTUser.h"
+#import "YTGroup.h"
 #import "YTMembership.h"
-#import "YTChannel.h"
-#import "YTFeed.h"
+#import "YTBulletin.h"
 #import "YTComment.h"
-#import "YTMark.h"
+#import "YTStamp.h"
 #import "YTAPIClient.h"
 
 

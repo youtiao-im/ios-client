@@ -1,32 +1,40 @@
-#import "AuthenticatedUserViewModel.h"
-#import "BulletinViewModel.h"
 #import "GroupViewModel.h"
+#import "BulletinViewModel.h"
+#import "MembershipViewModel.h"
+#import "BulletinNewViewModel.h"
 
 
-@interface AuthenticatedUserViewModel ()
+@interface GroupViewModel ()
 
+@property (nonatomic) YTGroup *group;
 @property (nonatomic) NSArray *bulletins;
-@property (nonatomic) NSArray *groups;
+@property (nonatomic) NSArray *memberships;
 
 @end
 
 
-@implementation AuthenticatedUserViewModel
+@implementation GroupViewModel
 
-- (id)init {
+- (id)initWithGroup:(YTGroup *)group {
   self = [super init];
   if (self == nil) {
     return nil;
   }
 
+  _group = group;
+
   _fetchBulletinsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     return [self fetchBulletinsSignal];
   }];
-  _fetchGroupsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    return [self fetchGroupsSignal];
+  _fetchMembershipsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    return [self fetchMembershipsSignal];
   }];
 
   return self;
+}
+
+- (NSString *)name {
+  return self.group.name;
 }
 
 - (NSInteger)numberOfBulletins {
@@ -41,7 +49,7 @@
 - (RACSignal *)fetchBulletinsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[YTAPIContext sharedInstance].apiClient fetchBulletinsWithSuccess:^(NSArray *bulletins) {
+    [[YTAPIContext sharedInstance].apiClient fetchBulletinsOfGroup:self.group.identifier success:^(NSArray *bulletins) {
       @strongify(self);
       self.bulletins = bulletins;
       [subscriber sendNext:nil];
@@ -56,21 +64,21 @@
   }];
 }
 
-- (NSInteger)numberOfGroups {
-  return self.groups == nil ? 0 : self.groups.count;
+- (NSInteger)numberOfMemberships {
+  return self.memberships == nil ? 0 : self.memberships.count;
 }
 
-- (GroupViewModel *)groupViewModelAtIndex:(NSInteger)index {
-  YTGroup *group = [self.groups objectAtIndex:index];
-  return [[GroupViewModel alloc] initWithGroup:group];
+- (MembershipViewModel *)membershipViewModelAtIndex:(NSInteger)index {
+  YTMembership *membership = [self.memberships objectAtIndex:index];
+  return [[MembershipViewModel alloc] initWithMembership:membership];
 }
 
-- (RACSignal *)fetchGroupsSignal {
+- (RACSignal *)fetchMembershipsSignal {
   @weakify(self);
   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    [[YTAPIContext sharedInstance].apiClient fetchGroupsWithSuccess:^(NSArray *groups) {
+    [[YTAPIContext sharedInstance].apiClient fetchMembershipsOfGroup:self.group.identifier success:^(NSArray *memberships) {
       @strongify(self);
-      self.groups = groups;
+      self.memberships = memberships;
       [subscriber sendNext:nil];
       [subscriber sendCompleted];
     } failure:^(NSError *error) {
@@ -81,6 +89,10 @@
     return [RACDisposable disposableWithBlock:^{
     }];
   }];
+}
+
+- (BulletinNewViewModel *)bulletinNewViewModel {
+  return [[BulletinNewViewModel alloc] initWithGroup:self.group];
 }
 
 @end

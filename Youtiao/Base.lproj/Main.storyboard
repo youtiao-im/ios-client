@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Channel Feeds-->
+        <!--Group Bulletins-->
         <scene sceneID="DHB-az-xGF">
             <objects>
-                <viewController title="Channel Feeds" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ChQ-LE-TBz" customClass="ChannelFeedsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ChQ-LE-TBz" customClass="GroupBulletinsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Azc-iN-F2f"/>
                         <viewControllerLayoutGuide type="bottom" id="v1T-TL-bM4"/>
@@ -37,7 +37,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Channel Feeds" id="JFL-e8-equ">
+                    <navigationItem key="navigationItem" title="Group Bulletins" id="JFL-e8-equ">
                         <barButtonItem key="rightBarButtonItem" image="contacts-1" id="Q3v-Ey-0sM">
                             <connections>
                                 <segue destination="AKh-0s-efE" kind="show" id="CSh-kx-yww"/>
@@ -46,20 +46,20 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="channelSettingsBarButtonItem" destination="Q3v-Ey-0sM" id="Ce9-bR-fHt"/>
-                        <outlet property="feedsTableView" destination="8SB-Gy-nSs" id="JXx-M9-q28"/>
-                        <segue destination="q6t-5W-aPn" kind="presentation" identifier="FeedNewSegue" id="q13-Qy-kQw"/>
-                        <segue destination="Do4-8s-vUN" kind="show" identifier="FeedSegue" id="CwA-Te-iG9"/>
+                        <outlet property="bulletinsTableView" destination="8SB-Gy-nSs" id="M6f-rk-7ck"/>
+                        <outlet property="groupSettingsBarButtonItem" destination="Q3v-Ey-0sM" id="6cb-bY-cOd"/>
+                        <segue destination="q6t-5W-aPn" kind="presentation" identifier="BulletinNewSegue" id="q13-Qy-kQw"/>
+                        <segue destination="Do4-8s-vUN" kind="show" identifier="BulletinSegue" id="CwA-Te-iG9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Efg-fa-5DX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1990" y="497"/>
         </scene>
-        <!--Channel Settings View Controller-->
+        <!--Group Settings View Controller-->
         <scene sceneID="g1y-By-GjU">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="AKh-0s-efE" customClass="ChannelSettingsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="AKh-0s-efE" customClass="GroupSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l2u-WS-opp"/>
                         <viewControllerLayoutGuide type="bottom" id="L77-jW-iEO"/>
@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="2830" y="1280"/>
         </scene>
-        <!--Feed-->
+        <!--Bulletin-->
         <scene sceneID="Vaq-xl-bJs">
             <objects>
-                <viewController title="Feed" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Do4-8s-vUN" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Do4-8s-vUN" customClass="BulletinViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xMy-2v-Zpi"/>
                         <viewControllerLayoutGuide type="bottom" id="B6j-X2-x8Q"/>
@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-ly-L9U">
-                                <rect key="frame" x="0.0" y="64" width="600" height="447"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="452"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="QvX-hO-g0U">
                                     <rect key="frame" x="0.0" y="323" width="600" height="0.0"/>
@@ -110,7 +110,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="139" id="8zg-Nl-lPm" customClass="FeedDetailTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="139" id="8zg-Nl-lPm" customClass="BulletinDetailTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8zg-Nl-lPm" id="xMa-Ze-uQn">
@@ -129,13 +129,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Channel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-LT-tyo">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-LT-tyo">
                                                     <rect key="frame" x="65" y="38" width="522" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Feed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-Bc-Feh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Bulletin" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-Bc-Feh">
                                                     <rect key="frame" x="13" y="68" width="574" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,10 +167,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="channelNameLabel" destination="vrb-LT-tyo" id="ibh-wN-gdz"/>
                                             <outlet property="createdAtLabel" destination="IyH-U2-arT" id="an7-pm-WsD"/>
                                             <outlet property="createdByAvatarImageView" destination="sB5-wG-4LU" id="EJX-EC-tvT"/>
                                             <outlet property="createdByNameLabel" destination="Xd0-PO-dcY" id="a9N-JQ-qCK"/>
+                                            <outlet property="groupNameLabel" destination="vrb-LT-tyo" id="9CR-sS-a5w"/>
                                             <outlet property="textContentLabel" destination="dfF-Bc-Feh" id="iiM-hq-9J9"/>
                                         </connections>
                                     </tableViewCell>
@@ -288,7 +288,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrX-Yk-Odi">
-                                <rect key="frame" x="0.0" y="511" width="600" height="40"/>
+                                <rect key="frame" x="0.0" y="516" width="600" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xga-T4-Jvb">
                                         <rect key="frame" x="5" y="5" width="546" height="30"/>
@@ -324,7 +324,7 @@
                             <constraint firstItem="lrX-Yk-Odi" firstAttribute="leading" secondItem="auz-f0-GeK" secondAttribute="leading" id="tCw-mY-XvR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feed" id="mlo-Qc-ASr">
+                    <navigationItem key="navigationItem" title="Bulletin" id="mlo-Qc-ASr">
                         <barButtonItem key="rightBarButtonItem" image="pie-chart-2" id="Qe6-fI-M1p"/>
                     </navigationItem>
                     <connections>
@@ -338,10 +338,10 @@
             </objects>
             <point key="canvasLocation" x="2830" y="-255"/>
         </scene>
-        <!--New feed-->
+        <!--New Bulletin-->
         <scene sceneID="QGu-jX-4sv">
             <objects>
-                <viewController id="GaV-uq-Wlj" customClass="FeedNewViewController" sceneMemberID="viewController">
+                <viewController id="GaV-uq-Wlj" customClass="BulletinNewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1qI-0E-1Fm"/>
                         <viewControllerLayoutGuide type="bottom" id="cUI-xT-uIv"/>
@@ -377,7 +377,7 @@
                             <constraint firstItem="XdR-Kc-NyS" firstAttribute="top" secondItem="DMH-Yy-mRS" secondAttribute="bottom" id="y7i-jO-gua"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New feed" id="pjI-Yt-0ZB">
+                    <navigationItem key="navigationItem" title="New Bulletin" id="pjI-Yt-0ZB">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="WGZ-l7-TFR">
                             <connections>
                                 <action selector="cancel:" destination="GaV-uq-Wlj" id="wfI-hz-gKw"/>
@@ -394,10 +394,10 @@
             </objects>
             <point key="canvasLocation" x="3530" y="497"/>
         </scene>
-        <!--New channel-->
+        <!--New Group-->
         <scene sceneID="zx4-3t-SFt">
             <objects>
-                <viewController id="q2R-A6-TvA" customClass="ChannelNewViewController" sceneMemberID="viewController">
+                <viewController id="q2R-A6-TvA" customClass="GroupNewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cEf-E3-knH"/>
                         <viewControllerLayoutGuide type="bottom" id="nNz-kp-9wV"/>
@@ -428,7 +428,7 @@
                             <constraint firstItem="p7b-dB-5E9" firstAttribute="top" secondItem="cEf-E3-knH" secondAttribute="bottom" id="mqY-u4-KmL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New channel" id="n4n-qQ-aJ2">
+                    <navigationItem key="navigationItem" title="New Group" id="n4n-qQ-aJ2">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="zgd-cU-4ny">
                             <connections>
                                 <action selector="cancel:" destination="q2R-A6-TvA" id="qrN-WY-EDd"/>
@@ -445,10 +445,10 @@
             </objects>
             <point key="canvasLocation" x="2830" y="2080"/>
         </scene>
-        <!--Channels-->
+        <!--Groups-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="Channels" automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ChannelsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="GroupsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -457,7 +457,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Yoh-9s-OcJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Yoh-9s-OcJ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="yse-Qn-UcJ">
@@ -466,48 +466,22 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelCell" rowHeight="63" id="rUB-DC-amc" customClass="ChannelTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" textLabel="R24-PG-3Ch" style="IBUITableViewCellStyleDefault" id="EGJ-Tq-1f2">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rUB-DC-amc" id="5zU-aZ-wBY">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EGJ-Tq-1f2" id="l6d-67-el4">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="#Channel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jO-9K-ArW">
-                                                    <rect key="frame" x="8" y="11" width="562" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R24-PG-3Ch">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTe-t6-doP">
-                                                    <rect key="frame" x="578" y="14" width="14" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User: Feed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adM-eF-ao6">
-                                                    <rect key="frame" x="8" y="35" width="584" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="adM-eF-ao6" secondAttribute="trailing" id="312-Ux-3re"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HTe-t6-doP" secondAttribute="trailing" id="BGZ-hh-vYv"/>
-                                                <constraint firstItem="adM-eF-ao6" firstAttribute="top" secondItem="3jO-9K-ArW" secondAttribute="bottom" constant="4" id="CBi-o6-Khn"/>
-                                                <constraint firstItem="HTe-t6-doP" firstAttribute="leading" secondItem="3jO-9K-ArW" secondAttribute="trailing" constant="8" id="PLP-hX-cKe"/>
-                                                <constraint firstItem="3jO-9K-ArW" firstAttribute="leading" secondItem="adM-eF-ao6" secondAttribute="leading" id="S6k-LB-BBz"/>
-                                                <constraint firstItem="3jO-9K-ArW" firstAttribute="leading" secondItem="5zU-aZ-wBY" secondAttribute="leadingMargin" id="ToG-n1-VHS"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="adM-eF-ao6" secondAttribute="bottom" constant="3" id="gXb-hd-Jni"/>
-                                                <constraint firstItem="3jO-9K-ArW" firstAttribute="centerY" secondItem="HTe-t6-doP" secondAttribute="centerY" id="hLU-FD-MeS"/>
-                                                <constraint firstItem="3jO-9K-ArW" firstAttribute="top" secondItem="5zU-aZ-wBY" secondAttribute="topMargin" constant="3" id="qMv-JF-iKV"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="nameLabel" destination="3jO-9K-ArW" id="mXM-gL-QGM"/>
-                                            <outlet property="summaryLabel" destination="adM-eF-ao6" id="uWI-p3-rvd"/>
-                                            <outlet property="timestampLabel" destination="HTe-t6-doP" id="Vb8-nU-AsK"/>
-                                            <segue destination="ChQ-LE-TBz" kind="show" id="N3Y-hI-IM1"/>
+                                            <segue destination="ChQ-LE-TBz" kind="show" id="nI1-Ok-9GU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -521,7 +495,7 @@
                             <constraint firstAttribute="trailing" secondItem="Yoh-9s-OcJ" secondAttribute="trailing" id="xk0-Md-gS6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Channels" id="B9C-cq-eEn">
+                    <navigationItem key="navigationItem" title="Groups" id="B9C-cq-eEn">
                         <barButtonItem key="rightBarButtonItem" image="add-1" id="Ift-Kw-OrN">
                             <connections>
                                 <segue destination="j75-Of-Epj" kind="presentation" id="4Tw-yT-FIR"/>
@@ -529,8 +503,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="channelNewBarButtonItem" destination="Ift-Kw-OrN" id="lKx-HM-QbB"/>
-                        <outlet property="channelsTableView" destination="Yoh-9s-OcJ" id="VAu-LL-hON"/>
+                        <outlet property="groupNewBarButtonItem" destination="Ift-Kw-OrN" id="hgA-zJ-ycq"/>
+                        <outlet property="groupsTableView" destination="Yoh-9s-OcJ" id="vsK-3v-eJ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -540,7 +514,7 @@
         <!--Youtiao-->
         <scene sceneID="FJ0-gU-7UU">
             <objects>
-                <viewController title="Youtiao" automaticallyAdjustsScrollViewInsets="NO" id="6tA-BX-DPf" customClass="FeedsViewController" sceneMemberID="viewController">
+                <viewController title="Youtiao" automaticallyAdjustsScrollViewInsets="NO" id="6tA-BX-DPf" customClass="BulletinsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2mC-kQ-E4e"/>
                         <viewControllerLayoutGuide type="bottom" id="b2u-Cs-3i0"/>
@@ -564,8 +538,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Youtiao" id="rNv-L7-1yF"/>
                     <connections>
-                        <outlet property="feedsTableView" destination="3jU-b1-4nF" id="Lpl-jQ-auo"/>
-                        <segue destination="Do4-8s-vUN" kind="show" identifier="FeedSegue" id="Tja-bQ-t8T"/>
+                        <outlet property="bulletinsTableView" destination="3jU-b1-4nF" id="LrC-nm-PaH"/>
+                        <segue destination="Do4-8s-vUN" kind="show" identifier="BulletinSegue" id="Tja-bQ-t8T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsE-67-cH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -592,11 +566,11 @@
             </objects>
             <point key="canvasLocation" x="-416" y="1029"/>
         </scene>
-        <!--Channels-->
+        <!--Groups-->
         <scene sceneID="Wfk-a1-jNt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SSr-UL-ckR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Channels" image="radar" id="0Y2-h8-yCW"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="radar" id="0Y2-h8-yCW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LaO-Pb-bPt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -611,10 +585,10 @@
             </objects>
             <point key="canvasLocation" x="310" y="1029"/>
         </scene>
-        <!--Me-->
+        <!--Settings-->
         <scene sceneID="6iE-V4-Yp2">
             <objects>
-                <tableViewController id="Alg-LX-6tU" sceneMemberID="viewController">
+                <tableViewController id="Alg-LX-6tU" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="aSC-YP-VAi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -678,7 +652,7 @@
                             <outlet property="delegate" destination="Alg-LX-6tU" id="mvU-rM-a5G"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Me" id="6WL-Sy-MAV"/>
+                    <navigationItem key="navigationItem" title="Settings" id="6WL-Sy-MAV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcS-I5-v3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -739,11 +713,11 @@
             </objects>
             <point key="canvasLocation" x="2830" y="497"/>
         </scene>
-        <!--Me-->
+        <!--Settings-->
         <scene sceneID="3fz-27-d7M">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wv2-1V-pgf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="user-setting-2" id="eva-oX-2uL"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="user-setting-2" id="eva-oX-2uL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbH-tl-Qv3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -771,6 +745,6 @@
         <image name="user-setting-2" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tja-bQ-t8T"/>
+        <segue reference="CwA-Te-iG9"/>
     </inferredMetricsTieBreakers>
 </document>

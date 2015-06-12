@@ -1,5 +1,4 @@
 #import "SettingsViewController.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
 
 
 @interface SettingsViewController ()

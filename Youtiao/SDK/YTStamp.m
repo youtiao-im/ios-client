@@ -1,17 +1,16 @@
-#import "YTComment.h"
+#import "YTStamp.h"
 #import "YTBulletin.h"
 #import "YTMembership.h"
 
 
-@implementation YTComment
+@implementation YTStamp
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{@"identifier": @"id",
            @"bulletinId": @"bulletin_id",
-           @"text": @"text",
+           @"symbol": @"symbol",
            @"createdByType": @"created_by_type",
            @"createdById": @"created_by_id",
-           @"bulletin": @"bulletin",
            @"createdBy": @"created_by"};
 }
 
@@ -23,13 +22,13 @@
   return [MTLJSONAdapter dictionaryTransformerWithModelClass:[YTMembership class]];
 }
 
-- (id)initWithText:(NSString *)text {
+- (id)initWithSymbol:(NSString *)symbol {
   self = [super init];
   if (self == nil) {
     return nil;
   }
 
-  _text = text;
+  _symbol = symbol;
 
   return self;
 }

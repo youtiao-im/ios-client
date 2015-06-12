@@ -10,6 +10,6 @@
 @property (nonatomic) NSString *text;
 @property (nonatomic, readonly) RACCommand *createCommentCommand;
 
-- (id)initWithFeed:(YTFeed *)feed;
+- (id)initWithBulletin:(YTBulletin *)bulletin;
 
 @end

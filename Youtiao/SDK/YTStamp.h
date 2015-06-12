@@ -4,16 +4,16 @@
 
 @class YTBulletin, YTMembership;
 
-@interface YTComment : MTLModel <MTLJSONSerializing>
+@interface YTStamp : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSString *bulletinId;
-@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) NSString *symbol;
 @property (nonatomic, readonly) NSString *createdByType;
 @property (nonatomic, readonly) NSString *createdById;
 @property (nonatomic, readonly) YTBulletin *bulletin;
 @property (nonatomic, readonly) YTMembership *createdBy;
 
-- (id)initWithText:(NSString *)text;
+- (id)initWithSymbol:(NSString *)symbol;
 
 @end
