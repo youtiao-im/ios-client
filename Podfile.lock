@@ -20,36 +20,40 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Expecta (1.0.0)
+  - ChameleonFramework (1.2.0)
+  - INSPullToRefresh (1.0.7)
   - Mantle (2.0.2):
     - Mantle/extobjc (= 2.0.2)
   - Mantle/extobjc (2.0.2)
-  - ReactiveCocoa (2.5):
-    - ReactiveCocoa/UI (= 2.5)
-  - ReactiveCocoa/Core (2.5):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.5)
-  - ReactiveCocoa/UI (2.5):
-    - ReactiveCocoa/Core
+  - MBProgressHUD (0.9.1)
+  - Qiniu (7.0.11):
+    - AFNetworking (~> 2.0)
+  - RKDropdownAlert (0.3.0)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
-  - Specta (1.0.0)
+  - UITintedButton (1.0)
 
 DEPENDENCIES:
   - AFNetworking
-  - Expecta
+  - ChameleonFramework
+  - INSPullToRefresh
   - Mantle
-  - ReactiveCocoa
+  - MBProgressHUD
+  - Qiniu
+  - RKDropdownAlert
   - SDWebImage
-  - Specta
+  - UITintedButton
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  ChameleonFramework: 4d6bf87fcaee176f487176cdccc4229637ec97f0
+  INSPullToRefresh: b553fd02817fd4cb5b77ca852809c24482075f69
   Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
-  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Qiniu: 70c3364afbc6993989edaf3da4a784c7d5ad296b
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
-  Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
+  UITintedButton: 7b13c921c0ff2705ff36c49dcb63a9f7798f5421
 
 COCOAPODS: 0.37.2

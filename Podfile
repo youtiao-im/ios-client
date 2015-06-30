@@ -4,11 +4,15 @@
 target 'Youtiao' do
   pod 'AFNetworking'
   pod 'Mantle'
-  pod 'ReactiveCocoa'
   pod 'SDWebImage'
+  pod 'INSPullToRefresh'
+  pod 'Qiniu'
+  pod 'UITintedButton'
+  pod 'MBProgressHUD'
+  pod 'ChameleonFramework'
+  pod 'RKDropdownAlert'
 end
 
 target 'YoutiaoTests' do
-  pod 'Specta'
-  pod 'Expecta'
+
 end
