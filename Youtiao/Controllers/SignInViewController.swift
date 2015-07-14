@@ -12,32 +12,84 @@ class SignInViewController: UITableViewController {
 
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
-
-  @IBAction func signIn(sender: AnyObject) {
+  
+  var warningAlertView: UIAlertView!
+  
+  override func viewDidLoad() {
+    emailTextField.delegate = self
+    passwordTextField.delegate = self
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+  }
+  
+  func doSignInAction() {
+    let emailText = emailTextField.text
+    let passwdText = passwordTextField.text
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-//    APIClient.sharedInstance.signInWithEmail(self.emailTextField.text, password: self.passwordTextField.text, success: { (Void) -> Void in
-//      let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-//      UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
-//      }, failure: { (error: NSError) -> Void in
-//        NSLog("sign in error")
-//      }
-//    )
-    APIClient.sharedInstance.signInWithEmail("luffy@straw-hat.org", password: "12345678",
-      success: { (Void) -> Void in
+    APIClient.sharedInstance.signInWithEmail(emailText, password: passwdText, success: { (dictionary: [NSObject : AnyObject]) -> Void in
+        let token = dictionary["access_token"] as? String
+        if token != nil {
+          NSUserDefaults.standardUserDefaults().setValue(token, forKey: "token")
+          NSUserDefaults.standardUserDefaults().synchronize()
+        }
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
       }, failure: { (error: NSError) -> Void in
-        NSLog("%@", error)
         MBProgressHUD.hideHUDForView(self.view, animated: true)
+        var errMsg: String
         if error is UnauthorizedError {
-          var alertView = UIAlertView(title: "Sign-in failed", message: "Incorrect email address or password.", delegate: self, cancelButtonTitle: "OK")
-          alertView.show()
+          errMsg = NSLocalizedString("Incorrect email address or password", comment: "Incorrect email address or password")
         } else {
-          // TODO:
-//          DropdownAlertsHelper.showServerErrorAlert()
+          errMsg = ErrorsHelper.errorMessageForError(error)
         }
+        self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: errMsg)
       }
     )
+  }
+  
+  @IBAction func signIn(sender: AnyObject) {
+    emailTextField.resignFirstResponder()
+    let emailTextLength = emailTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+    if emailTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+      self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: NSLocalizedString("Email should not be empty", comment: "Email should not be empty"))
+      return
+    }
+    self.doSignInAction()
+  }
+  
+  @IBAction func forgotPassword(sender: AnyObject) {
+    let urlBaseURLString = "http://youtiao.im:3000"
+    let pageURL = urlBaseURLString + "/users/password/new"
+    let forgotPasswordUrl: NSURL? = NSURL(string: pageURL)
+    UIApplication.sharedApplication().openURL(forgotPasswordUrl!)
+  }
+  
+  func displayErrorMessage(title: String, errorMsg: String) {
+    if warningAlertView != nil && warningAlertView.visible {
+      warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
+    }
+    warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
+    warningAlertView.show()
+  }
+  
+}
+
+extension SignInViewController {
+}
+
+extension SignInViewController: UITextFieldDelegate {
+  func textFieldDidEndEditing(textField: UITextField) {
+    if textField == emailTextField {
+      let rectifiedText = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+      textField.text = rectifiedText
+    }
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    if textField == emailTextField {
+      passwordTextField.becomeFirstResponder()
+      return true
+    }
+    return true
   }
 }

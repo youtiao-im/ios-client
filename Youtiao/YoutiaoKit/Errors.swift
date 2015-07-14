@@ -50,3 +50,16 @@ class UnprocessableEntityError: YoutiaoError {
 
 class ServerError: YoutiaoError {
 }
+
+class OperationCancelledError: YoutiaoError {
+}
+
+class NetworkError: YoutiaoError {
+  override init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?) {
+    super.init(domain: domain, code: code, userInfo: dict)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+}

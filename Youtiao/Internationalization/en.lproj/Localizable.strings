@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  Youtiao
+
+  Created by Banmayun on 15/7/10.
+  Copyright (c) 2015年 youtiao.im. All rights reserved.
+*/
+
+"Administrators" = "Administrators";
+
+"Bulletin text cannot be blank." = "Bulletin text cannot be blank.";
+"Bulletin text is invalid." = "Bulletin text is invalid.";
+"Bulletin text is too long." = "Bulletin text is too long.";
+"Bulletin text is too short." = "Bulletin text is too short.";
+
+"Cancel" = "Cancel";
+"Create a Group" = "Create a Group";
+
+" days ago" = " days ago";
+
+"Email invalid" = "Email is invalid";
+"Email should not be empty" = "Email should not be empty";
+
+"Find Password" = "Find Password";
+"Forbidden" = "Operation is forbidden";
+
+"Group name cannot be blank." = "Group name cannot be blank.";
+"Group name is too long." = "Group name is too long.";
+"Group name is too short." = "Group name is too short.";
+"Group name is invalid." = "Group name is invalid.";
+"Group code should not be empty" = "Group code should not be empty";
+"Group name should not be empty" = "Group name should not be empty";
+
+" hours ago" = " hours ago";
+
+"Incorrect email address or password" = "Incorrect email address or password";
+" is blank" = " is blank.";
+" is invalid" = " is invalid";
+" is taken" = " is taken.";
+
+"Join a Group" = "Join a Group";
+"just now" = "just now";
+
+"Members" = "Members";
+" minutes ago" = " minutes ago";
+
+"Network Error" = "Network Error";
+
+"OK" = "OK";
+"Operation is cancelled" = "Operation is cancelled";
+
+"Password invalid" = "Password is invalid";
+"Please try again later." = "Please try again later.";
+
+" seconds ago" = " seconds ago";
+"Server Error" = "Server Error";
+"Server error encountered" = "Server error encountered";
+
+"Target item not exist" = "Operation target does not exist";
+" too long" = " too long.";
+" too short" = " too short.";
+
+"Unauthorized" = "Token is invalid";
+"Unknown Error" = "Unknown Error";
+"Unknown error encountered" = "Unknown error encountered.";
+"Unknown user" = "Unknown user";
+"Username invalid" = "Username is invalid";
+"User name invalid" = "User name is invalid";
+
+"Warning" = "Warning";
+"We cannot find any group with the given code." = "We cannot find any group with the given code.";

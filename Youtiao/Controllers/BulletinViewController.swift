@@ -9,165 +9,141 @@
 import Foundation
 
 class BulletinViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-  @IBOutlet weak var commentsTableView: UITableView!
-  @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
-  @IBOutlet weak var newCommentView: UIView!
-  @IBOutlet weak var commentTextTextField: UITextField!
+  @IBOutlet weak var stampsTableView: UITableView!
 
   var bulletin: Bulletin!
-  private var comments: [Comment] = [Comment]()
+
+  var stamps: [Stamp] = [Stamp]()
+  var lastStamp: Stamp?
+  var timer: NSTimer!
+  
+  var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-
-    let bulletinDetailCellNib = UINib(nibName: "BulletinDetailCell", bundle: nil)
-    self.commentsTableView.registerNib(bulletinDetailCellNib, forCellReuseIdentifier: "BulletinDetailCell")
-    let commentCellNib = UINib(nibName: "CommentCell", bundle: nil)
-    self.commentsTableView.registerNib(commentCellNib, forCellReuseIdentifier: "CommentCell")
-    self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
-    self.commentsTableView.estimatedRowHeight = 160.0;
-
-    self.commentsTableView.tableFooterView = UIView()
-
-    self.newCommentView.backgroundColor = BACKGROUND_COLOR
-    var newCommentViewTopBorder = CALayer()
-    newCommentViewTopBorder.frame = CGRectMake(0.0, 0.0, self.newCommentView.frame.width, 0.5)
-    newCommentViewTopBorder.backgroundColor = UIColor(hex: 0xc8c8c8).CGColor
-    self.newCommentView.layer.addSublayer(newCommentViewTopBorder)
-
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
-
-    self.commentsTableView.ins_addInfinityScrollWithHeight(60.0,
+    
+    self.stampsTableView.rowHeight = UITableViewAutomaticDimension
+    self.stampsTableView.estimatedRowHeight = 160.0
+    self.stampsTableView.tableFooterView = UIView()
+    
+    self.stampsTableView.ins_addInfinityScrollWithHeight(60.0,
       handler: { (scrollView: UIScrollView!) -> Void in
-        self.loadMoreComments()
-      }
-    )
-
-    let infinityIndicator = INSDefaultInfiniteIndicator(frame: CGRectMake(0, 0, 24, 24))
-    self.commentsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
+        self.loadMoreStamps()
+    })
+    
+    let infinityIndicator = INSDefaultInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24.0, height: 24.0))
+    self.stampsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
+    
+    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
 
-    self.loadComments()
+    self.loadStamps()
   }
-
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.comments.count + 1
-  }
-
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if (indexPath.row == 0) {
-      let cell = tableView.dequeueReusableCellWithIdentifier("BulletinDetailCell") as! BulletinDetailCell
-
-      if let avatarDataURL = bulletin.createdBy?.avatar?.dataURL {
-        cell.userAvatarImageView.sd_setImageWithURL(avatarDataURL)
-      }
-      cell.userNameLabel.text = self.bulletin.createdBy?.name
-      cell.groupNameLabel.text = self.bulletin.group?.name
-      cell.timestampLabel.text = "1h"
-      cell.textContentLabel.text = self.bulletin.text
-      return cell
-    } else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell") as! CommentCell
-      let comment = self.comments[indexPath.row - 1]
-
-      if let avatarDataURL = comment.createdBy?.avatar?.dataURL {
-        cell.userAvatarImageView.sd_setImageWithURL(avatarDataURL)
-      }
-      cell.userNameLabel.text = comment.createdBy?.name
-      cell.timestampLabel.text = "1h"
-      cell.textContentLabel.text = comment.text
-      return cell
-    }
-  }
-
-  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-    cell.separatorInset = UIEdgeInsetsZero
-    cell.preservesSuperviewLayoutMargins = false
-    cell.layoutMargins = UIEdgeInsetsZero
-  }
-
-  func keyboardDidShow(sender: NSNotification!) {
-    let frame = sender.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
-    let newFrame = self.view.convertRect(frame, fromView: UIApplication.sharedApplication().delegate!.window!)
-    self.bottomLayoutConstraint.constant = CGRectGetHeight(self.view.frame) - newFrame.origin.y
-    self.view.layoutIfNeeded()
-  }
-
-  func keyboardWillHide(sender: NSNotification!) {
-    self.bottomLayoutConstraint.constant = 0
-    self.view.layoutIfNeeded()
-  }
-
-  @IBAction func createComment(sender: AnyObject) {
-    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.createCommentWithText(self.commentTextTextField.text, forBulletin: self.bulletin,
-      success: { (comment: Comment) -> Void in
-        MBProgressHUD.hideHUDForView(self.view, animated: true)
-        self.loadComments()
-        self.view.endEditing(true)
-        self.commentTextTextField.text = nil
+  
+  func loadStamps() {
+    APIClient.sharedInstance.fetchStampsForBulletin(bulletin,
+      success: { (stamps: [Stamp]) -> Void in
+        self.lastStamp = stamps.last
+        self.handleLoadStampsSuccess(stamps)
+        self.stampsTableView.ins_infiniteScrollBackgroundView.enabled = stamps.count >= 25
       }, failure: { (error: NSError) -> Void in
-        MBProgressHUD.hideHUDForView(self.view, animated: true)
-        if let unprocessableEntityError = error as? UnprocessableEntityError {
-          var errorMessage: String?
-          switch unprocessableEntityError.reason! {
-          case UnprocessableEntityErrorReason.Blank:
-            errorMessage = "Comment text cannot be blank."
-          case UnprocessableEntityErrorReason.TooShort:
-            errorMessage = "Comment text is too short."
-          case UnprocessableEntityErrorReason.TooLong:
-            errorMessage = "Comment text is too long."
-          default:
-            errorMessage = "Comment text is invalid."
+        if error is ForbiddenError || error is NotFoundError {
+          var errMsg = ErrorsHelper.errorMessageForError(error)
+          self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errMessage: errMsg)
+        } else {
+          ErrorsHelper.handleCommonErrors(error)
+        }
+      }
+    )
+  }
+  
+  func loadMoreStamps() {
+    if let lastStamp = lastStamp {
+      APIClient.sharedInstance.fetchStampsForBulletin(bulletin, createdBeforeStamp: lastStamp, success: { (stamps: [Stamp]) -> Void in
+          if stamps.count > 0 {
+            self.lastStamp = stamps.last
+            self.handleLoadStampsSuccess(stamps)
           }
-
-          var alertView = UIAlertView(title: "Failed to Create Comment", message: errorMessage, delegate: self, cancelButtonTitle: "OK")
-          alertView.show()
-        } else if error is ForbiddenError {
-          // TODO:
-        } else {
-          ErrorsHelper.handleCommonErrors(error)
-        }
-      }
-    )
-  }
-
-  func loadComments() {
-    APIClient.sharedInstance.fetchCommentsForBulletin(self.bulletin,
-      success: { (comments: [Comment]) -> Void in
-        self.comments = comments
-        self.commentsTableView.reloadData()
-        self.commentsTableView.ins_infiniteScrollBackgroundView.enabled = comments.count >= 25
-      }, failure: { (error: NSError) -> Void in
-        if error is ForbiddenError {
-          // TODO:
-        } else {
-          ErrorsHelper.handleCommonErrors(error)
-        }
-      }
-    )
-  }
-
-  func loadMoreComments() {
-    if let lastComment = self.comments.last {
-      APIClient.sharedInstance.fetchCommentsForBulletin(self.bulletin, createdBeforeComment: lastComment,
-        success: { (comments: [Comment]) -> Void in
-          self.comments += comments
-          self.commentsTableView.reloadData()
-          self.commentsTableView.ins_endInfinityScrollWithStoppingContentOffset(true)
-          self.commentsTableView.ins_infiniteScrollBackgroundView.enabled = comments.count >= 25
+          self.stampsTableView.ins_infiniteScrollBackgroundView.endInfiniteScrollingWithStoppingContentOffset(true)
+          self.stampsTableView.ins_infiniteScrollBackgroundView.enabled = stamps.count >= 25
         }, failure: { (error: NSError) -> Void in
-          if error is ForbiddenError {
-            // TODO:
+          self.stampsTableView.ins_endInfinityScroll()
+          if error is ForbiddenError || error is NotFoundError {
+            var errMsg = ErrorsHelper.errorMessageForError(error)
+            self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errMessage: errMsg)
           } else {
             ErrorsHelper.handleCommonErrors(error)
           }
         }
       )
     }
+  }
+  
+  private func handleLoadStampsSuccess(stamps: [Stamp]) -> Void {
+    self.stamps += stamps
+    self.stampsTableView.reloadData()
+  }
+  
+  func updateTimeDisplay(timer: NSTimer) {
+    for item in self.stampsTableView.visibleCells() {
+      let oneCell = item as! UITableViewCell
+      let indexpath = self.stampsTableView.indexPathForCell(oneCell)
+      if let stampTime = self.stamps[indexpath!.row].createdAt {
+        oneCell.detailTextLabel?.text = TimeHelper.formattedTime(stampTime.doubleValue)
+      }
+    }
+  }
+  
+  func displayErrorMessage(title: String, errMessage: String) {
+    if warningAlertView != nil && warningAlertView.visible {
+      warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
+    }
+    warningAlertView = UIAlertView(title: title, message: errMessage, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
+    warningAlertView.show()
+  }
+}
+
+// MARK: - UITableViewDataSource
+extension BulletinViewController: UITableViewDataSource {
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+  }
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return stamps.count
+  }
+  
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    var cell = tableView.dequeueReusableCellWithIdentifier("stampCell") as? UITableViewCell
+    if cell == nil {
+      cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "stampCell")
+    }
+    let oneStamp = stamps[indexPath.row]
+    if oneStamp.symbol == "check" {
+      var image = UIImage(named: "check")
+      image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+      cell?.imageView?.image = image
+      cell?.imageView?.tintColor = GREEN_COLOR
+    } else if oneStamp.symbol == "cross" {
+      var image = UIImage(named: "times")
+      image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+      cell?.imageView?.tintColor = RED_COLOR
+      cell?.imageView?.image = image
+    }
+    cell?.textLabel?.text = stamps[indexPath.row].createdBy?.name
+    cell?.detailTextLabel?.font = UIFont.systemFontOfSize(13.0)
+    if let stampTime = stamps[indexPath.row].createdAt {
+      cell?.detailTextLabel?.text = TimeHelper.formattedTime(stampTime.doubleValue)
+    }
+    return cell!
+  }
+}
+
+extension BulletinViewController: UITableViewDelegate {
+  func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+    cell.preservesSuperviewLayoutMargins = false
+    cell.layoutMargins = UIEdgeInsetsZero
   }
 }

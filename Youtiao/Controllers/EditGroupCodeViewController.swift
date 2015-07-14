@@ -19,6 +19,8 @@ class EditGroupCodeViewController: UITableViewController {
 
   var group: Group!
   var delegate: EditGroupCodeViewControllerDelegate?
+  
+  var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,32 +28,26 @@ class EditGroupCodeViewController: UITableViewController {
   }
 
   @IBAction func save(sender: AnyObject) {
+    self.groupCodeTextField.resignFirstResponder()
+    if self.groupCodeTextField.text == group.code {
+      self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+      return
+    } else if self.groupCodeTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+      self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: NSLocalizedString("Group code should not be empty", comment: "Group code should not be empty"))
+      return
+    }
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.updateGroup(self.group, name: nil, code: self.groupCodeTextField.text,
       success: { (group: Group) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.delegate?.editGroupCodeViewController(self, didUpdateGroup: group)
+        let newGroupInfo = ["newGroupInfo" : group]
+        NSNotificationCenter.defaultCenter().postNotificationName("updateGroupInfoSuccessNotification", object: nil, userInfo: newGroupInfo)
       }, failure: { (error: NSError) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
-        if let unprocessableEntityError = error as? UnprocessableEntityError {
-          var errorMessage: String?
-          switch unprocessableEntityError.reason! {
-          case UnprocessableEntityErrorReason.Blank:
-            errorMessage = "Group code cannot be blank."
-          case UnprocessableEntityErrorReason.TooShort:
-            errorMessage = "Group code is too short."
-          case UnprocessableEntityErrorReason.TooLong:
-            errorMessage = "Group code is too long."
-          case UnprocessableEntityErrorReason.Taken:
-            errorMessage = "Group code has already been taken."
-          default:
-            errorMessage = "Group code is invalid."
-          }
-
-          var alertView = UIAlertView(title: "Failed to Update Group Code", message: errorMessage, delegate: self, cancelButtonTitle: "OK")
-          alertView.show()
-        } else if error is ForbiddenError {
-          // TODO:
+        if error is ForbiddenError || error is NotFoundError || error is UnprocessableEntityError {
+          let errMsg = ErrorsHelper.errorMessageForError(error)
+          self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: errMsg)
         } else {
           ErrorsHelper.handleCommonErrors(error)
         }
@@ -61,5 +57,19 @@ class EditGroupCodeViewController: UITableViewController {
 
   @IBAction func cancel(sender: AnyObject) {
     self.delegate?.editGroupCodeViewControllerDidCancel(self)
+  }
+  
+  func displayErrorMessage(title: String, errorMsg: String) {
+    if warningAlertView != nil && warningAlertView.visible {
+      warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
+    }
+    warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
+    warningAlertView.show()
+  }
+}
+
+extension EditGroupCodeViewController: UITextFieldDelegate {
+  func textFieldDidEndEditing(textField: UITextField) {
+    textField.text = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
   }
 }

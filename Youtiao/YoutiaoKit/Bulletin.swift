@@ -20,6 +20,7 @@ class Bulletin : MTLModel, MTLJSONSerializing {
   var group: Group?
   var createdBy: User?
   var currentStamp: Stamp?
+  var createdAt: NSNumber?
 
   static func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
     return [
@@ -32,7 +33,8 @@ class Bulletin : MTLModel, MTLJSONSerializing {
       "commentsCount": "comments_count",
       "group": "group",
       "createdBy": "created_by",
-      "currentStamp": "current_stamp"
+      "currentStamp": "current_stamp",
+      "createdAt": "created_at"
     ]
   }
 
