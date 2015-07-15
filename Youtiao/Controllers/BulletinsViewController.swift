@@ -4,7 +4,7 @@ class BulletinsViewController: UIViewController {
   @IBOutlet weak var bulletinsTableView: UITableView!
 
   private var bulletins: [Bulletin] = [Bulletin]()
-  private var timer: NSTimer!
+  private var timer: NSTimer?
 
   var warningAlertView: UIAlertView!
 
@@ -40,7 +40,7 @@ class BulletinsViewController: UIViewController {
 
     self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
 
-    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
+    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
 
     var delayTime: dispatch_time_t
     delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * NSEC_PER_MSEC))
@@ -50,7 +50,7 @@ class BulletinsViewController: UIViewController {
   }
 
   deinit {
-    timer.invalidate()
+    self.timer?.invalidate()
   }
 
   override func didReceiveMemoryWarning() {

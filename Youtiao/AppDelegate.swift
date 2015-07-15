@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UITableView.appearance().backgroundColor = BACKGROUND_COLOR
 
     self.window?.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
     var storyBoard: UIStoryboard?
     APIClient.sharedInstance.accessToken = NSUserDefaults.standardUserDefaults().valueForKey("token") as? String

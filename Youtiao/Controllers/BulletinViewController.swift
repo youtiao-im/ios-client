@@ -7,7 +7,7 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
 
   var stamps: [Stamp] = [Stamp]()
   var lastStamp: Stamp?
-  var timer: NSTimer!
+  var timer: NSTimer?
 
   var warningAlertView: UIAlertView!
 
@@ -29,9 +29,13 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     self.stampsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
 
-    timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
+    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
 
     self.loadStamps()
+  }
+
+  deinit {
+    self.timer?.invalidate()
   }
 
   func loadStamps() {
