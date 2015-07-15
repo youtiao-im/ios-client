@@ -78,15 +78,16 @@ class BulletinsViewController: UIViewController {
   func loadBulletins() {
     self.bulletins.removeAll(keepCapacity: true)
     self.bulletinsTableView.reloadData()
-    APIClient.sharedInstance.fetchBulletins(success: { (bulletins: [Bulletin]) -> Void in
-      let currentSectionsCount = self.bulletins.count
+    APIClient.sharedInstance.fetchBulletins(
+      success: { (bulletins: [Bulletin]) -> Void in
+        let currentSectionsCount = self.bulletins.count
         self.bulletins = bulletins
         self.bulletinsTableView.ins_endPullToRefresh()
-      self.bulletinsTableView.beginUpdates()
-      for var i = 0; i < bulletins.count; ++i {
-        self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
-      }
-      self.bulletinsTableView.endUpdates()
+        self.bulletinsTableView.beginUpdates()
+        for var i = 0; i < bulletins.count; ++i {
+          self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
+        }
+        self.bulletinsTableView.endUpdates()
         self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
       }, failure: { (error: NSError) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
@@ -97,7 +98,8 @@ class BulletinsViewController: UIViewController {
 
   func loadMoreBulletins() {
     if let lastBulletin = self.bulletins.last {
-      APIClient.sharedInstance.fetchBulletinsCreatedBeforeBulletin(lastBulletin, success: { (bulletins: [Bulletin]) -> Void in
+      APIClient.sharedInstance.fetchBulletinsCreatedBeforeBulletin(lastBulletin,
+        success: { (bulletins: [Bulletin]) -> Void in
           let currentSectionsCount = self.bulletins.count
           self.bulletins += bulletins
           self.bulletinsTableView.beginUpdates()
@@ -117,7 +119,8 @@ class BulletinsViewController: UIViewController {
 
   func checkBulletin(sender: UIButton!) {
     let bulletin = self.bulletins[sender.tag]
-    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "check", success: { (bulletin: Bulletin) -> Void in
+    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "check",
+      success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
         self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)
@@ -135,7 +138,8 @@ class BulletinsViewController: UIViewController {
 
   func crossBulletin(sender: UIButton) {
     let bulletin = self.bulletins[sender.tag]
-    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "cross", success: { (bulletin: Bulletin) -> Void in
+    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "cross",
+      success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
         self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)

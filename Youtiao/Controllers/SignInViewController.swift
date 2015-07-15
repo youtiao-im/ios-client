@@ -16,7 +16,8 @@ class SignInViewController: UITableViewController {
     let emailText = emailTextField.text
     let passwdText = passwordTextField.text
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.signInWithEmail(emailText, password: passwdText, success: { (dictionary: [NSObject : AnyObject]) -> Void in
+    APIClient.sharedInstance.signInWithEmail(emailText, password: passwdText,
+      success: { (dictionary: [NSObject : AnyObject]) -> Void in
         let token = dictionary["access_token"] as? String
         if token != nil {
           NSUserDefaults.standardUserDefaults().setValue(token, forKey: "token")

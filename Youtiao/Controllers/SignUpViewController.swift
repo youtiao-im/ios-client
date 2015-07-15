@@ -16,7 +16,8 @@ class SignUpViewController: UITableViewController {
     let email = self.emailTextField.text
     let password = self.passwordTextField.text
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.signUpWithEmail(email, password: password, name: nil, success: { (user: User) -> Void in
+    APIClient.sharedInstance.signUpWithEmail(email, password: password, name: nil,
+      success: { (user: User) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.signUpSucceededWithUser(user)
       }, failure: { (error: NSError) -> Void in
@@ -48,7 +49,8 @@ class SignUpViewController: UITableViewController {
     let email = self.emailTextField.text
     let password = self.passwordTextField.text
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.signInWithEmail(email, password: password, success: { (dictionary: [NSObject: AnyObject]) -> Void in
+    APIClient.sharedInstance.signInWithEmail(email, password: password,
+      success: { (dictionary: [NSObject: AnyObject]) -> Void in
         let token = dictionary["access_token"] as? String
         if token != nil {
           NSUserDefaults.standardUserDefaults().setValue(token, forKey: "token")

@@ -30,7 +30,8 @@ class EditUserNameViewController: UITableViewController {
       return
     }
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.updateCurrentUserWithName(newUserName, avatatId: nil, success: { (user: User) -> Void in
+    APIClient.sharedInstance.updateCurrentUserWithName(newUserName, avatatId: nil,
+      success: { (user: User) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.user = user
         self.delegate?.editUserNameViewController(self, didUpdateUser: user)

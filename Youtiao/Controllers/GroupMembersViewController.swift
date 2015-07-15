@@ -23,7 +23,8 @@ class GroupMembersViewController: UIViewController {
 
   func loadAllMemberships() {
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.fetchGroupAllMemberships(group, success: { (memberships: [Membership]) -> Void in
+    APIClient.sharedInstance.fetchGroupAllMemberships(group,
+      success: { (memberships: [Membership]) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.handleFetchAllMembershipsSuccess(memberships)
       }, failure: { (error: NSError) -> Void in

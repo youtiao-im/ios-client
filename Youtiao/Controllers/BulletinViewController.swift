@@ -53,7 +53,8 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
 
   func loadMoreStamps() {
     if let lastStamp = lastStamp {
-      APIClient.sharedInstance.fetchStampsForBulletin(bulletin, createdBeforeStamp: lastStamp, success: { (stamps: [Stamp]) -> Void in
+      APIClient.sharedInstance.fetchStampsForBulletin(bulletin, createdBeforeStamp: lastStamp,
+        success: { (stamps: [Stamp]) -> Void in
           if stamps.count > 0 {
             self.lastStamp = stamps.last
             self.handleLoadStampsSuccess(stamps)
