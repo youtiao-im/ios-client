@@ -7,7 +7,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
 
   var stamps: [Stamp] = [Stamp]()
   var lastStamp: Stamp?
-  var timer: NSTimer?
 
   var warningAlertView: UIAlertView!
 
@@ -29,13 +28,7 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     self.stampsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
 
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
-
     self.loadStamps()
-  }
-
-  deinit {
-    self.timer?.invalidate()
   }
 
   func loadStamps() {
@@ -81,16 +74,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
   private func handleLoadStampsSuccess(stamps: [Stamp]) -> Void {
     self.stamps += stamps
     self.stampsTableView.reloadData()
-  }
-
-  func updateTimeDisplay(timer: NSTimer) {
-    for item in self.stampsTableView.visibleCells() {
-      let oneCell = item as! UITableViewCell
-      let indexpath = self.stampsTableView.indexPathForCell(oneCell)
-      if let stampTime = self.stamps[indexpath!.row].createdAt {
-        oneCell.detailTextLabel?.text = TimeHelper.formattedTime(stampTime.doubleValue)
-      }
-    }
   }
 
   func displayErrorMessage(title: String, errMessage: String) {
