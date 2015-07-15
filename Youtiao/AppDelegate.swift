@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -22,9 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     UINavigationBar.appearance().translucent = false
 
-//    UIButton.appearance().tintColor = BRAND_COLOR
-//    UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-
     UITabBar.appearance().tintColor = BRAND_COLOR
     UITabBar.appearance().translucent = false
 
@@ -32,13 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     self.window?.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
 
-//    UILabel.appearance().textColor = TEXT_COLOR
-//    UITableViewCell.appearance().detailTextLabel?.textColor = MUTED_TEXT_COLOR
-
-//    TSMessageView.appearance().titleColo
-//    TSMessageView.appearance().setTitleFont(nil)
-
     var storyBoard: UIStoryboard?
+    APIClient.sharedInstance.accessToken = NSUserDefaults.standardUserDefaults().valueForKey("token") as? String
     if (APIClient.sharedInstance.accessToken == nil) {
       storyBoard = UIStoryboard(name: "Landing", bundle: nil)
     } else {

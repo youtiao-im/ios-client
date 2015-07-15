@@ -1,0 +1,63 @@
+"Administrators" = "管理员";
+
+"Bulletin text cannot be blank." = "公告内容不能为空。";
+"Bulletin text is invalid." = "公告内容无效。";
+"Bulletin text is too long." = "公告内容太长了。";
+"Bulletin text is too short." = "公告内容太短了。";
+
+"Cancel" = "取消";
+"Create a Group" = "创建群组";
+
+" days ago" = "天前";
+
+"Email invalid" = "邮箱地址无效";
+"Email should not be empty" = "邮箱地址不能为空";
+
+"Find Password" = "找回密码";
+"Forbidden" = "操作被禁止";
+
+"Group name cannot be blank." = "群组名不能为空。";
+"Group name is too long." = "群组名字太长。";
+"Group name is too short." = "群组名字太短。";
+"Group name is invalid." = "群组名字无效。";
+"Group code should not be empty" = "群组码不能为空";
+"Group name should not be empty" = "群组名不能为空";
+
+" hours ago" = "小时前";
+
+"Incorrect email address or password" = "邮箱地址或密码错误。";
+" is blank" = "是空的。";
+" is invalid" = "是无效的。";
+" is taken" = "已被占用。";
+
+"Join a Group" = "加入群组";
+"just now" = "刚刚";
+
+"Members" = "普通成员";
+" minutes ago" = "分钟前";
+
+"Network Error" = "网络错误";
+
+"OK" = "好的";
+"Operation is cancelled" = "操作已被取消";
+
+"Password invalid" = "密码无效";
+"Please try again later." = "请稍后重试。";
+
+" seconds ago" = "秒前";
+"Server Error" = "服务器错误";
+"Server error encountered" = "遇到服务器错误";
+
+"Target item not exist" = "操作对象不存在";
+" too long" = "太长了。";
+" too short" = "太短了。";
+
+"Unauthorized" = "Token无效";
+"Unknown Error" = "未知错误";
+"Unknown error encountered" = "遇到未知错误。";
+"Unknown user" = "未知用户";
+"Username invalid" = "用户名无效";
+"User name invalid" = "用户名无效";
+
+"Warning" = "警告";
+"We cannot find any group with the given code." = "指定群组码的群组不存在";

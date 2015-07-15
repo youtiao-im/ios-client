@@ -1,21 +1,16 @@
-//
-//  APIClient.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
-class APIClient: AFHTTPRequestOperationManager{
+let signInBaseURL = "http://youtiao.im:3000/oauth/token"
+let signOutBaseURL = "http://youtiao.im:3000/oauth/revoke"
 
+class APIClient: AFHTTPRequestOperationManager{
   static let sharedInstance = APIClient()
 
   var accessToken: String?
 
   init() {
-    super.init(baseURL: NSURL(string: "http://new.meepotech.com:3000/api/v1"))
+    super.init(baseURL: NSURL(string: "http://api.youtiao.im:3000/v1"))
+
     self.requestSerializer = AFJSONRequestSerializer()
     self.responseSerializer = AFJSONResponseSerializer()
   }
@@ -92,35 +87,88 @@ class APIClient: AFHTTPRequestOperationManager{
   }
 
   private func convertError(#operation: AFHTTPRequestOperation!, error: NSError!) -> NSError! {
-    switch operation.response.statusCode {
-    case 401:
-      return UnauthorizedError()
-    case 403:
-      return ForbiddenError()
-    case 404:
-      return NotFoundError()
-    case 422:
-      let dictionary = operation.responseObject as! [NSObject: AnyObject]
-      return UnprocessableEntityError.fromErrorString(dictionary["error"] as! String)
-    default:
-      return ServerError()
+    if operation.cancelled {
+      return OperationCancelledError()
+    } else if error.domain == "NSURLErrorDomain" {
+      return NetworkError(domain: error.domain, code: error.code, userInfo: error.userInfo)
+    } else {
+      switch operation.response.statusCode {
+      case 401:
+        return UnauthorizedError()
+      case 403:
+        return ForbiddenError()
+      case 404:
+        return NotFoundError()
+      case 422:
+        let dictionary = operation.responseObject as! [NSObject: AnyObject]
+        return UnprocessableEntityError.fromErrorString(dictionary["error"] as! String)
+      default:
+        return ServerError()
+      }
     }
   }
 
-  func signInWithEmail(email: String, password: String, success: ((Void) -> Void)?, failure: ((NSError) -> Void)?) {
+  func signUpWithEmail(email: String?, password: String?, name: String?, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    var parameters = [String: String]()
+    if email != nil {
+      parameters["email"] = email
+    }
+    if password != nil {
+      parameters["password"] = password
+    }
+    if name != nil {
+      parameters["name"] = name
+    }
+    self.post("users.sign_up", parameters: parameters, responseClass: User.self, success: { (model: AnyObject) -> Void in
+        success?(model as! User)
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func signInWithEmail(email: String, password: String, success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters = [
       "username": email,
       "password": password,
       "grant_type": "password"]
 
-    self.post("/oauth/token", parameters: parameters,
-      success: { (dictionary: [NSObject : AnyObject]) -> Void in
-        self.accessToken = dictionary["access_token"] as? String
-        success?()
-      }, failure: { (error: NSError) -> Void in
-        failure?(error)
+    var requestURLString = signInBaseURL
+    requestURLString += "?grant_type=password"
+    for (fieldKey, fieldValue) in parameters {
+      requestURLString += "&\(fieldKey)=\(fieldValue)"
+    }
+    var signInRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
+    signInRequest.HTTPMethod = "POST"
+    let signInOperation: AFHTTPRequestOperation = AFHTTPRequestOperation(request: signInRequest)
+    signInOperation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+        let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        let dictionaryObj = jsonObject as! NSDictionary
+        self.accessToken = dictionaryObj.valueForKey("access_token") as? String
+        success?(jsonObject as! [NSObject: AnyObject])
+      }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+        failure?(self.convertError(operation: operation, error: error))
       }
     )
+    self.operationQueue.addOperation(signInOperation)
+  }
+
+  func signOut(success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+    let requestURLString = signOutBaseURL
+    var signOutRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
+    signOutRequest.HTTPMethod = "POST"
+    if self.accessToken != nil {
+      signOutRequest.setValue(self.accessToken, forHTTPHeaderField: "Authorization: Bearer \(self.accessToken)")
+    }
+    let signOutOperation: AFHTTPRequestOperation = AFHTTPRequestOperation(request: signOutRequest)
+    signOutOperation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+        let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        success?(jsonObject as! [NSObject: AnyObject])
+      }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+        failure?(self.convertError(operation: operation, error: error))
+      }
+    )
+    self.operationQueue.addOperation(signOutOperation)
   }
 
   func fetchCurrentUser(#success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
@@ -165,6 +213,27 @@ class APIClient: AFHTTPRequestOperationManager{
     )
   }
 
+  func updateCurrentUserWithPassword(originalPassword: String?, newPassword: String?, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    var parameters: [NSString : NSString] = [NSString : NSString]()
+    if originalPassword != nil {
+      parameters["password"] = originalPassword
+    }
+    if newPassword != nil {
+      parameters["new_password"] = newPassword
+    }
+
+    self.post("user.change_password", parameters: parameters, responseClass: User.self, success: { (model: AnyObject) -> Void in
+        success?(model as! User)
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func changeCurrentUserPassword(originalPassword: String, newPassword: String, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
+    self.updateCurrentUserWithPassword(originalPassword, newPassword: newPassword, success: success, failure: failure)
+  }
+
   func fetchGroups(#success: (([Group]) -> Void)?, failure: ((NSError) -> Void)?) {
     self.gets("groups.list", parameters: nil, responseElementClass: Group.self,
       success: { (models: [AnyObject]) -> Void in
@@ -193,6 +262,7 @@ class APIClient: AFHTTPRequestOperationManager{
 
   func updateGroup(group: Group, name: String?, code: String?, success: ((Group) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters: NSMutableDictionary = NSMutableDictionary()
+    parameters["id"] = group.id!
     if name != nil {
       parameters["name"] = name!
     }
@@ -216,6 +286,48 @@ class APIClient: AFHTTPRequestOperationManager{
     self.post("groups.join", parameters: parameters, responseClass: Group.self,
       success: { (model: AnyObject) -> Void in
         success?(model as! Group)
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func fetchGroupAllMemberships(group: Group, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
+    var parameters: [NSObject: AnyObject] = ["group_id": group.id!]
+    self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
+        success?(models as! [Membership])
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func fetchGroupMemberships(group: Group,  roles: [String]?, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
+    var parameters: [NSObject : AnyObject] = ["group_id": group.id!]
+    if let roles = roles {
+      parameters["roles"] = roles
+    }
+
+    self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
+        success?(models as! [Membership])
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func fetchGroupMembershipsCreatedBeforeMembership(group: Group, roles: [String]?, createdBeforeMembership membership: Membership?, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
+    var parameters: [NSObject : AnyObject] = ["group_id": group.id!]
+    if let roles = roles {
+      parameters["roles"] = roles
+    }
+
+    if let membership = membership {
+      parameters["before_id"] = membership.id
+    }
+
+    self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
+        success?(models as! [Membership])
       }, failure: { (error: NSError) -> Void in
         failure?(error)
       }
@@ -288,7 +400,7 @@ class APIClient: AFHTTPRequestOperationManager{
 
   func stampBulletin(bulletin: Bulletin, withSymbol symbol: String, success: ((Bulletin) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters = [
-      "bulletin_id": bulletin.id!,
+      "id": bulletin.id!,
       "symbol": symbol]
 
     self.post("bulletins.stamp", parameters: parameters, responseClass: Bulletin.self,

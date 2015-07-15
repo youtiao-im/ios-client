@@ -1,11 +1,3 @@
-//
-//  Error.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/25/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class YoutiaoError: NSError {
@@ -49,4 +41,17 @@ class UnprocessableEntityError: YoutiaoError {
 }
 
 class ServerError: YoutiaoError {
+}
+
+class OperationCancelledError: YoutiaoError {
+}
+
+class NetworkError: YoutiaoError {
+  override init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?) {
+    super.init(domain: domain, code: code, userInfo: dict)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 }

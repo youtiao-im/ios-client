@@ -1,15 +1,6 @@
-//
-//  UIColorExtension.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/19/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 extension UIColor {
-
   convenience init(hex: Int, alpha: CGFloat = 1.0) {
     let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
     let green = CGFloat((hex & 0xFF00) >> 8) / 255.0

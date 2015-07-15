@@ -1,15 +1,6 @@
-//
-//  GroupSettingsViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/24/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class GroupSettingsViewController: UITableViewController, EditGroupNameViewControllerDelegate, EditGroupCodeViewControllerDelegate {
-
   @IBOutlet weak var groupNameLabel: UILabel!
   @IBOutlet weak var groupCodeLabel: UILabel!
   @IBOutlet weak var groupMembershipsCountLabel: UILabel!
@@ -24,6 +15,8 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
     self.groupNameLabel.text = self.group.name
     self.groupCodeLabel.text = self.group.code
     self.groupMembershipsCountLabel.text = self.group.membershipsCount?.stringValue
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleUpdateGroupInfoSuccessNotification:"), name: "updateGroupInfoSuccessNotification", object: nil)
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -35,7 +28,26 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
         editGroupCodeViewController.group = self.group
         editGroupCodeViewController.delegate = self
       }
+    } else if let groupMembersViewController = segue.destinationViewController as? GroupMembersViewController {
+      groupMembersViewController.group = self.group
     }
+  }
+
+  func handleUpdateGroupInfoSuccessNotification(notification: NSNotification) {
+    let userInfo = notification.userInfo as! [String : AnyObject]
+    let newGroup = userInfo["newGroupInfo"] as! Group
+    let groupIdFromOriInfo = group.id
+    let groupIdFromNewInfo = newGroup.id
+    if groupIdFromOriInfo == groupIdFromNewInfo {
+      group = newGroup
+      self.groupNameLabel.text = newGroup.name
+      self.groupCodeLabel.text = newGroup.code
+      self.groupMembershipsCountLabel.text = newGroup.membershipsCount?.stringValue
+    }
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "updateGroupInfoSuccessNotification", object: nil)
   }
 
   func editGroupNameViewController(controller: EditGroupNameViewController, didUpdateGroup group: Group) {
