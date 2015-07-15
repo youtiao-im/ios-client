@@ -25,7 +25,7 @@ class BulletinsViewController: UIViewController {
       }
     )
 
-    let pullToRefresh = INSDefaultPullToRefresh(frame: CGRect(x: 0, y: 0, width: 24, height: 24), backImage: UIImage(named: "synchronize-4"), frontImage: UIImage(named: "synchronize-4"))
+    let pullToRefresh = INSDefaultPullToRefresh(frame: CGRect(x: 0, y: 0, width: 24, height: 24), backImage: nil, frontImage: UIImage(named: "loading-2"))
     self.bulletinsTableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
     self.bulletinsTableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
 

@@ -31,7 +31,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
       }
     )
 
-    let pullToRefresh = INSDefaultPullToRefresh(frame: CGRectMake(0, 0, 24, 24), backImage: UIImage(named: "first"), frontImage: UIImage(named: "second"))
+    let pullToRefresh = INSDefaultPullToRefresh(frame: CGRectMake(0, 0, 24, 24), backImage: nil, frontImage: UIImage(named: "loading-2"))
     self.groupsTableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
     self.groupsTableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
 
