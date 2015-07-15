@@ -13,7 +13,6 @@ class GroupMembersViewController: UIViewController {
     super.viewDidLoad()
 
     membersTableView.tableFooterView = UIView()
-    membersTableView.rowHeight = 54.0
     self.loadAllMemberships()
   }
 
@@ -105,6 +104,7 @@ extension GroupMembersViewController: UITableViewDataSource {
       oneMembership = members[indexPath.row]
     }
     cell!.textLabel?.text = oneMembership?.user?.name
+    cell?.userInteractionEnabled = false
     return cell!
   }
 

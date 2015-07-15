@@ -11,6 +11,7 @@
 		6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AD9AC1B4F912500BB23CB /* Localizable.strings */; };
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
+		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
 		6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */; };
 		6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */; };
 		6EE3CBCA1B4BBE1600C142C4 /* BulletinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */; };
@@ -69,6 +70,7 @@
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EA075171B54A84900F1CA76 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Landing.strings"; sourceTree = "<group>"; };
+		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
 		6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinCell.swift; sourceTree = "<group>"; };
 		6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinCell.xib; sourceTree = "<group>"; };
 		6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinsViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */,
 				6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */,
+				6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			files = (
 				9C72B6101B31B220000211E2 /* APIClient.swift in Sources */,
 				9C8E5BF81B3A5D120088BA76 /* UIColorExtension.swift in Sources */,
+				6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */,
 				6EE3CBCA1B4BBE1600C142C4 /* BulletinsViewController.swift in Sources */,
 				9C72B5EF1B31398F000211E2 /* User.swift in Sources */,
 				6EE3CBCC1B4BD21800C142C4 /* TimeHelper.swift in Sources */,

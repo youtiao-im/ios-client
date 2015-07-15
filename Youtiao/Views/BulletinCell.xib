@@ -35,7 +35,7 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzQ-9R-HQI">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzQ-9R-HQI" customClass="BulletinStampButton" customModule="Youtiao" customModuleProvider="target">
                         <rect key="frame" x="15" y="129" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="4FZ-Fo-I7t"/>
@@ -57,7 +57,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-XW-HZH">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-XW-HZH" customClass="BulletinStampButton" customModule="Youtiao" customModuleProvider="target">
                         <rect key="frame" x="95" y="129" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="tGa-zb-N0h"/>
