@@ -1,23 +1,15 @@
-//
-//  SignUpViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/18/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class SignUpViewController: UITableViewController {
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var emailTextField: UITextField!
-  
+
   var warningAlertView: UIAlertView!
-  
+
   @IBAction func signUpTapped(sender: AnyObject) {
     self.emailTextField.resignFirstResponder()
     self.passwordTextField.resignFirstResponder()
-    
+
     if !self.isInputValidation() {
      return
     }
@@ -34,11 +26,11 @@ class SignUpViewController: UITableViewController {
       }
     )
   }
-  
+
   private func signUpSucceededWithUser(user: User) {
     self.loginWithEmail()
   }
-  
+
   private func isInputValidation() -> Bool {
     let email = self.emailTextField.text
     let password = self.passwordTextField.text
@@ -51,7 +43,7 @@ class SignUpViewController: UITableViewController {
     }
     return true
   }
-  
+
   private func loginWithEmail() {
     let email = self.emailTextField.text
     let password = self.passwordTextField.text
@@ -72,7 +64,7 @@ class SignUpViewController: UITableViewController {
       }
     )
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -80,7 +72,6 @@ class SignUpViewController: UITableViewController {
     warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
     warningAlertView.show()
   }
-  
 }
 
 extension SignUpViewController: UITextFieldDelegate {
@@ -92,7 +83,7 @@ extension SignUpViewController: UITextFieldDelegate {
     }
     return true
   }
-  
+
   func textFieldDidEndEditing(textField: UITextField) {
     if textField == self.emailTextField {
       var filledString = textField.text

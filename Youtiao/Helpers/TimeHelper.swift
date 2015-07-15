@@ -1,17 +1,9 @@
-//
-//  TimeHelper.swift
-//  Youtiao
-//
-//  Created by Banmayun on 15/7/7.
-//  Copyright (c) 2015年 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class TimeHelper {
   static let littleWhileInterval = 3.0
   static let displayDaysConstant = 10.0
-  
+
   static func formattedTime(oriTime: Double) -> String {
     let timeIntervalSince1970 = NSDate().timeIntervalSince1970
     let timeIntervalFromOriTime = timeIntervalSince1970 - oriTime
@@ -49,7 +41,7 @@ class TimeHelper {
       return dateFormatter.stringFromDate(oriDate)
     }
   }
-  
+
   static func currentSystemLanguage() -> String! {
     var lang: String? = NSUserDefaults.standardUserDefaults().objectForKey("AppleLanguages")?.objectAtIndex(0) as? String
     if lang != nil {

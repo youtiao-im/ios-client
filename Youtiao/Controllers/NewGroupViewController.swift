@@ -1,11 +1,3 @@
-//
-//  NewGroupViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/23/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol NewGroupViewControllerDelegate {
@@ -14,13 +6,12 @@ protocol NewGroupViewControllerDelegate {
 }
 
 class NewGroupViewController: UITableViewController {
-
   @IBOutlet weak var nameTextField: UITextField!
 
   var delegate: NewGroupViewControllerDelegate?
 
   var warningAlertView: UIAlertView!
-  
+
   @IBAction func create(sender: AnyObject) {
     self.nameTextField.resignFirstResponder()
     if self.nameTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
@@ -59,7 +50,7 @@ class NewGroupViewController: UITableViewController {
   @IBAction func cancel(sender: AnyObject) {
     self.delegate?.newGroupViewControllerDidCancel(self)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)

@@ -1,11 +1,3 @@
-//
-//  EditUserNameViewController.swift
-//  Youtiao
-//
-//  Created by Banmayun on 15/7/8.
-//  Copyright (c) 2015年 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol EditUserNameViewControllerDelegate {
@@ -14,18 +6,17 @@ protocol EditUserNameViewControllerDelegate {
 }
 
 class EditUserNameViewController: UITableViewController {
-  
   @IBOutlet weak var userNameTextField: UITextField!
-  
+
   var user: User!
   var delegate: EditUserNameViewControllerDelegate?
   var warningAlertView: UIAlertView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     userNameTextField.text = user.name
   }
-  
+
   @IBAction func saveItemTapped(sender: AnyObject) {
     if self.userNameTextField.isFirstResponder() {
       self.userNameTextField.resignFirstResponder()
@@ -54,11 +45,11 @@ class EditUserNameViewController: UITableViewController {
       }
     )
   }
-  
+
   @IBAction func cancelItemTapped(sender: AnyObject) {
     self.delegate?.editUserNameViewControllerDidCancel(self)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -72,7 +63,7 @@ extension EditUserNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     return true
   }
-  
+
   func textFieldDidEndEditing(textField: UITextField) {
     var filledText = textField.text
     filledText = filledText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())

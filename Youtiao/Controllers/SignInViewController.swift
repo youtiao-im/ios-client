@@ -1,26 +1,17 @@
-//
-//  SignInViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/18/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class SignInViewController: UITableViewController {
-
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
-  
+
   var warningAlertView: UIAlertView!
-  
+
   override func viewDidLoad() {
     emailTextField.delegate = self
     passwordTextField.delegate = self
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
   }
-  
+
   func doSignInAction() {
     let emailText = emailTextField.text
     let passwdText = passwordTextField.text
@@ -46,7 +37,7 @@ class SignInViewController: UITableViewController {
       }
     )
   }
-  
+
   @IBAction func signIn(sender: AnyObject) {
     emailTextField.resignFirstResponder()
     let emailTextLength = emailTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
@@ -56,14 +47,14 @@ class SignInViewController: UITableViewController {
     }
     self.doSignInAction()
   }
-  
+
   @IBAction func forgotPassword(sender: AnyObject) {
     let urlBaseURLString = "http://youtiao.im:3000"
     let pageURL = urlBaseURLString + "/users/password/new"
     let forgotPasswordUrl: NSURL? = NSURL(string: pageURL)
     UIApplication.sharedApplication().openURL(forgotPasswordUrl!)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -71,7 +62,6 @@ class SignInViewController: UITableViewController {
     warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
     warningAlertView.show()
   }
-  
 }
 
 extension SignInViewController {
@@ -84,7 +74,7 @@ extension SignInViewController: UITextFieldDelegate {
       textField.text = rectifiedText
     }
   }
-  
+
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == emailTextField {
       passwordTextField.becomeFirstResponder()

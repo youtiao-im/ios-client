@@ -1,24 +1,14 @@
-//
-//  APIClient.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 let signInBaseURL = "http://youtiao.im:3000/oauth/token"
 let signOutBaseURL = "http://youtiao.im:3000/oauth/revoke"
 
 class APIClient: AFHTTPRequestOperationManager{
-
   static let sharedInstance = APIClient()
 
   var accessToken: String?
 
   init() {
-//    super.init(baseURL: NSURL(string: "http://new.meepotech.com:3000/api/v1"))
     super.init(baseURL: NSURL(string: "http://api.youtiao.im:3000/v1"))
 
     self.requestSerializer = AFJSONRequestSerializer()
@@ -136,13 +126,13 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func signInWithEmail(email: String, password: String, success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters = [
       "username": email,
       "password": password,
       "grant_type": "password"]
-    
+
     var requestURLString = signInBaseURL
     requestURLString += "?grant_type=password"
     for (fieldKey, fieldValue) in parameters {
@@ -162,7 +152,7 @@ class APIClient: AFHTTPRequestOperationManager{
     )
     self.operationQueue.addOperation(signInOperation)
   }
-  
+
   func signOut(success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let requestURLString = signOutBaseURL
     var signOutRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
@@ -222,7 +212,7 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func updateCurrentUserWithPassword(originalPassword: String?, newPassword: String?, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
     var parameters: [NSString : NSString] = [NSString : NSString]()
     if originalPassword != nil {
@@ -231,7 +221,7 @@ class APIClient: AFHTTPRequestOperationManager{
     if newPassword != nil {
       parameters["new_password"] = newPassword
     }
-    
+
     self.post("user.change_password", parameters: parameters, responseClass: User.self, success: { (model: AnyObject) -> Void in
         success?(model as! User)
       }, failure: { (error: NSError) -> Void in
@@ -239,7 +229,7 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func changeCurrentUserPassword(originalPassword: String, newPassword: String, success: ((User) -> Void)?, failure: ((NSError) -> Void)?) {
     self.updateCurrentUserWithPassword(originalPassword, newPassword: newPassword, success: success, failure: failure)
   }
@@ -301,7 +291,7 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func fetchGroupAllMemberships(group: Group, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
     var parameters: [NSObject: AnyObject] = ["group_id": group.id!]
     self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
@@ -311,13 +301,13 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func fetchGroupMemberships(group: Group,  roles: [String]?, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
     var parameters: [NSObject : AnyObject] = ["group_id": group.id!]
     if let roles = roles {
       parameters["roles"] = roles
     }
-    
+
     self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
         success?(models as! [Membership])
       }, failure: { (error: NSError) -> Void in
@@ -325,17 +315,17 @@ class APIClient: AFHTTPRequestOperationManager{
       }
     )
   }
-  
+
   func fetchGroupMembershipsCreatedBeforeMembership(group: Group, roles: [String]?, createdBeforeMembership membership: Membership?, success: (([Membership]) -> Void)?, failure: ((NSError) -> Void)?) {
     var parameters: [NSObject : AnyObject] = ["group_id": group.id!]
     if let roles = roles {
       parameters["roles"] = roles
     }
-    
+
     if let membership = membership {
       parameters["before_id"] = membership.id
     }
-    
+
     self.gets("memberships.list", parameters: parameters, responseElementClass: Membership.self, success: { (models: [AnyObject]) -> Void in
         success?(models as! [Membership])
       }, failure: { (error: NSError) -> Void in

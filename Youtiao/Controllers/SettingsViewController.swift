@@ -1,32 +1,23 @@
-//
-//  SettingsViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class SettingsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
   @IBOutlet weak var userEmailLabel: UILabel!
   @IBOutlet weak var userNameLabel: UILabel!
   @IBOutlet weak var appVesionLabel: UILabel!
-  
+
   var user: User!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-    
+
     let infoDict: [NSObject: AnyObject] = NSBundle.mainBundle().infoDictionary!
     let versionString = infoDict["CFBundleShortVersionString"] as? String
     self.appVesionLabel.text = versionString
     self.loadUser()
   }
-  
+
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     if user == nil {
@@ -40,7 +31,7 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
-  
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     let destinationNavigationController = segue.destinationViewController as? UINavigationController
     if let editUserNameViewController = destinationNavigationController?.topViewController as? EditUserNameViewController {
@@ -84,6 +75,7 @@ extension SettingsViewController: EditUserNameViewControllerDelegate {
     self.userNameLabel.text = user.name
     self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
   }
+
   func editUserNameViewControllerDidCancel(controller: EditUserNameViewController) {
     self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
   }

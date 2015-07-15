@@ -1,35 +1,26 @@
-//
-//  GroupMembersViewController.swift
-//  Youtiao
-//
-//  Created by Banmayun on 15/7/3.
-//  Copyright (c) 2015年 youtiao.im. All rights reserved.
-//
-
 import UIKit
 
 class GroupMembersViewController: UIViewController {
-  
   @IBOutlet weak var membersTableView: UITableView!
-  
+
   var group: Group!
   private var admins: [Membership] = [Membership]()
   private var members: [Membership] = [Membership]()
-  
+
   var warningAlertView: UIAlertView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     membersTableView.tableFooterView = UIView()
     membersTableView.rowHeight = 54.0
     self.loadAllMemberships()
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
+
   func loadAllMemberships() {
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.fetchGroupAllMemberships(group, success: { (memberships: [Membership]) -> Void in
@@ -46,7 +37,7 @@ class GroupMembersViewController: UIViewController {
       }
     )
   }
-  
+
   func handleFetchAllMembershipsSuccess(memberships: [Membership]) {
     for oneMembership in memberships {
       let role = oneMembership.role
@@ -69,7 +60,7 @@ class GroupMembersViewController: UIViewController {
       self.membersTableView.endUpdates()
     }
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -89,7 +80,7 @@ extension GroupMembersViewController: UITableViewDataSource {
     }
     return 0
   }
-  
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case 0:
@@ -100,7 +91,7 @@ extension GroupMembersViewController: UITableViewDataSource {
       return 0
     }
   }
-  
+
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = tableView.dequeueReusableCellWithIdentifier("groupMemberCell") as? UITableViewCell
     if cell == nil {
@@ -115,7 +106,7 @@ extension GroupMembersViewController: UITableViewDataSource {
     cell!.textLabel?.text = oneMembership?.user?.name
     return cell!
   }
-  
+
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     switch section {
     case 0:

@@ -1,11 +1,3 @@
-//
-//  JoinGroupViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/24/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol JoinGroupViewControllerDelegate {
@@ -14,11 +6,10 @@ protocol JoinGroupViewControllerDelegate {
 }
 
 class JoinGroupViewController: UITableViewController {
-
   @IBOutlet weak var codeTextField: UITextField!
 
   var delegate: JoinGroupViewControllerDelegate?
-  
+
   var warningAlertView: UIAlertView!
 
   @IBAction func join(sender: AnyObject) {
@@ -47,7 +38,7 @@ class JoinGroupViewController: UITableViewController {
   @IBAction func cancel(sender: AnyObject) {
     self.delegate?.joinGroupViewControllerDidCancel(self)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -55,7 +46,6 @@ class JoinGroupViewController: UITableViewController {
     warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
     warningAlertView.show()
   }
-  
 }
 
 extension JoinGroupViewController: UITableViewDelegate {

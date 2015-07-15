@@ -1,11 +1,3 @@
-//
-//  Constants.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/24/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 let BRAND_COLOR = UIColor(hex: 0x6699FF)

@@ -1,15 +1,6 @@
-//
-//  BulletinCell.swift
-//  Youtiao
-//
-//  Created by Banmayun on 15/7/7.
-//  Copyright (c) 2015年 youtiao.im. All rights reserved.
-//
-
 import UIKit
 
 class BulletinCell: UITableViewCell {
-  
   @IBOutlet weak var groupNameLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var textContentLabel: UILabel!
@@ -17,7 +8,7 @@ class BulletinCell: UITableViewCell {
   @IBOutlet weak var crossButton: UIButton!
   @IBOutlet weak var checksCountLabel: UILabel!
   @IBOutlet weak var crossesCountLabel: UILabel!
-  
+
   var checked: Bool = false {
     didSet {
       if (self.checked) {
@@ -31,7 +22,7 @@ class BulletinCell: UITableViewCell {
       }
     }
   }
-  
+
   var crossed: Bool = false {
     didSet {
       if (self.crossed) {
@@ -45,21 +36,21 @@ class BulletinCell: UITableViewCell {
       }
     }
   }
-  
+
   override func awakeFromNib() {
     super.awakeFromNib()
-    
+
     self.groupNameLabel.textColor = MUTED_TEXT_COLOR
     self.checksCountLabel.textColor = MUTED_TEXT_COLOR
     self.checkButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
     self.crossesCountLabel.textColor = MUTED_TEXT_COLOR
     self.crossButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
   }
-  
+
   func tappedCheckButton() {
     self.checked = true
   }
-  
+
   func tappedCrossButton() {
     self.crossed = true
   }

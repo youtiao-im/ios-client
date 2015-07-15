@@ -1,11 +1,3 @@
-//
-//  BulletinViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class BulletinViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -16,32 +8,32 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
   var stamps: [Stamp] = [Stamp]()
   var lastStamp: Stamp?
   var timer: NSTimer!
-  
+
   var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-    
+
     self.stampsTableView.rowHeight = UITableViewAutomaticDimension
     self.stampsTableView.estimatedRowHeight = 160.0
     self.stampsTableView.tableFooterView = UIView()
-    
+
     self.stampsTableView.ins_addInfinityScrollWithHeight(60.0,
       handler: { (scrollView: UIScrollView!) -> Void in
         self.loadMoreStamps()
     })
-    
+
     let infinityIndicator = INSDefaultInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24.0, height: 24.0))
     self.stampsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
-    
+
     timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
 
     self.loadStamps()
   }
-  
+
   func loadStamps() {
     APIClient.sharedInstance.fetchStampsForBulletin(bulletin,
       success: { (stamps: [Stamp]) -> Void in
@@ -58,7 +50,7 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
       }
     )
   }
-  
+
   func loadMoreStamps() {
     if let lastStamp = lastStamp {
       APIClient.sharedInstance.fetchStampsForBulletin(bulletin, createdBeforeStamp: lastStamp, success: { (stamps: [Stamp]) -> Void in
@@ -80,12 +72,12 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
       )
     }
   }
-  
+
   private func handleLoadStampsSuccess(stamps: [Stamp]) -> Void {
     self.stamps += stamps
     self.stampsTableView.reloadData()
   }
-  
+
   func updateTimeDisplay(timer: NSTimer) {
     for item in self.stampsTableView.visibleCells() {
       let oneCell = item as! UITableViewCell
@@ -95,7 +87,7 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
       }
     }
   }
-  
+
   func displayErrorMessage(title: String, errMessage: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -110,10 +102,11 @@ extension BulletinViewController: UITableViewDataSource {
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return stamps.count
   }
-  
+
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = tableView.dequeueReusableCellWithIdentifier("stampCell") as? UITableViewCell
     if cell == nil {

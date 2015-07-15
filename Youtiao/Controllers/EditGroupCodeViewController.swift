@@ -1,11 +1,3 @@
-//
-//  EditGroupCodeViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/25/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol EditGroupCodeViewControllerDelegate {
@@ -14,12 +6,11 @@ protocol EditGroupCodeViewControllerDelegate {
 }
 
 class EditGroupCodeViewController: UITableViewController {
-
   @IBOutlet weak var groupCodeTextField: UITextField!
 
   var group: Group!
   var delegate: EditGroupCodeViewControllerDelegate?
-  
+
   var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
@@ -58,7 +49,7 @@ class EditGroupCodeViewController: UITableViewController {
   @IBAction func cancel(sender: AnyObject) {
     self.delegate?.editGroupCodeViewControllerDidCancel(self)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)

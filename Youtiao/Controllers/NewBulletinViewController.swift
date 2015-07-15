@@ -1,11 +1,3 @@
-//
-//  NewBulletinViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/23/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol NewBulletinViewControllerDelegate {
@@ -14,24 +6,23 @@ protocol NewBulletinViewControllerDelegate {
 }
 
 class NewBulletinViewController: UITableViewController, GroupsViewControllerDelegate {
-  
   @IBOutlet weak var textTextView: UITextView!
   @IBOutlet weak var groupTextField: UITextField!
 
   var group: Group!
   var delegate: NewBulletinViewControllerDelegate?
-  
+
   var warningAlertView: UIAlertView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     textTextView.text = ""
-    
+
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cancelInput:"))
     tapGestureRecognizer.numberOfTapsRequired = 2
     self.view.addGestureRecognizer(tapGestureRecognizer)
   }
-  
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let groupsNavigationViewController = segue.destinationViewController as? UINavigationController {
       if let groupsViewController = groupsNavigationViewController.topViewController as? GroupsViewController {
@@ -39,18 +30,18 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
       }
     }
   }
-  
+
   func cancelInput(gestureRecognizer: UIGestureRecognizer) {
     if textTextView.isFirstResponder() {
       textTextView.resignFirstResponder()
     }
   }
-  
+
   func didSelectGroup(group: Group) {
     self.group = group
     groupTextField.text = self.group.name
   }
-  
+
   @IBAction func create(sender: AnyObject) {
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.createBulletinWithText(self.textTextView.text, forGroup: group,
@@ -85,7 +76,7 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
   @IBAction func cancel(sender: AnyObject) {
     self.delegate?.newBulletinViewControllerDidCancel(self)
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -93,7 +84,6 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
     warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
     warningAlertView.show()
   }
-  
 }
 
 extension NewBulletinViewController: UITextFieldDelegate {
@@ -101,9 +91,8 @@ extension NewBulletinViewController: UITextFieldDelegate {
     textField.inputView = nil
     return true
   }
-  
+
   func textFieldDidBeginEditing(textField: UITextField) {
     self .performSegueWithIdentifier("selectGroupForNewBulletinSegue", sender: nil)
   }
-  
 }

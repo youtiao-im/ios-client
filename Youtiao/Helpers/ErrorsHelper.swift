@@ -1,11 +1,3 @@
-//
-//  ErrorsHelper.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/30/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 class ErrorsHelper: NSObject {
@@ -24,7 +16,7 @@ class ErrorsHelper: NSObject {
       RKDropdownAlert.title(NSLocalizedString("Unknown Error", comment: "Unknown Error"), message: NSLocalizedString("Please try again later.", comment: "Please try again later."), backgroundColor: UIColor.flatRedColorDark(), textColor: UIColor.whiteColor())
     }
   }
-  
+
   static func errorMessageForError(error: NSError) -> String {
     if error is UnauthorizedError {
       return NSLocalizedString("Unauthorized", comment: "Unauthorized")

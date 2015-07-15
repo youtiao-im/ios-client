@@ -1,16 +1,6 @@
-//
-//  SessionsHelper.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/25/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
-
 class SessionsHelper {
-
   static func signOut() {
     for (key, value) in NSUserDefaults.standardUserDefaults().dictionaryRepresentation() {
       NSUserDefaults.standardUserDefaults().setValue(nil, forKey: key as! String)

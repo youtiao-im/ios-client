@@ -1,11 +1,3 @@
-//
-//  EditGroupNameViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/25/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import Foundation
 
 protocol EditGroupNameViewControllerDelegate {
@@ -14,12 +6,11 @@ protocol EditGroupNameViewControllerDelegate {
 }
 
 class EditGroupNameViewController: UITableViewController {
-
   @IBOutlet weak var groupNameTextField: UITextField!
 
   var group: Group!
   var delegate: EditGroupNameViewControllerDelegate?
-  
+
   var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
@@ -54,7 +45,7 @@ class EditGroupNameViewController: UITableViewController {
       }
     )
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
@@ -72,7 +63,7 @@ extension EditGroupNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     return true
   }
-  
+
   func textFieldDidEndEditing(textField: UITextField) {
     textField.text = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
   }

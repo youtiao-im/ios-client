@@ -1,11 +1,3 @@
-//
-//  GroupsViewController.swift
-//  Youtiao
-//
-//  Created by Feng Ye on 6/17/15.
-//  Copyright (c) 2015 youtiao.im. All rights reserved.
-//
-
 import UIKit
 
 protocol GroupsViewControllerDelegate {
@@ -13,15 +5,14 @@ protocol GroupsViewControllerDelegate {
 }
 
 class GroupsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, NewGroupViewControllerDelegate, JoinGroupViewControllerDelegate {
-
   @IBOutlet weak var groupsTableView: UITableView!
-  
+
   var delegate: GroupsViewControllerDelegate?
 
   private var groups: [Group] = [Group]()
 
   var warningAlertView: UIAlertView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -31,8 +22,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
       self.navigationItem.rightBarButtonItem = nil
       self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("cancelItemTapped:"))
     }
-    
-    
+
     self.groupsTableView.tableFooterView = UIView()
 
     self.groupsTableView.ins_addPullToRefreshWithHeight(60.0,
@@ -58,19 +48,19 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
 
     super.viewWillAppear(animated)
   }
-  
+
   deinit {
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "updateGroupInfoSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "createGroupSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "joinGroupSuccessNotification", object: nil)
   }
-  
+
   func cancelItemTapped(sender: AnyObject?) {
     if sender?.title == NSLocalizedString("Cancel", comment: "Cancel") {
       self.navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
   }
-  
+
   func handleUpdateGroupInfoSuccessNotification(notification: NSNotification) {
     let userInfoDict = notification.userInfo as! [String : AnyObject]
     let newGroupInfo = userInfoDict["newGroupInfo"]as! Group
@@ -85,7 +75,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
       }
     }
   }
-  
+
   func handleCreateGroupSuccessNotification(notification: NSNotification) {
     let userInfo = notification.userInfo as! [String : AnyObject]
     let newGroup = userInfo["newGroupInfo"] as! Group
@@ -94,7 +84,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
     self.groupsTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.groups.count - 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
     self.groupsTableView.endUpdates()
   }
-  
+
   func handleJoinGroupSuccessNotification(notification: NSNotification) {
     let userInfo = notification.userInfo as! [String : AnyObject]
     let newGroup = userInfo["groupInfo"] as! Group
@@ -120,7 +110,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     return cell
   }
-  
+
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if self.navigationController?.presentingViewController != nil {
       self.delegate?.didSelectGroup(groups[indexPath.row])
@@ -143,7 +133,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
       break
     }
   }
-  
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let groupSettingsViewController = segue.destinationViewController as? GroupSettingsViewController {
       groupSettingsViewController.group = self.groups[groupsTableView.indexPathForSelectedRow()!.row]
@@ -189,7 +179,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
       }
     )
   }
-  
+
   func displayErrorMessage(title: String, errorMsg: String) {
     if warningAlertView != nil && warningAlertView.visible {
       warningAlertView.dismissWithClickedButtonIndex(0, animated: false)
