@@ -560,7 +560,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="N9j-K6-vfd">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="LhH-jE-b98" id="gqf-X7-0x9"/>
@@ -1088,9 +1088,9 @@
         <image name="quill-write" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PXJ-as-vLa"/>
-        <segue reference="upx-v1-2AZ"/>
-        <segue reference="wlc-bs-j2e"/>
         <segue reference="lzU-1b-eKA"/>
+        <segue reference="blx-hO-S89"/>
+        <segue reference="wlc-bs-j2e"/>
+        <segue reference="upx-v1-2AZ"/>
     </inferredMetricsTieBreakers>
 </document>

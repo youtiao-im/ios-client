@@ -66,3 +66,13 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 }
+
+extension GroupSettingsViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
+}

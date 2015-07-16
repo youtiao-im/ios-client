@@ -107,6 +107,8 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.userInteractionEnabled = false
         cell.textLabel?.textColor = UIColor.grayColor()
       }
+    } else {
+      cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
     }
     return cell
   }

@@ -13,6 +13,12 @@ class JoinGroupViewController: UITableViewController {
   var warningAlertView: UIAlertView!
 
   @IBAction func join(sender: AnyObject) {
+    if self.codeTextField.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+      let warningTitle = NSLocalizedString("Warning", comment: "Warning")
+      let errorMsg = NSLocalizedString("Group code should not be empty", comment: "Group code should not be empty")
+      self.displayErrorMessage(warningTitle, errorMsg: errorMsg)
+      return
+    }
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.joinGroupWithCode(self.codeTextField.text,
       success: { (group: Group) -> Void in
@@ -49,4 +55,11 @@ class JoinGroupViewController: UITableViewController {
 }
 
 extension JoinGroupViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
 }

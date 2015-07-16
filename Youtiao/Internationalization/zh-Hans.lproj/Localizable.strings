@@ -20,7 +20,7 @@
 "Group name is too long." = "群组名字太长。";
 "Group name is too short." = "群组名字太短。";
 "Group name is invalid." = "群组名字无效。";
-"Group code should not be empty" = "群组码不能为空";
+"Group code should not be empty" = "群组识别码不能为空";
 "Group name should not be empty" = "群组名不能为空";
 
 " hours ago" = "小时前";
@@ -55,9 +55,12 @@
 "Unauthorized" = "Token无效";
 "Unknown Error" = "未知错误";
 "Unknown error encountered" = "遇到未知错误。";
+"Unknown" = "未知";
 "Unknown user" = "未知用户";
 "Username invalid" = "用户名无效";
 "User name invalid" = "用户名无效";
 
 "Warning" = "警告";
-"We cannot find any group with the given code." = "指定群组码的群组不存在";
+"We cannot find any group with the given code." = "指定群组识别码的群组不存在";
+
+"You must select a group to create a bulletin" = "为了创建公告，请先选择一个目标群组。";

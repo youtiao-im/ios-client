@@ -9,7 +9,7 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
   @IBOutlet weak var textTextView: UITextView!
   @IBOutlet weak var groupTextField: UITextField!
 
-  var group: Group!
+  var group: Group?
   var delegate: NewBulletinViewControllerDelegate?
 
   var warningAlertView: UIAlertView!
@@ -17,7 +17,6 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
   override func viewDidLoad() {
     super.viewDidLoad()
     textTextView.text = ""
-
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cancelInput:"))
     tapGestureRecognizer.numberOfTapsRequired = 2
     self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -39,12 +38,18 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
 
   func didSelectGroup(group: Group) {
     self.group = group
-    groupTextField.text = self.group.name
+    groupTextField.text = self.group?.name
   }
 
   @IBAction func create(sender: AnyObject) {
+    if self.group == nil {
+      let warningTitle = NSLocalizedString("Warning", comment: "Warning")
+      let errorMsg = NSLocalizedString("You must select a group to create a bulletin", comment: "Group cannot be nil")
+      self.displayErrorMessage(warningTitle, errorMsg: errorMsg)
+      return
+    }
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.createBulletinWithText(self.textTextView.text, forGroup: group,
+    APIClient.sharedInstance.createBulletinWithText(self.textTextView.text, forGroup: group!,
       success: { (bulletin: Bulletin) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.delegate?.newBulletinViewController(self, didCreateBulletin: bulletin)
@@ -86,13 +91,25 @@ class NewBulletinViewController: UITableViewController, GroupsViewControllerDele
   }
 }
 
+extension NewBulletinViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
+}
+
 extension NewBulletinViewController: UITextFieldDelegate {
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-    textField.inputView = nil
+    if textField === self.groupTextField {
+      textField.inputView = UIView(frame: CGRectZero)
+    }
     return true
   }
 
   func textFieldDidBeginEditing(textField: UITextField) {
-    self .performSegueWithIdentifier("selectGroupForNewBulletinSegue", sender: nil)
+    self.performSegueWithIdentifier("selectGroupForNewBulletinSegue", sender: nil)
   }
 }

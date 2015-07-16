@@ -12,6 +12,9 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
+    self.userEmailLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
+    self.userNameLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
+
     let infoDict: [NSObject: AnyObject] = NSBundle.mainBundle().infoDictionary!
     let versionString = infoDict["CFBundleShortVersionString"] as? String
     self.appVesionLabel.text = versionString
@@ -23,13 +26,23 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
     if user == nil {
       let cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
       cell.userInteractionEnabled = false
-      self.userNameLabel.textColor = UIColor.grayColor()
-      self.userEmailLabel.textColor = UIColor.grayColor()
     }
+    var cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+    cell.userInteractionEnabled = false
+    cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+    cell.userInteractionEnabled = false
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+  }
+
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -57,8 +70,6 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
         self.user = user
         self.userEmailLabel.text = user.email
         self.userNameLabel.text = user.name
-        self.userEmailLabel.textColor = UIColor.blackColor()
-        self.userNameLabel.textColor = UIColor.blackColor()
         let cell = self.tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
         cell.userInteractionEnabled = true
       }, failure: { (error: NSError) -> Void in
@@ -66,6 +77,11 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
       }
     )
   }
+
+}
+
+extension SettingsViewController: UITableViewDelegate {
+
 }
 
 extension SettingsViewController: EditUserNameViewControllerDelegate {
