@@ -7,7 +7,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
 
   var stamps: [Stamp] = [Stamp]()
   var lastStamp: Stamp?
-  var timer: NSTimer?
 
   var warningAlertView: UIAlertView!
 
@@ -29,22 +28,19 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     self.stampsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
 
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
-
     self.loadStamps()
   }
 
-  deinit {
-    self.timer?.invalidate()
-  }
-
   func loadStamps() {
+    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.fetchStampsForBulletin(bulletin,
       success: { (stamps: [Stamp]) -> Void in
         self.lastStamp = stamps.last
         self.handleLoadStampsSuccess(stamps)
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.stampsTableView.ins_infiniteScrollBackgroundView.enabled = stamps.count >= 25
       }, failure: { (error: NSError) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
         if error is ForbiddenError || error is NotFoundError {
           var errMsg = ErrorsHelper.errorMessageForError(error)
           self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errMessage: errMsg)
@@ -81,16 +77,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
   private func handleLoadStampsSuccess(stamps: [Stamp]) -> Void {
     self.stamps += stamps
     self.stampsTableView.reloadData()
-  }
-
-  func updateTimeDisplay(timer: NSTimer) {
-    for item in self.stampsTableView.visibleCells() {
-      let oneCell = item as! UITableViewCell
-      let indexpath = self.stampsTableView.indexPathForCell(oneCell)
-      if let stampTime = self.stamps[indexpath!.row].createdAt {
-        oneCell.detailTextLabel?.text = TimeHelper.formattedTime(stampTime.doubleValue)
-      }
-    }
   }
 
   func displayErrorMessage(title: String, errMessage: String) {

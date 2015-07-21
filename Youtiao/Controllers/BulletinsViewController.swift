@@ -4,7 +4,6 @@ class BulletinsViewController: UIViewController {
   @IBOutlet weak var bulletinsTableView: UITableView!
 
   private var bulletins: [Bulletin] = [Bulletin]()
-  private var timer: NSTimer?
 
   var warningAlertView: UIAlertView!
 
@@ -40,17 +39,11 @@ class BulletinsViewController: UIViewController {
 
     self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
 
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimeDisplay:"), userInfo: nil, repeats: true)
-
     var delayTime: dispatch_time_t
     delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * NSEC_PER_MSEC))
     dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
       self.bulletinsTableView.ins_beginPullToRefresh()
     }
-  }
-
-  deinit {
-    self.timer?.invalidate()
   }
 
   override func didReceiveMemoryWarning() {
@@ -80,14 +73,9 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.reloadData()
     APIClient.sharedInstance.fetchBulletins(
       success: { (bulletins: [Bulletin]) -> Void in
-        let currentSectionsCount = self.bulletins.count
-        self.bulletins = bulletins
         self.bulletinsTableView.ins_endPullToRefresh()
-        self.bulletinsTableView.beginUpdates()
-        for var i = 0; i < bulletins.count; ++i {
-          self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
-        }
-        self.bulletinsTableView.endUpdates()
+        self.bulletins = bulletins
+        self.bulletinsTableView.reloadData()
         self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
       }, failure: { (error: NSError) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
@@ -174,16 +162,6 @@ class BulletinsViewController: UIViewController {
     cell.tappedCrossButton()
   }
 
-  func updateTimeDisplay(timer: NSTimer) {
-    for item in self.bulletinsTableView.visibleCells() {
-      let oneCell = item as! BulletinCell
-      let indexPath = self.bulletinsTableView.indexPathForCell(oneCell)
-      let bulletin = self.bulletins[indexPath!.section]
-      let postTime = bulletin.createdAt?.doubleValue
-      let postTimeString = TimeHelper.formattedTime(postTime!)
-      oneCell.timeLabel.text = postTimeString
-    }
-  }
 }
 
 // MARK: - UITableViewDataSource
@@ -281,6 +259,7 @@ extension BulletinsViewController: NewBulletinViewControllerDelegate {
     bulletinsTableView.beginUpdates()
     bulletinsTableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
     bulletinsTableView.endUpdates()
+    bulletinsTableView.reloadRowsAtIndexPaths(bulletinsTableView.indexPathsForVisibleRows()!, withRowAnimation: UITableViewRowAnimation.None)
   }
 
   func newBulletinViewControllerDidCancel(controller: NewBulletinViewController) {

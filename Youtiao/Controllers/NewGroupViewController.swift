@@ -61,6 +61,13 @@ class NewGroupViewController: UITableViewController {
 }
 
 extension NewGroupViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
 }
 
 extension NewGroupViewController: UITextFieldDelegate {

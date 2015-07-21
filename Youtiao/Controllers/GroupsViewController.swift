@@ -97,24 +97,45 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.groups.count
   }
-
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("GroupCell") as! UITableViewCell
-    cell.textLabel?.text = self.groups[indexPath.row].name
+    var cell = tableView.dequeueReusableCellWithIdentifier("GroupCell") as? UITableViewCell
+    if cell == nil {
+      if self.navigationController?.presentingViewController == nil {
+        cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "GroupCell")
+      } else {
+        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "GroupCell")
+      }
+    }
+    cell!.textLabel?.text = self.groups[indexPath.row].name
     if self.navigationController?.presentingViewController != nil {
       let oneGroup = groups[indexPath.row]
       if (oneGroup.currentMembership?.role != "admin") && (oneGroup.currentMembership?.role != "owner") {
-        cell.userInteractionEnabled = false
-        cell.textLabel?.textColor = UIColor.grayColor()
+        cell!.userInteractionEnabled = false
+        cell!.textLabel?.textColor = UIColor.grayColor()
       }
+    } else {
+      cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+      let oneGroup = groups[indexPath.row]
+      var memberType: String
+      if (oneGroup.currentMembership?.role == "admin") {
+        cell!.detailTextLabel?.text = NSLocalizedString("admin", comment: "admin")
+      } else if oneGroup.currentMembership?.role == "owner" {
+        cell!.detailTextLabel?.text = NSLocalizedString("owner", comment: "owner")
+      } else {
+        cell!.detailTextLabel?.text = NSLocalizedString("member", comment: "member")
+      }
+      cell?.detailTextLabel?.font = UIFont.systemFontOfSize(15.0)
     }
-    return cell
+    return cell!
   }
 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if self.navigationController?.presentingViewController != nil {
       self.delegate?.didSelectGroup(groups[indexPath.row])
       self.navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    } else {
+      self.performSegueWithIdentifier("showGroupSettingsViewController", sender: self)
     }
   }
 
@@ -165,9 +186,22 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
   func loadGroups() {
     APIClient.sharedInstance.fetchGroups(
       success: { (groups: [Group]) -> Void in
-        self.groups = groups
-        self.groupsTableView.reloadData()
-        self.groupsTableView.ins_endPullToRefresh()
+        if self.navigationController?.presentingViewController != nil {
+          self.groups.removeAll(keepCapacity: true)
+          for var i = 0; i < groups.count; ++i {
+            let groupItem = groups[i]
+            let currentMembership = groupItem.currentMembership
+            if currentMembership != nil && (currentMembership?.role == "owner" || currentMembership?.role == "admin") {
+              self.groups.append(groupItem)
+            }
+          }
+          self.groupsTableView.reloadData()
+          self.groupsTableView.ins_endPullToRefresh()
+        } else {
+          self.groups = groups
+          self.groupsTableView.reloadData()
+          self.groupsTableView.ins_endPullToRefresh()
+        }
       }, failure: { (error: NSError) -> Void in
         self.groupsTableView.ins_endPullToRefresh()
         if error is ForbiddenError || error is NotFoundError {

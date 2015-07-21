@@ -59,6 +59,16 @@ class EditGroupCodeViewController: UITableViewController {
   }
 }
 
+extension EditGroupCodeViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
+}
+
 extension EditGroupCodeViewController: UITextFieldDelegate {
   func textFieldDidEndEditing(textField: UITextField) {
     textField.text = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())

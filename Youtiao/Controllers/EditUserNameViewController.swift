@@ -60,6 +60,16 @@ class EditUserNameViewController: UITableViewController {
   }
 }
 
+extension EditUserNameViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
+  }
+}
+
 extension EditUserNameViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     return true

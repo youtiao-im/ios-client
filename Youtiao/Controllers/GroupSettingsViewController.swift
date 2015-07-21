@@ -19,6 +19,15 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleUpdateGroupInfoSuccessNotification:"), name: "updateGroupInfoSuccessNotification", object: nil)
   }
 
+  override func viewDidAppear(animated: Bool) {
+    if self.group.currentMembership?.role != "admin" && self.group.currentMembership?.role != "owner" {
+      var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+      cell?.userInteractionEnabled = false
+      cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))
+      cell?.userInteractionEnabled = false
+    }
+  }
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if let segueNagvigationController = segue.destinationViewController as? UINavigationController {
       if let editGroupNameViewController = segueNagvigationController.viewControllers[0] as? EditGroupNameViewController {
@@ -64,5 +73,15 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
 
   func editGroupCodeViewControllerDidCancel(controller: EditGroupCodeViewController) {
     controller.dismissViewControllerAnimated(true, completion: nil)
+  }
+}
+
+extension GroupSettingsViewController: UITableViewDelegate {
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return 20.0
+    } else {
+      return 10.0
+    }
   }
 }

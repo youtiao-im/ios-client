@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,19 +15,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJV-cS-tHX">
-                        <rect key="frame" x="12" y="12" width="180" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <rect key="frame" x="15" y="12" width="177" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-CY-fwC">
-                        <rect key="frame" x="12" y="40" width="388" height="62"/>
+                        <rect key="frame" x="15" y="38" width="385" height="79"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDU-fj-oR1">
-                        <rect key="frame" x="200" y="15" width="200" height="16"/>
+                        <rect key="frame" x="200" y="13" width="200" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="200" placeholder="YES" id="HoR-R0-Cfz"/>
                         </constraints>
@@ -36,8 +35,8 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzQ-9R-HQI">
-                        <rect key="frame" x="12" y="120" width="16" height="16"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzQ-9R-HQI" customClass="BulletinStampButton" customModule="Youtiao" customModuleProvider="target">
+                        <rect key="frame" x="15" y="129" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="4FZ-Fo-I7t"/>
                             <constraint firstAttribute="width" constant="16" id="XY9-ht-W2b"/>
@@ -47,19 +46,19 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNe-gz-ueH">
-                        <rect key="frame" x="30" y="120" width="42" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="33" y="129" width="36" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5V-2d-txK">
-                        <rect key="frame" x="100" y="120" width="42" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="113" y="129" width="36" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-XW-HZH">
-                        <rect key="frame" x="82" y="120" width="16" height="16"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-XW-HZH" customClass="BulletinStampButton" customModule="Youtiao" customModuleProvider="target">
+                        <rect key="frame" x="95" y="129" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="tGa-zb-N0h"/>
                         </constraints>
@@ -74,21 +73,21 @@
                     <constraint firstItem="f5V-2d-txK" firstAttribute="leading" secondItem="kGT-XW-HZH" secondAttribute="trailing" constant="2" id="256-vt-cM4"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="zNe-gz-ueH" secondAttribute="height" id="3Fh-n5-EvU"/>
                     <constraint firstItem="fDU-fj-oR1" firstAttribute="leading" secondItem="XJV-cS-tHX" secondAttribute="trailing" constant="8" id="CAm-9d-296"/>
-                    <constraint firstItem="XJV-cS-tHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="D3Z-75-EMW"/>
+                    <constraint firstItem="XJV-cS-tHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="D3Z-75-EMW"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="leading" secondItem="8Oj-CY-fwC" secondAttribute="leading" id="DHF-U2-Xhd"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="f5V-2d-txK" secondAttribute="top" id="H8Y-RE-wT3"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="leading" secondItem="8Oj-CY-fwC" secondAttribute="leading" id="OMO-fW-isH"/>
                     <constraint firstItem="8Oj-CY-fwC" firstAttribute="top" secondItem="XJV-cS-tHX" secondAttribute="bottom" constant="8" id="QKT-9D-zgc"/>
                     <constraint firstItem="8Oj-CY-fwC" firstAttribute="trailing" secondItem="fDU-fj-oR1" secondAttribute="trailing" id="SKZ-sy-019"/>
-                    <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="8Oj-CY-fwC" secondAttribute="bottom" constant="18" id="ShW-wH-gVz"/>
+                    <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="8Oj-CY-fwC" secondAttribute="bottom" constant="12" id="ShW-wH-gVz"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="kGT-XW-HZH" secondAttribute="height" id="VuX-h5-Hq2"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="EzQ-9R-HQI" secondAttribute="bottom" constant="14" id="WQ2-mW-wwz"/>
+                    <constraint firstAttribute="bottom" secondItem="EzQ-9R-HQI" secondAttribute="bottom" constant="12" id="WQ2-mW-wwz"/>
                     <constraint firstAttribute="trailing" secondItem="fDU-fj-oR1" secondAttribute="trailing" constant="12" id="dp6-gf-h4k"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="f5V-2d-txK" secondAttribute="height" id="kPr-km-bWo"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="centerY" secondItem="fDU-fj-oR1" secondAttribute="centerY" id="lx0-FK-kIW"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="rNa-Rt-fly"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="kGT-XW-HZH" secondAttribute="top" id="uHk-QQ-PIm"/>
-                    <constraint firstItem="kGT-XW-HZH" firstAttribute="leading" secondItem="EzQ-9R-HQI" secondAttribute="leading" constant="70" id="x8R-zA-ZRR"/>
+                    <constraint firstItem="kGT-XW-HZH" firstAttribute="leading" secondItem="EzQ-9R-HQI" secondAttribute="leading" constant="80" id="x8R-zA-ZRR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

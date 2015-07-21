@@ -1,4 +1,5 @@
 "Administrators" = "Administrators";
+"admin" = "admin";
 
 "Bulletin text cannot be blank." = "Bulletin text cannot be blank.";
 "Bulletin text is invalid." = "Bulletin text is invalid.";
@@ -26,6 +27,7 @@
 " hours ago" = " hours ago";
 
 "Incorrect email address or password" = "Incorrect email address or password";
+"Input bulletin content here" = "Input bulletin content";
 " is blank" = " is blank.";
 " is invalid" = " is invalid";
 " is taken" = " is taken.";
@@ -33,6 +35,7 @@
 "Join a Group" = "Join a Group";
 "just now" = "just now";
 
+"member" = "member";
 "Members" = "Members";
 " minutes ago" = " minutes ago";
 
@@ -40,6 +43,7 @@
 
 "OK" = "OK";
 "Operation is cancelled" = "Operation is cancelled";
+"owner" = "owner";
 
 "Password invalid" = "Password is invalid";
 "Please try again later." = "Please try again later.";
@@ -49,15 +53,21 @@
 "Server error encountered" = "Server error encountered";
 
 "Target item not exist" = "Operation target does not exist";
+"To" = "To:";
 " too long" = " too long.";
 " too short" = " too short.";
 
 "Unauthorized" = "Token is invalid";
 "Unknown Error" = "Unknown Error";
 "Unknown error encountered" = "Unknown error encountered.";
+"Unknown" = "Unknown";
 "Unknown user" = "Unknown user";
 "Username invalid" = "Username is invalid";
 "User name invalid" = "User name is invalid";
 
 "Warning" = "Warning";
 "We cannot find any group with the given code." = "We cannot find any group with the given code.";
+
+"You must select a group to create a bulletin" = "You must select a group to create a bulletin.";
+
+
