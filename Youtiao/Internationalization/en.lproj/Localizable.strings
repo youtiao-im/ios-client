@@ -13,6 +13,7 @@
 
 "Email invalid" = "Email is invalid";
 "Email should not be empty" = "Email should not be empty";
+"Enter message" = "Enter message";
 
 "Find Password" = "Find Password";
 "Forbidden" = "Operation is forbidden";
@@ -27,7 +28,6 @@
 " hours ago" = " hours ago";
 
 "Incorrect email address or password" = "Incorrect email address or password";
-"Input bulletin content here" = "Input bulletin content";
 " is blank" = " is blank.";
 " is invalid" = " is invalid";
 " is taken" = " is taken.";

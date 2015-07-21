@@ -6,6 +6,7 @@ class BulletinsViewController: UIViewController {
   private var bulletins: [Bulletin] = [Bulletin]()
 
   var warningAlertView: UIAlertView!
+  var lastVisibleBeginCell: UITableViewCell?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,6 +21,7 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.tableFooterView = UIView()
 
     self.bulletinsTableView.ins_addPullToRefreshWithHeight(60.0, handler: { (scrollView: UIScrollView!) -> Void in
+        self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
         self.loadBulletins()
       }
     )
@@ -69,8 +71,6 @@ class BulletinsViewController: UIViewController {
   }
 
   func loadBulletins() {
-    self.bulletins.removeAll(keepCapacity: true)
-    self.bulletinsTableView.reloadData()
     APIClient.sharedInstance.fetchBulletins(
       success: { (bulletins: [Bulletin]) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
@@ -86,6 +86,7 @@ class BulletinsViewController: UIViewController {
 
   func loadMoreBulletins() {
     if let lastBulletin = self.bulletins.last {
+      self.lastVisibleBeginCell = self.bulletinsTableView.visibleCells()[0] as? UITableViewCell
       APIClient.sharedInstance.fetchBulletinsCreatedBeforeBulletin(lastBulletin,
         success: { (bulletins: [Bulletin]) -> Void in
           let currentSectionsCount = self.bulletins.count
@@ -95,6 +96,7 @@ class BulletinsViewController: UIViewController {
             self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
           }
           self.bulletinsTableView.endUpdates()
+          self.bulletinsTableView.scrollToRowAtIndexPath(self.bulletinsTableView.indexPathForCell(self.lastVisibleBeginCell!)!, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
           self.bulletinsTableView.ins_endInfinityScrollWithStoppingContentOffset(true)
           self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
           }, failure: { (error: NSError) -> Void in
