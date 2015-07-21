@@ -259,6 +259,7 @@ extension BulletinsViewController: NewBulletinViewControllerDelegate {
     bulletinsTableView.beginUpdates()
     bulletinsTableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
     bulletinsTableView.endUpdates()
+    bulletinsTableView.reloadRowsAtIndexPaths(bulletinsTableView.indexPathsForVisibleRows()!, withRowAnimation: UITableViewRowAnimation.None)
   }
 
   func newBulletinViewControllerDidCancel(controller: NewBulletinViewController) {
