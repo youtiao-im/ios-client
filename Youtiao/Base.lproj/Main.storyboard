@@ -514,7 +514,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group Code" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KaO-RR-NQh">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="43"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -810,8 +810,8 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tuh-WJ-VJA">
-                                                                <rect key="frame" x="42" y="14" width="558" height="17"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <rect key="frame" x="42" y="12" width="558" height="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="dJN-QC-h69" id="ugM-NA-sJ3"/>
@@ -837,7 +837,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="XWo-02-Lnw"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="dJN-QC-h69" id="xEB-KP-h78"/>

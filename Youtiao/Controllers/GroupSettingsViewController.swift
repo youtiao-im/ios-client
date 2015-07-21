@@ -19,12 +19,15 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleUpdateGroupInfoSuccessNotification:"), name: "updateGroupInfoSuccessNotification", object: nil)
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     if self.group.currentMembership?.role != "admin" && self.group.currentMembership?.role != "owner" {
       var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
       cell?.userInteractionEnabled = false
+      cell?.accessoryType = UITableViewCellAccessoryType.None
       cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))
       cell?.userInteractionEnabled = false
+      cell?.accessoryType = UITableViewCellAccessoryType.None
     }
   }
 
