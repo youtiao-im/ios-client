@@ -5,203 +5,143 @@
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "13E-oX-rdH"; */
 "13E-oX-rdH.title" = "取消";
 
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "2Nm-uC-Pj3"; */
 "2Nm-uC-Pj3.text" = "Detail";
-
 
 /* Class = "UINavigationItem"; title = "Group Settings"; ObjectID = "42C-II-yqV"; */
 "42C-II-yqV.title" = "群组设置";
 
+/* Class = "UILabel"; text = "To:"; ObjectID = "4fP-5a-Off"; */
+"4fP-5a-Off.text" = "To:";
 
 /* Class = "UINavigationItem"; title = "Join Group"; ObjectID = "5tk-9Q-CGh"; */
 "5tk-9Q-CGh.title" = "加入群组";
 
-
 /* Class = "UITextField"; placeholder = "Group Name"; ObjectID = "7dv-TU-BJ5"; */
 "7dv-TU-BJ5.placeholder" = "群组名称";
-
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "7mf-Le-GHv"; */
 "7mf-Le-GHv.text" = "Detail";
 
-
 /* Class = "UIButton"; normalTitle = "Sign Out"; ObjectID = "8aW-Px-fd7"; */
 "8aW-Px-fd7.normalTitle" = "退出登录";
-
-
-/* Class = "UITextField"; placeholder = "Group"; ObjectID = "AaW-cW-OSL"; */
-"AaW-cW-OSL.placeholder" = "群组";
-
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "CHe-YG-tfa"; */
 "CHe-YG-tfa.title" = "保存";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "ClW-FB-p91"; */
+"ClW-FB-p91.text" = "Title";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "F2G-w3-IH7"; */
 "F2G-w3-IH7.title" = "取消";
 
-
-/* Class = "UINavigationItem"; title = "User Name"; ObjectID = "FCf-KO-eNU"; */
+/* Class = "UINavigationItem"; title = "Name"; ObjectID = "FCf-KO-eNU"; */
 "FCf-KO-eNU.title" = "名字";
-
 
 /* Class = "UINavigationItem"; title = "Group Code"; ObjectID = "FHC-GN-snr"; */
 "FHC-GN-snr.title" = "群组识别码";
 
-
 /* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "K6S-h1-Ycf"; */
 "K6S-h1-Ycf.title" = "创建";
-
 
 /* Class = "UITextField"; placeholder = "Group Code"; ObjectID = "KaO-RR-NQh"; */
 "KaO-RR-NQh.placeholder" = "群组识别码";
 
-
 /* Class = "UILabel"; text = "Group Code"; ObjectID = "Ktd-Th-3Qa"; */
 "Ktd-Th-3Qa.text" = "群组识别码";
-
-
-/* Class = "UILabel"; text = "To:"; ObjectID = "M2k-m3-TV5"; */
-"M2k-m3-TV5.text" = "发送给:";
-
 
 /* Class = "UINavigationItem"; title = "Bulletin"; ObjectID = "M7b-1u-vBw"; */
 "M7b-1u-vBw.title" = "公告";
 
-
 /* Class = "UINavigationItem"; title = "Group Name"; ObjectID = "NnT-Gw-OvS"; */
 "NnT-Gw-OvS.title" = "群组名称";
-
-
-/* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "QAv-e1-dok"; */
-"QAv-e1-dok.title" = "创建";
-
 
 /* Class = "UINavigationItem"; title = "Youtiao"; ObjectID = "RmD-q1-F7Z"; */
 "RmD-q1-F7Z.title" = "有条";
 
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "Rzk-Fe-ZG6"; */
 "Rzk-Fe-ZG6.text" = "Detail";
-
 
 /* Class = "UINavigationItem"; title = "Members"; ObjectID = "Vng-c2-2qX"; */
 "Vng-c2-2qX.title" = "成员";
 
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "Vqc-DH-eY0"; */
+"Vqc-DH-eY0.title" = "取消";
 
 /* Class = "UITextField"; placeholder = "Group Name"; ObjectID = "XY0-Z3-fIL"; */
 "XY0-Z3-fIL.placeholder" = "群组名称";
 
-
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Xt7-kk-2z5"; */
 "Xt7-kk-2z5.title" = "设置";
-
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "YVW-4k-Rcn"; */
 "YVW-4k-Rcn.title" = "保存";
 
-
 /* Class = "UINavigationItem"; title = "Groups"; ObjectID = "aaZ-gJ-0x0"; */
 "aaZ-gJ-0x0.title" = "群组";
-
 
 /* Class = "UITabBarItem"; title = "Youtiao"; ObjectID = "acW-dT-cKf"; */
 "acW-dT-cKf.title" = "有条";
 
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "asn-eA-xz9"; */
 "asn-eA-xz9.text" = "Detail";
-
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "c8w-95-uqL"; */
 "c8w-95-uqL.text" = "名字";
 
-
 /* Class = "UITabBarItem"; title = "Groups"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "群组";
-
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "cRZ-23-cAv"; */
 "cRZ-23-cAv.title" = "设置";
 
-
-/* Class = "UILabel"; text = "App Version"; ObjectID = "ft5-NT-riN"; */
+/* Class = "UILabel"; text = "Version"; ObjectID = "ft5-NT-riN"; */
 "ft5-NT-riN.text" = "版本号";
-
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "gTA-JN-fjY"; */
 "gTA-JN-fjY.title" = "取消";
 
-
 /* Class = "UILabel"; text = "Members"; ObjectID = "gkj-B3-xmD"; */
 "gkj-B3-xmD.text" = "成员";
-
 
 /* Class = "UINavigationItem"; title = "Group"; ObjectID = "h9d-gZ-UyN"; */
 "h9d-gZ-UyN.title" = "群组";
 
+/* Class = "UINavigationItem"; title = "New Bulletin"; ObjectID = "hLE-gx-LMv"; */
+"hLE-gx-LMv.title" = "新公告";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "iga-p1-Sbc"; */
 "iga-p1-Sbc.text" = "Detail";
 
-
 /* Class = "UIButton"; normalTitle = "Delete and Leave"; ObjectID = "jDh-2W-jtx"; */
 "jDh-2W-jtx.normalTitle" = "退出群组";
 
+/* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "jtP-Kw-Sir"; */
+"jtP-Kw-Sir.title" = "创建";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "lC1-3D-3V1"; */
 "lC1-3D-3V1.text" = "邮箱地址";
 
-
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "mBZ-wj-BI7"; */
 "mBZ-wj-BI7.text" = "Detail";
-
-
-/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "nG1-K7-Gt8"; */
-"nG1-K7-Gt8.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "r15-V2-VfV"; */
 "r15-V2-VfV.title" = "取消";
 
-
-/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "tVo-pI-Ccf"; */
-"tVo-pI-Ccf.title" = "取消";
-
-
-/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "u2l-nw-7Ma"; */
-"u2l-nw-7Ma.normalTitle" = "发送";
-
-
 /* Class = "UIBarButtonItem"; title = "Join"; ObjectID = "udM-wd-Fbf"; */
 "udM-wd-Fbf.title" = "加入";
-
-
-/* Class = "UITextField"; placeholder = "New Comment"; ObjectID = "vFY-oB-TM7"; */
-"vFY-oB-TM7.placeholder" = "添加评论";
-
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "vG7-L1-lyv"; */
 "vG7-L1-lyv.title" = "保存";
 
-
 /* Class = "UINavigationItem"; title = "New Group"; ObjectID = "wHU-db-yRL"; */
 "wHU-db-yRL.title" = "新群组";
-
-
-/* Class = "UINavigationItem"; title = "New Bulletin"; ObjectID = "wlL-Yc-PB3"; */
-"wlL-Yc-PB3.title" = "新公告";
-
 
 /* Class = "UITextField"; placeholder = "Group Code"; ObjectID = "wzA-NF-cmb"; */
 "wzA-NF-cmb.placeholder" = "群组识别码";
 
-
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "xqi-Sy-lJE"; */
 "xqi-Sy-lJE.placeholder" = "名字";
 
-
 /* Class = "UILabel"; text = "Group Name"; ObjectID = "ysy-7F-5Sj"; */
 "ysy-7F-5Sj.text" = "群组名称";
-

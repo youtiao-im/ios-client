@@ -12,6 +12,7 @@
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
+		6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */; };
 		6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */; };
 		6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */; };
 		6EE3CBCA1B4BBE1600C142C4 /* BulletinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */; };
@@ -35,7 +36,6 @@
 		9C7F85BB1B423F9E00E37EBD /* GroupSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85AE1B423F9E00E37EBD /* GroupSettingsViewController.swift */; };
 		9C7F85BC1B423F9E00E37EBD /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85AF1B423F9E00E37EBD /* GroupsViewController.swift */; };
 		9C7F85BE1B423F9E00E37EBD /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85B11B423F9E00E37EBD /* JoinGroupViewController.swift */; };
-		9C7F85BF1B423F9E00E37EBD /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85B21B423F9E00E37EBD /* NewBulletinViewController.swift */; };
 		9C7F85C01B423F9E00E37EBD /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85B31B423F9E00E37EBD /* NewGroupViewController.swift */; };
 		9C7F85C11B423F9E00E37EBD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85B41B423F9E00E37EBD /* SettingsViewController.swift */; };
 		9C7F85C21B423F9E00E37EBD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F85B51B423F9E00E37EBD /* SignInViewController.swift */; };
@@ -64,13 +64,14 @@
 		49F866BA1EDE08E3548187D7 /* Pods-Youtiao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Youtiao.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Youtiao/Pods-Youtiao.debug.xcconfig"; sourceTree = "<group>"; };
 		6E26780E1B4678F4005EC1EB /* GroupMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		6E4AD9A81B4F90DF00BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		6E4AD9A91B4F90DF00BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6E4AD9AB1B4F912500BB23CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6E4AD9AD1B4F912900BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EA075171B54A84900F1CA76 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Landing.strings"; sourceTree = "<group>"; };
 		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
+		6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBulletinViewController.swift; sourceTree = "<group>"; };
 		6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinCell.swift; sourceTree = "<group>"; };
 		6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinCell.xib; sourceTree = "<group>"; };
 		6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinsViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		9C7F85AE1B423F9E00E37EBD /* GroupSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSettingsViewController.swift; sourceTree = "<group>"; };
 		9C7F85AF1B423F9E00E37EBD /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		9C7F85B11B423F9E00E37EBD /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
-		9C7F85B21B423F9E00E37EBD /* NewBulletinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBulletinViewController.swift; sourceTree = "<group>"; };
 		9C7F85B31B423F9E00E37EBD /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 		9C7F85B41B423F9E00E37EBD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9C7F85B51B423F9E00E37EBD /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -240,12 +240,12 @@
 				9C7F85AE1B423F9E00E37EBD /* GroupSettingsViewController.swift */,
 				9C7F85AF1B423F9E00E37EBD /* GroupsViewController.swift */,
 				9C7F85B11B423F9E00E37EBD /* JoinGroupViewController.swift */,
-				9C7F85B21B423F9E00E37EBD /* NewBulletinViewController.swift */,
 				9C7F85B31B423F9E00E37EBD /* NewGroupViewController.swift */,
 				9C7F85B41B423F9E00E37EBD /* SettingsViewController.swift */,
 				9C7F85B51B423F9E00E37EBD /* SignInViewController.swift */,
 				9C7F85B61B423F9E00E37EBD /* SignUpViewController.swift */,
 				6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */,
+				6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,10 +432,10 @@
 				9C72B5EF1B31398F000211E2 /* User.swift in Sources */,
 				6EE3CBCC1B4BD21800C142C4 /* TimeHelper.swift in Sources */,
 				9C72B5CC1B313753000211E2 /* AppDelegate.swift in Sources */,
-				9C7F85BF1B423F9E00E37EBD /* NewBulletinViewController.swift in Sources */,
 				9C8E5BF51B3A5CD00088BA76 /* Constants.swift in Sources */,
 				9C7F85B81B423F9E00E37EBD /* BulletinViewController.swift in Sources */,
 				9C7F85C21B423F9E00E37EBD /* SignInViewController.swift in Sources */,
+				6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */,
 				9C72B5F71B3139B8000211E2 /* Stamp.swift in Sources */,
 				6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */,
 				9C72B5F11B313997000211E2 /* Group.swift in Sources */,
@@ -501,7 +501,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9C72B5D21B313753000211E2 /* Base */,
-				6E4AD9A91B4F90DF00BB23CB /* zh-Hans */,
+				6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -4,8 +4,7 @@ class GroupMembersViewController: UIViewController {
   @IBOutlet weak var membersTableView: UITableView!
 
   var group: Group!
-  private var admins: [Membership] = [Membership]()
-  private var members: [Membership] = [Membership]()
+  private var memberships: [Membership] = [Membership]()
 
   var warningAlertView: UIAlertView!
 
@@ -39,22 +38,8 @@ class GroupMembersViewController: UIViewController {
   }
 
   func handleFetchAllMembershipsSuccess(memberships: [Membership]) {
-    for oneMembership in memberships {
-      let role = oneMembership.role
-      if role == "admin" || role == "owner" {
-        let currentAdminCount = admins.count
-        admins.append(oneMembership)
-      } else if role == "member" {
-        let currentMembersCount = members.count
-        members.append(oneMembership)
-      }
-    }
-    if admins.count > 0 && members.count > 0 {
-      self.membersTableView.beginUpdates()
-      self.membersTableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Top)
-      self.membersTableView.insertSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Top)
-      self.membersTableView.endUpdates()
-    } else if admins.count > 0 && members.count <= 0 {
+    self.memberships = memberships
+    if self.memberships.count > 0 {
       self.membersTableView.beginUpdates()
       self.membersTableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Top)
       self.membersTableView.endUpdates()
@@ -73,50 +58,36 @@ class GroupMembersViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension GroupMembersViewController: UITableViewDataSource {
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    if admins.count > 0 && members.count > 0 {
-      return 2
-    } else if admins.count > 0 && members.count <= 0 {
+    if self.memberships.count > 0 {
       return 1
     }
     return 0
   }
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch section {
-    case 0:
-      return admins.count
-    case 1:
-      return members.count
-    default:
-      return 0
-    }
+    return self.memberships.count
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = tableView.dequeueReusableCellWithIdentifier("groupMemberCell") as? UITableViewCell
     if cell == nil {
-      cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "groupMemberCell")
+      cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "groupMemberCell")
     }
     var oneMembership: Membership?
-    if indexPath.section == 0 {
-      oneMembership = admins[indexPath.row]
-    } else if indexPath.section == 1 {
-      oneMembership = members[indexPath.row]
-    }
+    oneMembership = self.memberships[indexPath.row]
+    var role: String?
     cell!.textLabel?.text = oneMembership?.user?.name
+    role = oneMembership?.role
+    if role == "owner" {
+      cell!.detailTextLabel?.text = NSLocalizedString("owner", comment: "owner")
+    } else if role == "admin" {
+      cell!.detailTextLabel?.text = NSLocalizedString("admin", comment: "admin")
+    } else {
+      cell!.detailTextLabel?.text = NSLocalizedString("member", comment: "member")
+    }
+    cell!.detailTextLabel?.font = UIFont.systemFontOfSize(15.0)
     cell?.userInteractionEnabled = false
     return cell!
-  }
-
-  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    switch section {
-    case 0:
-      return NSLocalizedString("Administrators", comment: "Administrators")
-    case 1:
-      return NSLocalizedString("Members", comment: "Members")
-    default:
-      return nil
-    }
   }
 }
 
@@ -128,9 +99,8 @@ extension GroupMembersViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     if section == 0 {
-      return 30.0
-    } else {
-      return 20.0
+      return 0.0
     }
+    return 20.0
   }
 }

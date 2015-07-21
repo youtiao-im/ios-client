@@ -32,12 +32,15 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
   }
 
   func loadStamps() {
+    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.fetchStampsForBulletin(bulletin,
       success: { (stamps: [Stamp]) -> Void in
         self.lastStamp = stamps.last
         self.handleLoadStampsSuccess(stamps)
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.stampsTableView.ins_infiniteScrollBackgroundView.enabled = stamps.count >= 25
       }, failure: { (error: NSError) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
         if error is ForbiddenError || error is NotFoundError {
           var errMsg = ErrorsHelper.errorMessageForError(error)
           self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errMessage: errMsg)
