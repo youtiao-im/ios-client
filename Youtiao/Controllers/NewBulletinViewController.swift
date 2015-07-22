@@ -9,7 +9,7 @@ class NewBulletinViewController: UIViewController, GroupsViewControllerDelegate 
 
   @IBOutlet weak var topViewWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
-  @IBOutlet weak var parentViewHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var groupTextField: UITextField!
   @IBOutlet weak var toLabel: UILabel!
@@ -25,7 +25,7 @@ class NewBulletinViewController: UIViewController, GroupsViewControllerDelegate 
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleKeyboardWillShowNotification:"), name: UIKeyboardWillShowNotification, object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleKeyboardWillHideNotification:"), name: UIKeyboardWillHideNotification, object: nil)
     self.topViewWidthConstraint.constant = self.view.bounds.size.width
-    self.parentViewHeightConstraint.constant = self.view.bounds.size.height
+    self.scrollViewBottomConstraint.constant = 0
     self.toLabel.text = NSLocalizedString("To", comment: "To:")
     textViewPlaceHolderLabel = UILabel()
     textViewPlaceHolderLabel.text = NSLocalizedString("Enter message", comment: "Enter message")
@@ -69,11 +69,11 @@ class NewBulletinViewController: UIViewController, GroupsViewControllerDelegate 
     let value = userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
     let frame = value.CGRectValue()
     let keyboardHeight = frame.size.height
-    self.parentViewHeightConstraint.constant = self.view.bounds.size.height - keyboardHeight
+    self.scrollViewBottomConstraint.constant = keyboardHeight
   }
 
   func handleKeyboardWillHideNotification(notification: NSNotification) {
-    self.parentViewHeightConstraint.constant = self.view.bounds.size.height
+    self.scrollViewBottomConstraint.constant = 0
   }
 
   func didSelectGroup(group: Group) {
