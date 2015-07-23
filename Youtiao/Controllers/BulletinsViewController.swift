@@ -83,7 +83,6 @@ class BulletinsViewController: UIViewController {
           appDelegate!.resetBulletinTabItemBadge()
           appDelegate!.resetApplicationIconBadge()
         }
-
       }, failure: { (error: NSError) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
         ErrorsHelper.handleCommonErrors(error)

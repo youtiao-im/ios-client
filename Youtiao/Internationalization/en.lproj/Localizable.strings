@@ -1,5 +1,7 @@
 "Administrators" = "Administrators";
+"Administrator can not quit group" = "Administrator can not quit group.";
 "admin" = "admin";
+"Are you sure to quit and leave this group" = "Are you sure you want to quit and leave this group?";
 
 "Bulletin text cannot be blank." = "Bulletin text cannot be blank.";
 "Bulletin text is invalid." = "Bulletin text is invalid.";
@@ -51,6 +53,7 @@
 " seconds ago" = " seconds ago";
 "Server Error" = "Server Error";
 "Server error encountered" = "Server error encountered";
+"Sure" = "Sure";
 
 "Target item not exist" = "Operation target does not exist";
 "To" = "To:";

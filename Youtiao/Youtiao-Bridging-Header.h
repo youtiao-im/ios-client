@@ -13,5 +13,5 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <ChameleonFramework/Chameleon.h>
 #import <RKDropdownAlert/RKDropdownAlert.h>
-#import "MobClick.h"
-#import "APService.h"
+#import "UMengAnalytics-NO-IDFA/MobClick.h"
+#import "JPush-iOS-SDK/APService.h"

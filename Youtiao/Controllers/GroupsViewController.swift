@@ -39,6 +39,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleUpdateGroupInfoSuccessNotification:"), name: "updateGroupInfoSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleCreateGroupSuccessNotification:"), name: "createGroupSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleJoinGroupSuccessNotification:"), name: "joinGroupSuccessNotification", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLeaveGroupSuccessNotification:"), name: "leaveGroupSuccessNotification", object: nil)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -53,6 +54,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "updateGroupInfoSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "createGroupSuccessNotification", object: nil)
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "joinGroupSuccessNotification", object: nil)
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "leaveGroupSuccessNotification", object: nil)
   }
 
   func cancelItemTapped(sender: AnyObject?) {
@@ -92,6 +94,26 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
     self.groupsTableView.beginUpdates()
     self.groupsTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.groups.count - 1, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
     self.groupsTableView.endUpdates()
+  }
+
+  func handleLeaveGroupSuccessNotification(notification: NSNotification) {
+    let userInfo = notification.userInfo as! [String: AnyObject]
+    let targetGroup = userInfo["group"] as! Group
+    let targetGroupId = targetGroup.id
+    var index: Int = -1
+    for index = 0; index < self.groups.count; ++index {
+      let oneItem = self.groups[index]
+      let oneItemGroupId = oneItem.id
+      if oneItemGroupId == targetGroupId {
+        break
+      }
+    }
+    if index >= 0 {
+      self.groups.removeAtIndex(index)
+      self.groupsTableView.beginUpdates()
+      self.groupsTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+      self.groupsTableView.endUpdates()
+    }
   }
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

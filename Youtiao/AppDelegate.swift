@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let remoteNotification: AnyObject? = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey]
     if remoteNotification != nil {
-      println("Launch this app by remote notification")
     }
 
     UINavigationBar.appearance().barStyle = UIBarStyle.Black
@@ -78,12 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-    println("\n\tdevice Token: \(deviceToken)")
     APService.registerDeviceToken(deviceToken)
   }
 
   func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-    println("\n\tFailed to register for remote notification with error: \(error)")
   }
 
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -92,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let badgeCount = aps.objectForKey("badge")?.integerValue
     let content = aps.valueForKey("alert") as! String
     let sound: AnyObject? = aps.valueForKey("sound")
-    println("content: \(content), badgeCount: \(badgeCount)")
     if badgeCount > 0 {
       UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
       self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
@@ -102,12 +98,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     APService.handleRemoteNotification(userInfo)
     completionHandler(UIBackgroundFetchResult.NewData)
-    println("iOS7 Remote Notification here")
     let aps = userInfo["aps" as NSObject] as! NSDictionary
     let badgeCount = aps.objectForKey("badge")?.integerValue
     let content = aps.valueForKey("alert") as! String
     let sound: AnyObject? = aps.valueForKey("sound")
-    println("content: \(content), badgeCount: \(badgeCount)")
     if badgeCount > 0 {
       UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
       self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
@@ -119,7 +113,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func tagsAliasCallback(iRescode: Int32, tags: NSSet?, alias: String) {
-    println("rescode: \(iRescode), tags: \(tags?.description), alias: \(alias)")
   }
 
   func handleLoadUserInfoSuccessNotification(notification: NSNotification) {
