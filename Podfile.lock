@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - ChameleonFramework (1.2.0)
   - INSPullToRefresh (1.0.7)
+  - JPush-iOS-SDK (1.8.4)
   - Mantle (2.0.2):
     - Mantle/extobjc (= 2.0.2)
   - Mantle/extobjc (2.0.2)
@@ -33,27 +34,32 @@ PODS:
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
   - UITintedButton (1.0)
+  - UMengAnalytics-NO-IDFA (3.5.11)
 
 DEPENDENCIES:
   - AFNetworking
   - ChameleonFramework
   - INSPullToRefresh
+  - JPush-iOS-SDK
   - Mantle
   - MBProgressHUD
   - Qiniu
   - RKDropdownAlert
   - SDWebImage
   - UITintedButton
+  - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   ChameleonFramework: 4d6bf87fcaee176f487176cdccc4229637ec97f0
   INSPullToRefresh: b553fd02817fd4cb5b77ca852809c24482075f69
+  JPush-iOS-SDK: 6ac14adb5d0bb8f9a39edf0c2a29e3aa2febf412
   Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Qiniu: 70c3364afbc6993989edaf3da4a784c7d5ad296b
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   UITintedButton: 7b13c921c0ff2705ff36c49dcb63a9f7798f5421
+  UMengAnalytics-NO-IDFA: e41024644de702e450093ef043af20b5fbe06cbc
 
 COCOAPODS: 0.37.2

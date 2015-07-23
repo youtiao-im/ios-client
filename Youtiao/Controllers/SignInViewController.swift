@@ -24,8 +24,7 @@ class SignInViewController: UITableViewController {
           NSUserDefaults.standardUserDefaults().synchronize()
         }
         MBProgressHUD.hideHUDForView(self.view, animated: true)
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
+        self.loadUserInfo()
       }, failure: { (error: NSError) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         var errMsg: String
@@ -54,6 +53,26 @@ class SignInViewController: UITableViewController {
     let pageURL = urlBaseURLString + "/users/password/new"
     let forgotPasswordUrl: NSURL? = NSURL(string: pageURL)
     UIApplication.sharedApplication().openURL(forgotPasswordUrl!)
+  }
+
+  func loadUserInfo() {
+    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    APIClient.sharedInstance.fetchCurrentUser(
+      success: { (user: User) -> Void in
+        let userId = user.id
+        NSUserDefaults.standardUserDefaults().setValue(userId, forKey: "user_id")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        let userInfo = ["user": user]
+        NSNotificationCenter.defaultCenter().postNotificationName("loadUserInfoSuccessNotification", object: nil, userInfo: userInfo)
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
+      }, failure: { (error: NSError) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        let errMsg = ErrorsHelper.errorMessageForError(error)
+        self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: errMsg)
+      }
+    )
   }
 
   func displayErrorMessage(title: String, errorMsg: String) {

@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
 
     self.userEmailLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
     self.userNameLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
+    
 
     let infoDict: [NSObject: AnyObject] = NSBundle.mainBundle().infoDictionary!
     let versionString = infoDict["CFBundleShortVersionString"] as? String
@@ -55,13 +56,7 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
 
   @IBAction func signOut(sender: AnyObject) {
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    APIClient.sharedInstance.signOut({ (dictionary: [NSObject: AnyObject]) -> Void in
-      MBProgressHUD.hideHUDForView(self.view, animated: true)
-      SessionsHelper.signOut()
-    }){ (error: NSError) -> Void in
-      MBProgressHUD.hideHUDForView(self.view, animated: true)
-      ErrorsHelper.handleCommonErrors(error)
-    }
+    APService.setAlias("", callbackSelector: Selector("aliasCallback:tags:alias:"), object: self)
   }
 
   func loadUser() {
@@ -78,6 +73,21 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
     )
   }
 
+  func aliasCallback(iRescode: Int32, tags: NSSet?, alias: String) {
+    self.doLogoutAction()
+  }
+
+  func doLogoutAction() {
+    APIClient.sharedInstance.signOut(
+      success: { (dictionary: [NSObject: AnyObject]) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        SessionsHelper.signOut()
+      }, failure: { (error: NSError) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        ErrorsHelper.handleCommonErrors(error)
+      }
+    )
+  }
 }
 
 extension SettingsViewController: UITableViewDelegate {

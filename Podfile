@@ -11,6 +11,8 @@ target 'Youtiao' do
   pod 'MBProgressHUD'
   pod 'ChameleonFramework'
   pod 'RKDropdownAlert'
+  pod 'UMengAnalytics-NO-IDFA'
+  pod 'JPush-iOS-SDK'
 end
 
 target 'YoutiaoTests' do

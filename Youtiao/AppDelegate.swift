@@ -8,6 +8,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
 
+    MobClick.startWithAppkey("55adf7b467e58ec60a001538", reportPolicy: BATCH, channelId: nil)
+    MobClick.setLogEnabled(true)
+
+    let remoteNotification: AnyObject? = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey]
+    if remoteNotification != nil {
+    }
+
     UINavigationBar.appearance().barStyle = UIBarStyle.Black
     UINavigationBar.appearance().barTintColor = BRAND_COLOR
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
@@ -32,6 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = storyBoard?.instantiateInitialViewController() as? UIViewController
     self.window?.makeKeyAndVisible()
 
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadUserInfoSuccessNotification:"), name: "loadUserInfoSuccessNotification", object: nil)
+    APService.setDebugMode()
+    APService.registerForRemoteNotificationTypes(UIUserNotificationType.Badge.rawValue | UIUserNotificationType.Sound.rawValue | UIUserNotificationType.Alert.rawValue, categories: nil)
+    APService.setupWithOption(launchOptions)
+
+    let userDefaultsInfo = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
+    let userId = userDefaultsInfo["user_id"] as! String?
+    if userId != nil {
+      self.bindsAliasWithUserId(userId!)
+    }
+
     return true
   }
 
@@ -55,5 +73,101 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "loadUserInfoSuccessNotification", object: nil)
+  }
+
+  func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    APService.registerDeviceToken(deviceToken)
+  }
+
+  func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+  }
+
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    APService.handleRemoteNotification(userInfo)
+    let aps = userInfo["aps" as NSObject] as! NSDictionary
+    let badgeCount = aps.objectForKey("badge")?.integerValue
+    let content = aps.valueForKey("alert") as! String
+    let sound: AnyObject? = aps.valueForKey("sound")
+    if badgeCount > 0 {
+      UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
+      self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
+    }
+  }
+
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    APService.handleRemoteNotification(userInfo)
+    completionHandler(UIBackgroundFetchResult.NewData)
+    let aps = userInfo["aps" as NSObject] as! NSDictionary
+    let badgeCount = aps.objectForKey("badge")?.integerValue
+    let content = aps.valueForKey("alert") as! String
+    let sound: AnyObject? = aps.valueForKey("sound")
+    if badgeCount > 0 {
+      UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
+      self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
+    }
+  }
+
+  func bindsAliasWithUserId(userId: String) {
+    APService.setAlias(userId, callbackSelector: Selector("tagsAliasCallback:tags:alias:"), object: self)
+  }
+
+  func tagsAliasCallback(iRescode: Int32, tags: NSSet?, alias: String) {
+  }
+
+  func handleLoadUserInfoSuccessNotification(notification: NSNotification) {
+    let userObj: User? = notification.userInfo?["user" as NSObject] as! User?
+    if let userId = userObj?.id {
+      self.bindsAliasWithUserId(userId)
+    }
+  }
+
+  func setBulletinTabItemBadgeWithIncrementValue(increment: Int) {
+    let rootViewController = self.window?.rootViewController
+    if (rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) != nil) {
+      let tabBarController = rootViewController as! UITabBarController
+      let tabBar = tabBarController.tabBar
+      if let firstItem = tabBar.items?[0] as? UITabBarItem {
+        let originalBadgeValue = firstItem.badgeValue
+        var newBadgeCount: Int? = (originalBadgeValue == nil) ? 0 : originalBadgeValue?.toInt()
+        if increment > 0 {
+          if newBadgeCount != nil {
+            newBadgeCount! += increment
+          } else {
+            newBadgeCount = increment
+          }
+        }
+        var newBadgeValue: String?
+        if newBadgeCount <= 0 {
+          newBadgeValue = nil
+        } else {
+          if newBadgeCount >= 100 {
+            newBadgeValue = "99+"
+          } else {
+            if newBadgeCount != nil {
+              newBadgeValue = String(newBadgeCount!)
+            } else {
+              newBadgeValue = nil
+            }
+          }
+        }
+        firstItem.badgeValue = newBadgeValue
+      }
+    }
+  }
+
+  func resetBulletinTabItemBadge() {
+    let rootViewController = self.window?.rootViewController
+    if rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) != nil {
+      let tabBarController = rootViewController as! UITabBarController
+      let tabBar = tabBarController.tabBar
+      if let firstItem = tabBar.items?[0] as? UITabBarItem {
+        firstItem.badgeValue = nil
+      }
+    }
+  }
+
+  func resetApplicationIconBadge() {
+    UIApplication.sharedApplication().applicationIconBadgeNumber = 0
   }
 }

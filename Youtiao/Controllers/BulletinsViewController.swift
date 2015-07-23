@@ -77,6 +77,12 @@ class BulletinsViewController: UIViewController {
         self.bulletins = bulletins
         self.bulletinsTableView.reloadData()
         self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
+
+        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        if appDelegate != nil {
+          appDelegate!.resetBulletinTabItemBadge()
+          appDelegate!.resetApplicationIconBadge()
+        }
       }, failure: { (error: NSError) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
         ErrorsHelper.handleCommonErrors(error)

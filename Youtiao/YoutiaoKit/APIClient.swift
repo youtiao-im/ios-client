@@ -153,7 +153,7 @@ class APIClient: AFHTTPRequestOperationManager{
     self.operationQueue.addOperation(signInOperation)
   }
 
-  func signOut(success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+  func signOut(#success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let requestURLString = signOutBaseURL
     var signOutRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
     signOutRequest.HTTPMethod = "POST"
@@ -287,6 +287,20 @@ class APIClient: AFHTTPRequestOperationManager{
       success: { (model: AnyObject) -> Void in
         success?(model as! Group)
       }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func leaveGroup(group: Group?, success: ((dictionary: [NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
+    if group == nil || group!.id == nil {
+      return
+    }
+    var parameter: AnyObject?
+    parameter = NSDictionary(object: group!.id!, forKey: "id")
+    self.post("groups.leave", parameters: parameter, success: { (dictionary: [NSObject: AnyObject]) -> Void in
+        success?(dictionary: dictionary)
+      },failure: { (error: NSError) -> Void in
         failure?(error)
       }
     )

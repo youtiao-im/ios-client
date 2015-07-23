@@ -1,5 +1,7 @@
 "Administrators" = "管理员";
+"Administrator can not quit group" = "管理员不能退出群组";
 "admin" = "管理员";
+"Are you sure to quit and leave this group" = "确定要退出该群组吗？";
 
 "Bulletin text cannot be blank." = "公告内容不能为空。";
 "Bulletin text is invalid." = "公告内容无效。";
@@ -51,6 +53,7 @@
 " seconds ago" = "秒前";
 "Server Error" = "服务器错误";
 "Server error encountered" = "遇到服务器错误";
+"Sure" = "确定";
 
 "Target item not exist" = "操作对象不存在";
 "To" = "发送给:";
