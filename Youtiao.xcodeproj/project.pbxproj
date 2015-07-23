@@ -10,6 +10,8 @@
 		6E26780F1B4678F4005EC1EB /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E26780E1B4678F4005EC1EB /* GroupMembersViewController.swift */; };
 		6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AD9AC1B4F912500BB23CB /* Localizable.strings */; };
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
+		6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */; };
+		6E7EB0041B60A5DB006E9F5B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EB0031B60A5DB006E9F5B /* Info.plist */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
 		6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */; };
@@ -68,6 +70,8 @@
 		6E4AD9AD1B4F912900BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
+		6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6E7EB0031B60A5DB006E9F5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EA075171B54A84900F1CA76 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Landing.strings"; sourceTree = "<group>"; };
 		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
@@ -77,7 +81,6 @@
 		6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinsViewController.swift; sourceTree = "<group>"; };
 		6EE3CBCB1B4BD21800C142C4 /* TimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		9C72B5C61B313753000211E2 /* Youtiao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youtiao.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C72B5CA1B313753000211E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C72B5CB1B313753000211E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C72B5D21B313753000211E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C72B5D41B313753000211E2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -181,7 +184,8 @@
 		9C72B5C91B313753000211E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9C72B5CA1B313753000211E2 /* Info.plist */,
+				6E7EB0031B60A5DB006E9F5B /* Info.plist */,
+				6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -337,9 +341,16 @@
 				TargetAttributes = {
 					9C72B5C51B313753000211E2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = CJ93H7TH43;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					9C72B5DC1B313753000211E2 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = CJ93H7TH43;
 						TestTargetID = 9C72B5C51B313753000211E2;
 					};
 				};
@@ -369,8 +380,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E7EB0041B60A5DB006E9F5B /* Info.plist in Resources */,
 				6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */,
 				6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */,
+				6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */,
 				9C72B5D31B313753000211E2 /* Main.storyboard in Resources */,
 				6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */,
 				9C72B5D81B313753000211E2 /* LaunchScreen.xib in Resources */,
@@ -557,6 +570,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "eed13a07-a13c-41be-bcbc-05160ecec427";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -594,6 +608,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "eed13a07-a13c-41be-bcbc-05160ecec427";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -605,9 +620,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -619,9 +637,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 			};
 			name = Release;
@@ -630,6 +651,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -641,6 +664,7 @@
 				INFOPLIST_FILE = YoutiaoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Youtiao.app/Youtiao";
 			};
 			name = Debug;
@@ -649,6 +673,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -656,6 +682,7 @@
 				INFOPLIST_FILE = YoutiaoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Youtiao.app/Youtiao";
 			};
 			name = Release;

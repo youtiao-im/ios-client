@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
 
     self.userEmailLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
     self.userNameLabel.text = NSLocalizedString("Unknown", comment: "Unknown")
+    
 
     let infoDict: [NSObject: AnyObject] = NSBundle.mainBundle().infoDictionary!
     let versionString = infoDict["CFBundleShortVersionString"] as? String
