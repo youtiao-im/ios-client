@@ -7,9 +7,20 @@ class SignInViewController: UITableViewController {
   var warningAlertView: UIAlertView!
 
   override func viewDidLoad() {
+    self.navigationController?.navigationBarHidden = false
     emailTextField.delegate = self
     passwordTextField.delegate = self
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBarHidden = false
+  }
+
+  override func viewWillDisappear(animated: Bool) {
+    self.navigationController?.navigationBarHidden = true
+    super.viewWillDisappear(animated)
   }
 
   func doSignInAction() {

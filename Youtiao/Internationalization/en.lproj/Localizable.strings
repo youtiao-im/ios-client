@@ -11,6 +11,7 @@
 "Cancel" = "Cancel";
 "Create a Group" = "Create a Group";
 
+" day ago" = " day ago";
 " days ago" = " days ago";
 
 "Email invalid" = "Email is invalid";
@@ -27,6 +28,7 @@
 "Group code should not be empty" = "Group code should not be empty";
 "Group name should not be empty" = "Group name should not be empty";
 
+" hour ago" = " hour ago";
 " hours ago" = " hours ago";
 
 "Incorrect email address or password" = "Incorrect email address or password";
@@ -39,6 +41,7 @@
 
 "member" = "member";
 "Members" = "Members";
+" minute ago" = " minute ago";
 " minutes ago" = " minutes ago";
 
 "Network Error" = "Network Error";
@@ -50,6 +53,7 @@
 "Password invalid" = "Password is invalid";
 "Please try again later." = "Please try again later.";
 
+" second ago" = " second ago";
 " seconds ago" = " seconds ago";
 "Server Error" = "Server Error";
 "Server error encountered" = "Server error encountered";
