@@ -1,42 +1,39 @@
 
-/* Class = "UITextField"; placeholder = "用户名"; ObjectID = "2x7-C9-qzF"; */
-"2x7-C9-qzF.placeholder" = "用户名";
-
-/* Class = "UILabel"; text = "密码"; ObjectID = "CbL-hP-KK6"; */
-"CbL-hP-KK6.text" = "密码";
-
-/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "GB5-Tg-OB9"; */
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "GB5-Tg-OB9"; */
 "GB5-Tg-OB9.normalTitle" = "注册";
 
-/* Class = "UITextField"; placeholder = "密码"; ObjectID = "H6J-kH-peT"; */
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "H6J-kH-peT"; */
 "H6J-kH-peT.placeholder" = "密码";
 
-/* Class = "UITextField"; placeholder = "密码"; ObjectID = "Ixd-RW-7fw"; */
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Ixd-RW-7fw"; */
 "Ixd-RW-7fw.placeholder" = "密码";
 
-/* Class = "UIBarButtonItem"; title = "登录"; ObjectID = "U38-Bi-TMG"; */
+/* Class = "UIBarButtonItem"; title = "Sign In"; ObjectID = "U38-Bi-TMG"; */
 "U38-Bi-TMG.title" = "登录";
 
-/* Class = "UITextField"; placeholder = "邮箱地址"; ObjectID = "bJV-DC-yxA"; */
+/* Class = "UILabel"; text = "Youtiao, Born to Notify"; ObjectID = "ZeL-Q4-sR3"; */
+"ZeL-Q4-sR3.text" = "有条，为通知而生";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "bJV-DC-yxA"; */
 "bJV-DC-yxA.placeholder" = "邮箱地址";
 
-/* Class = "UIBarButtonItem"; title = "注册"; ObjectID = "fWp-Hk-sKp"; */
+/* Class = "UIBarButtonItem"; title = "Sign Up"; ObjectID = "fWp-Hk-sKp"; */
 "fWp-Hk-sKp.title" = "注册";
 
-/* Class = "UINavigationItem"; title = "有条"; ObjectID = "j28-W1-JYw"; */
+/* Class = "UINavigationItem"; title = "Youtiao"; ObjectID = "j28-W1-JYw"; */
 "j28-W1-JYw.title" = "有条";
 
-/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "mK7-HB-Tws"; */
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "mK7-HB-Tws"; */
 "mK7-HB-Tws.normalTitle" = "登录";
 
-/* Class = "UIButton"; normalTitle = "忘记密码？"; ObjectID = "rgb-Vy-juV"; */
+/* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "rgb-Vy-juV"; */
 "rgb-Vy-juV.normalTitle" = "忘记密码？";
 
-/* Class = "UINavigationItem"; title = "有条"; ObjectID = "sTd-bs-AUc"; */
+/* Class = "UINavigationItem"; title = "Youtiao"; ObjectID = "sTd-bs-AUc"; */
 "sTd-bs-AUc.title" = "有条";
 
-/* Class = "UINavigationItem"; title = "欢迎"; ObjectID = "v2X-kD-v7K"; */
+/* Class = "UINavigationItem"; title = "Welcome"; ObjectID = "v2X-kD-v7K"; */
 "v2X-kD-v7K.title" = "欢迎";
 
-/* Class = "UITextField"; placeholder = "邮箱地址"; ObjectID = "ynP-ei-veJ"; */
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "ynP-ei-veJ"; */
 "ynP-ei-veJ.placeholder" = "邮箱地址";

@@ -197,6 +197,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK7-HB-Tws">
                                 <rect key="frame" x="276" y="520" width="48" height="30"/>
                                 <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -206,19 +207,39 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GB5-Tg-OB9">
                                 <rect key="frame" x="273" y="482" width="55" height="30"/>
                                 <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="cko-7C-TYD" kind="show" id="Mw4-qa-ceB"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon180.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ug-gf-eiB">
+                                <rect key="frame" x="210" y="119" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="eDQ-pr-R1A"/>
+                                    <constraint firstAttribute="height" constant="180" id="fnT-lG-KLW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Youtiao, Born to Notify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-Q4-sR3">
+                                <rect key="frame" x="26" y="279" width="548" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZeL-Q4-sR3" firstAttribute="top" secondItem="1ug-gf-eiB" secondAttribute="bottom" constant="-20" id="70f-Mv-AdB"/>
                             <constraint firstItem="9ZS-DQ-MHn" firstAttribute="top" secondItem="mK7-HB-Tws" secondAttribute="bottom" constant="50" id="DZw-mg-nrx"/>
                             <constraint firstItem="mK7-HB-Tws" firstAttribute="centerX" secondItem="GB5-Tg-OB9" secondAttribute="centerX" id="FXR-Ju-CQr"/>
                             <constraint firstAttribute="centerX" secondItem="mK7-HB-Tws" secondAttribute="centerX" id="GIw-5M-YpM"/>
                             <constraint firstItem="mK7-HB-Tws" firstAttribute="top" secondItem="GB5-Tg-OB9" secondAttribute="bottom" constant="8" id="OUs-Lj-BMO"/>
+                            <constraint firstAttribute="centerX" secondItem="ZeL-Q4-sR3" secondAttribute="centerX" id="daG-3a-ABO"/>
+                            <constraint firstAttribute="centerY" secondItem="ZeL-Q4-sR3" secondAttribute="centerY" id="oho-Wg-7zZ"/>
+                            <constraint firstAttribute="centerX" secondItem="1ug-gf-eiB" secondAttribute="centerX" id="seD-OO-tkM"/>
+                            <constraint firstItem="ZeL-Q4-sR3" firstAttribute="leading" secondItem="PYY-ar-Kkd" secondAttribute="leadingMargin" constant="10" id="z4f-1Y-J6M"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="v2X-kD-v7K"/>
@@ -246,4 +267,7 @@
             <point key="canvasLocation" x="502" y="-371"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon180.png" width="180" height="180"/>
+    </resources>
 </document>

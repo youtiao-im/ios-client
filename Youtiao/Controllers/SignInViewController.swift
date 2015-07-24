@@ -67,6 +67,8 @@ class SignInViewController: UITableViewController {
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate?
+        appDelegate?.setBulletinTabItemBadge(UIApplication.sharedApplication().applicationIconBadgeNumber)
       }, failure: { (error: NSError) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         let errMsg = ErrorsHelper.errorMessageForError(error)

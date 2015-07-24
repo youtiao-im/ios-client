@@ -82,6 +82,8 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
       success: { (dictionary: [NSObject: AnyObject]) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         SessionsHelper.signOut()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate?
+        appDelegate?.resetApplicationIconBadge()
       }, failure: { (error: NSError) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         ErrorsHelper.handleCommonErrors(error)
