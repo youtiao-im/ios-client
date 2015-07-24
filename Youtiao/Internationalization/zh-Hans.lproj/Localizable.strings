@@ -21,6 +21,7 @@
 "Find Password" = "找回密码";
 "Forbidden" = "操作被禁止";
 
+"Group" = "群组";
 "Group name cannot be blank." = "群组名不能为空。";
 "Group name is too long." = "群组名字太长。";
 "Group name is too short." = "群组名字太短。";

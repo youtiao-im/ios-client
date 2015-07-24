@@ -101,7 +101,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgO-ye-3yG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2088" y="-431"/>
+            <point key="canvasLocation" x="2014" y="-966"/>
         </scene>
         <!--Youtiao-->
         <scene sceneID="KJp-iW-Xzl">
@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jky-0D-RaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2088" y="-1081"/>
+            <point key="canvasLocation" x="2014" y="-260"/>
         </scene>
         <!--Welcome-->
         <scene sceneID="XnU-o3-1bc">
@@ -194,65 +194,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome" translatesAutoresizingMaskIntoConstraints="NO" id="F3X-jL-gEE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK7-HB-Tws">
-                                <rect key="frame" x="26" y="540" width="548" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Sign In">
-                                    <color key="titleColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="tsp-bh-9x8" kind="show" id="NYY-ic-BeC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GB5-Tg-OB9">
-                                <rect key="frame" x="26" y="490" width="548" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="8" y="540" width="584" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cko-7C-TYD" kind="show" id="Mw4-qa-ceB"/>
+                                    <segue destination="cko-7C-TYD" kind="show" id="3Om-dD-PQ1"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon120.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ug-gf-eiB">
-                                <rect key="frame" x="240" y="150" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="eDQ-pr-R1A"/>
-                                    <constraint firstAttribute="height" constant="120" id="fnT-lG-KLW"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZP-3k-NFJ">
-                                <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Youtiao, Born to Notify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-Q4-sR3">
-                                <rect key="frame" x="26" y="251" width="548" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Born to Notify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-Q4-sR3">
+                                <rect key="frame" x="26" y="427" width="548" height="26"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Youtiao" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjW-tZ-6A2">
+                                <rect key="frame" x="26" y="385" width="548" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GB5-Tg-OB9">
+                                <rect key="frame" x="8" y="482" width="584" height="50"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qg6-0A-LsG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tsp-bh-9x8" kind="show" id="jL6-AI-bRc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dZP-3k-NFJ" firstAttribute="top" secondItem="ZeL-Q4-sR3" secondAttribute="bottom" constant="25" id="2sl-x0-mEp"/>
-                            <constraint firstItem="9ZS-DQ-MHn" firstAttribute="top" secondItem="mK7-HB-Tws" secondAttribute="bottom" constant="30" id="DZw-mg-nrx"/>
-                            <constraint firstAttribute="centerY" secondItem="dZP-3k-NFJ" secondAttribute="centerY" id="FMw-SM-nIi"/>
+                            <constraint firstItem="ZeL-Q4-sR3" firstAttribute="leading" secondItem="KjW-tZ-6A2" secondAttribute="leading" id="9AS-nF-g2U"/>
+                            <constraint firstItem="9ZS-DQ-MHn" firstAttribute="top" secondItem="mK7-HB-Tws" secondAttribute="bottom" constant="10" id="DZw-mg-nrx"/>
                             <constraint firstItem="mK7-HB-Tws" firstAttribute="centerX" secondItem="GB5-Tg-OB9" secondAttribute="centerX" id="FXR-Ju-CQr"/>
                             <constraint firstAttribute="centerX" secondItem="mK7-HB-Tws" secondAttribute="centerX" id="GIw-5M-YpM"/>
-                            <constraint firstItem="mK7-HB-Tws" firstAttribute="top" secondItem="GB5-Tg-OB9" secondAttribute="bottom" constant="20" id="OUs-Lj-BMO"/>
+                            <constraint firstItem="9ZS-DQ-MHn" firstAttribute="top" secondItem="F3X-jL-gEE" secondAttribute="bottom" id="KqS-u2-Z0L"/>
+                            <constraint firstItem="F3X-jL-gEE" firstAttribute="leading" secondItem="PYY-ar-Kkd" secondAttribute="leading" id="L8c-cG-5bD"/>
+                            <constraint firstItem="mK7-HB-Tws" firstAttribute="top" secondItem="GB5-Tg-OB9" secondAttribute="bottom" constant="8" id="OUs-Lj-BMO"/>
                             <constraint firstItem="GB5-Tg-OB9" firstAttribute="trailing" secondItem="mK7-HB-Tws" secondAttribute="trailing" id="Ts3-2M-RC0"/>
+                            <constraint firstItem="ZeL-Q4-sR3" firstAttribute="top" secondItem="KjW-tZ-6A2" secondAttribute="bottom" constant="5" id="UcL-OQ-Uvu"/>
+                            <constraint firstItem="GB5-Tg-OB9" firstAttribute="height" secondItem="mK7-HB-Tws" secondAttribute="height" id="YME-ym-O7K"/>
+                            <constraint firstAttribute="trailing" secondItem="F3X-jL-gEE" secondAttribute="trailing" id="b8C-X0-9JA"/>
+                            <constraint firstItem="GB5-Tg-OB9" firstAttribute="top" secondItem="ZeL-Q4-sR3" secondAttribute="bottom" constant="30" id="bFH-7A-a9M"/>
                             <constraint firstAttribute="centerX" secondItem="ZeL-Q4-sR3" secondAttribute="centerX" id="daG-3a-ABO"/>
-                            <constraint firstItem="dZP-3k-NFJ" firstAttribute="top" secondItem="1ug-gf-eiB" secondAttribute="bottom" constant="30" id="gmS-PA-Qla"/>
+                            <constraint firstItem="F3X-jL-gEE" firstAttribute="top" secondItem="PYY-ar-Kkd" secondAttribute="topMargin" id="goj-kR-kln"/>
                             <constraint firstItem="GB5-Tg-OB9" firstAttribute="leading" secondItem="mK7-HB-Tws" secondAttribute="leading" id="pP7-D9-l4K"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="mK7-HB-Tws" secondAttribute="trailing" constant="10" id="qJJ-5D-nK5"/>
-                            <constraint firstAttribute="centerX" secondItem="dZP-3k-NFJ" secondAttribute="centerX" id="sNQ-Qf-HKW"/>
-                            <constraint firstAttribute="centerX" secondItem="1ug-gf-eiB" secondAttribute="centerX" id="seD-OO-tkM"/>
-                            <constraint firstItem="mK7-HB-Tws" firstAttribute="leading" secondItem="PYY-ar-Kkd" secondAttribute="leadingMargin" constant="10" id="wBC-k8-vwj"/>
+                            <constraint firstItem="ZeL-Q4-sR3" firstAttribute="trailing" secondItem="KjW-tZ-6A2" secondAttribute="trailing" id="q7T-DL-XSR"/>
+                            <constraint firstAttribute="trailing" secondItem="mK7-HB-Tws" secondAttribute="trailing" constant="8" id="qJJ-5D-nK5"/>
+                            <constraint firstItem="mK7-HB-Tws" firstAttribute="leading" secondItem="PYY-ar-Kkd" secondAttribute="leading" constant="8" id="wBC-k8-vwj"/>
                             <constraint firstItem="ZeL-Q4-sR3" firstAttribute="leading" secondItem="PYY-ar-Kkd" secondAttribute="leadingMargin" constant="10" id="z4f-1Y-J6M"/>
                         </constraints>
                     </view>
@@ -265,7 +270,6 @@
         <!--Navigation Controller-->
         <scene sceneID="LG0-0N-qUa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eme-xy-111" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="GcN-6T-IV0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Sd-k9-DNj">
@@ -277,11 +281,12 @@
                         <segue destination="AAE-7J-2kV" kind="relationship" relationship="rootViewController" id="nX3-Ty-PXZ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eme-xy-111" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="391" y="-617"/>
         </scene>
     </scenes>
     <resources>
-        <image name="icon120.png" width="120" height="120"/>
+        <image name="welcome" width="865" height="1298"/>
     </resources>
 </document>

@@ -21,6 +21,7 @@
 "Find Password" = "Find Password";
 "Forbidden" = "Operation is forbidden";
 
+"Group" = "Group";
 "Group name cannot be blank." = "Group name cannot be blank.";
 "Group name is too long." = "Group name is too long.";
 "Group name is too short." = "Group name is too short.";
