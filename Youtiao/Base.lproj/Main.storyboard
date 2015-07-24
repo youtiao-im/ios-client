@@ -642,7 +642,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDh-2W-jtx">
                                                     <rect key="frame" x="0.0" y="7" width="600" height="30"/>
-                                                    <state key="normal" title="Delete and Leave">
+                                                    <state key="normal" title="Leave Group">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -670,6 +670,7 @@
                         <outlet property="groupCodeLabel" destination="mBZ-wj-BI7" id="B5q-bC-IUr"/>
                         <outlet property="groupMembershipsCountLabel" destination="asn-eA-xz9" id="lf5-VP-gyY"/>
                         <outlet property="groupNameLabel" destination="2Nm-uC-Pj3" id="TGd-To-WUK"/>
+                        <outlet property="leaveGroupButton" destination="jDh-2W-jtx" id="2Xv-Eu-8sc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIg-1V-anv" userLabel="First Responder" sceneMemberID="firstResponder"/>

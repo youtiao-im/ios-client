@@ -4,6 +4,7 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
   @IBOutlet weak var groupNameLabel: UILabel!
   @IBOutlet weak var groupCodeLabel: UILabel!
   @IBOutlet weak var groupMembershipsCountLabel: UILabel!
+  @IBOutlet weak var leaveGroupButton: UIButton!
 
   var group: Group!
   var warningAlertView: UIAlertView!
@@ -29,6 +30,11 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
       cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))
       cell?.userInteractionEnabled = false
       cell?.accessoryType = UITableViewCellAccessoryType.None
+    }
+
+    if self.group.currentMembership?.role == "owner" {
+      let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))
+      self.leaveGroupButton.enabled = false
     }
   }
 
@@ -65,11 +71,11 @@ class GroupSettingsViewController: UITableViewController, EditGroupNameViewContr
   }
 
   func doLeaveGroupAction() {
-    if self.group.currentMembership?.role == "admin" || self.group.currentMembership?.role == "owner" {
-      let errMsg = NSLocalizedString("Administrator can not quit group", comment: "Administrator can not quit group")
-      self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: errMsg)
-      return
-    }
+//    if self.group.currentMembership?.role == "owner" {
+//      let errMsg = NSLocalizedString("Administrator can not quit group", comment: "Administrator can not quit group")
+//      self.displayErrorMessage(NSLocalizedString("Warning", comment: "Warning"), errorMsg: errMsg)
+//      return
+//    }
     MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     APIClient.sharedInstance.leaveGroup(self.group, success: { (dictionary) -> Void in
       MBProgressHUD.hideHUDForView(self.view, animated: true)

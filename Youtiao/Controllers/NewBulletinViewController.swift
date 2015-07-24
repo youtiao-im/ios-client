@@ -27,6 +27,7 @@ class NewBulletinViewController: UIViewController, GroupsViewControllerDelegate 
     self.topViewWidthConstraint.constant = self.view.bounds.size.width
     self.scrollViewBottomConstraint.constant = 0
     self.toLabel.text = NSLocalizedString("To", comment: "To:")
+    self.groupTextField.placeholder = NSLocalizedString("Group", comment: "Group")
     textViewPlaceHolderLabel = UILabel()
     textViewPlaceHolderLabel.text = NSLocalizedString("Enter message", comment: "Enter message")
     textViewPlaceHolderLabel.setTranslatesAutoresizingMaskIntoConstraints(false)

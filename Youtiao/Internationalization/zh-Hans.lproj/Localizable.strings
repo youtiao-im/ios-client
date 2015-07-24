@@ -11,6 +11,7 @@
 "Cancel" = "取消";
 "Create a Group" = "创建群组";
 
+" day ago" = "天前";
 " days ago" = "天前";
 
 "Email invalid" = "邮箱地址无效";
@@ -20,6 +21,7 @@
 "Find Password" = "找回密码";
 "Forbidden" = "操作被禁止";
 
+"Group" = "群组";
 "Group name cannot be blank." = "群组名不能为空。";
 "Group name is too long." = "群组名字太长。";
 "Group name is too short." = "群组名字太短。";
@@ -27,6 +29,7 @@
 "Group code should not be empty" = "群组识别码不能为空";
 "Group name should not be empty" = "群组名不能为空";
 
+" hour ago" = "小时前";
 " hours ago" = "小时前";
 
 "Incorrect email address or password" = "邮箱地址或密码错误。";
@@ -39,6 +42,7 @@
 
 "member" = "成员";
 "Members" = "普通成员";
+" minute ago" = "分钟前";
 " minutes ago" = "分钟前";
 
 "Network Error" = "网络错误";
@@ -50,6 +54,7 @@
 "Password invalid" = "密码无效";
 "Please try again later." = "请稍后重试。";
 
+" second ago" = "秒前";
 " seconds ago" = "秒前";
 "Server Error" = "服务器错误";
 "Server error encountered" = "遇到服务器错误";

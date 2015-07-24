@@ -6,6 +6,16 @@ class SignUpViewController: UITableViewController {
 
   var warningAlertView: UIAlertView!
 
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBarHidden = false
+  }
+
+  override func viewWillDisappear(animated: Bool) {
+    self.navigationController?.navigationBarHidden = true
+    super.viewWillDisappear(animated)
+  }
+  
   @IBAction func signUpTapped(sender: AnyObject) {
     self.emailTextField.resignFirstResponder()
     self.passwordTextField.resignFirstResponder()

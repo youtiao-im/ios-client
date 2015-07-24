@@ -6,7 +6,7 @@ class BulletinsViewController: UIViewController {
   private var bulletins: [Bulletin] = [Bulletin]()
 
   var warningAlertView: UIAlertView!
-  var lastVisibleBeginCell: UITableViewCell?
+  var lastVisibleBeginCellIndexPath: NSIndexPath?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,6 +57,8 @@ class BulletinsViewController: UIViewController {
       self.bulletinsTableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
     }
 
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate?
+    appDelegate?.setBulletinTabItemBadge(UIApplication.sharedApplication().applicationIconBadgeNumber)
     super.viewWillAppear(animated)
   }
 
@@ -82,6 +84,7 @@ class BulletinsViewController: UIViewController {
         if appDelegate != nil {
           appDelegate!.resetBulletinTabItemBadge()
           appDelegate!.resetApplicationIconBadge()
+          appDelegate!.resetBadgeValueOnServer()
         }
       }, failure: { (error: NSError) -> Void in
         self.bulletinsTableView.ins_endPullToRefresh()
@@ -92,7 +95,11 @@ class BulletinsViewController: UIViewController {
 
   func loadMoreBulletins() {
     if let lastBulletin = self.bulletins.last {
-      self.lastVisibleBeginCell = self.bulletinsTableView.visibleCells()[0] as? UITableViewCell
+      let lastVisibleBeginCell = self.bulletinsTableView.visibleCells()[0] as? UITableViewCell
+      if lastVisibleBeginCell != nil
+      {
+        self.lastVisibleBeginCellIndexPath = self.bulletinsTableView.indexPathForCell(lastVisibleBeginCell!)
+      }
       APIClient.sharedInstance.fetchBulletinsCreatedBeforeBulletin(lastBulletin,
         success: { (bulletins: [Bulletin]) -> Void in
           let currentSectionsCount = self.bulletins.count
@@ -102,7 +109,8 @@ class BulletinsViewController: UIViewController {
             self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
           }
           self.bulletinsTableView.endUpdates()
-          self.bulletinsTableView.scrollToRowAtIndexPath(self.bulletinsTableView.indexPathForCell(self.lastVisibleBeginCell!)!, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+          self.bulletinsTableView.reloadData()
+          self.bulletinsTableView.scrollToRowAtIndexPath(self.lastVisibleBeginCellIndexPath!, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
           self.bulletinsTableView.ins_endInfinityScrollWithStoppingContentOffset(true)
           self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
           }, failure: { (error: NSError) -> Void in
@@ -268,6 +276,7 @@ extension BulletinsViewController: NewBulletinViewControllerDelegate {
     bulletinsTableView.insertSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
     bulletinsTableView.endUpdates()
     bulletinsTableView.reloadRowsAtIndexPaths(bulletinsTableView.indexPathsForVisibleRows()!, withRowAnimation: UITableViewRowAnimation.None)
+    self.bulletinsTableView.ins_beginPullToRefresh()
   }
 
   func newBulletinViewControllerDidCancel(controller: NewBulletinViewController) {

@@ -11,10 +11,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     MobClick.startWithAppkey("55adf7b467e58ec60a001538", reportPolicy: BATCH, channelId: nil)
     MobClick.setLogEnabled(true)
 
-    let remoteNotification: AnyObject? = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey]
-    if remoteNotification != nil {
-    }
-
     UINavigationBar.appearance().barStyle = UIBarStyle.Black
     UINavigationBar.appearance().barTintColor = BRAND_COLOR
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
@@ -65,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    self.setBulletinTabItemBadge(application.applicationIconBadgeNumber)
   }
 
   func applicationDidBecomeActive(application: UIApplication) {
@@ -83,18 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
   }
 
-  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    APService.handleRemoteNotification(userInfo)
-    let aps = userInfo["aps" as NSObject] as! NSDictionary
-    let badgeCount = aps.objectForKey("badge")?.integerValue
-    let content = aps.valueForKey("alert") as! String
-    let sound: AnyObject? = aps.valueForKey("sound")
-    if badgeCount > 0 {
-      UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
-      self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
-    }
-  }
-
   func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
     APService.handleRemoteNotification(userInfo)
     completionHandler(UIBackgroundFetchResult.NewData)
@@ -102,9 +87,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let badgeCount = aps.objectForKey("badge")?.integerValue
     let content = aps.valueForKey("alert") as! String
     let sound: AnyObject? = aps.valueForKey("sound")
-    if badgeCount > 0 {
-      UIApplication.sharedApplication().applicationIconBadgeNumber += badgeCount!
-      self.setBulletinTabItemBadgeWithIncrementValue(badgeCount!)
+    if application.applicationState == UIApplicationState.Active {
+      application.applicationIconBadgeNumber = badgeCount!
+      self.setBulletinTabItemBadge(badgeCount!)
+    } else {
+      self.setBulletinTabItemBadge(application.applicationIconBadgeNumber)
     }
   }
 
@@ -122,36 +109,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
 
-  func setBulletinTabItemBadgeWithIncrementValue(increment: Int) {
+  func setBulletinTabItemBadge(value: Int){
     let rootViewController = self.window?.rootViewController
-    if (rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) != nil) {
+    if (rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) == true) {
       let tabBarController = rootViewController as! UITabBarController
       let tabBar = tabBarController.tabBar
       if let firstItem = tabBar.items?[0] as? UITabBarItem {
-        let originalBadgeValue = firstItem.badgeValue
-        var newBadgeCount: Int? = (originalBadgeValue == nil) ? 0 : originalBadgeValue?.toInt()
-        if increment > 0 {
-          if newBadgeCount != nil {
-            newBadgeCount! += increment
-          } else {
-            newBadgeCount = increment
-          }
-        }
-        var newBadgeValue: String?
-        if newBadgeCount <= 0 {
-          newBadgeValue = nil
+        if value <= 0 {
+          firstItem.badgeValue = nil
+        } else if value >= 100 {
+          firstItem.badgeValue = "99+"
         } else {
-          if newBadgeCount >= 100 {
-            newBadgeValue = "99+"
-          } else {
-            if newBadgeCount != nil {
-              newBadgeValue = String(newBadgeCount!)
-            } else {
-              newBadgeValue = nil
-            }
-          }
+          firstItem.badgeValue = String(value)
         }
-        firstItem.badgeValue = newBadgeValue
       }
     }
   }
@@ -169,5 +139,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func resetApplicationIconBadge() {
     UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+  }
+
+  func resetBadgeValueOnServer() {
+    APService.resetBadge()
   }
 }
