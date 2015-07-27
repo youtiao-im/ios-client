@@ -88,7 +88,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Youtiao" id="sTd-bs-AUc">
-                        <barButtonItem key="rightBarButtonItem" title="Sign In" id="U38-Bi-TMG">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" id="U38-Bi-TMG">
                             <connections>
                                 <action selector="signIn:" destination="tsp-bh-9x8" id="1Fn-fD-ydH"/>
                             </connections>
@@ -210,14 +210,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Born to Notify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeL-Q4-sR3">
-                                <rect key="frame" x="26" y="427" width="548" height="26"/>
+                                <rect key="frame" x="26" y="426" width="548" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Youtiao" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjW-tZ-6A2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Youtiao" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjW-tZ-6A2">
                                 <rect key="frame" x="26" y="385" width="548" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -228,7 +228,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Qg6-0A-LsG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="Sign In">
+                                <state key="normal" title="Log In">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -253,7 +253,7 @@
                             <constraint firstAttribute="trailing" secondItem="F3X-jL-gEE" secondAttribute="trailing" id="b8C-X0-9JA"/>
                             <constraint firstItem="GB5-Tg-OB9" firstAttribute="top" secondItem="ZeL-Q4-sR3" secondAttribute="bottom" constant="30" id="bFH-7A-a9M"/>
                             <constraint firstAttribute="centerX" secondItem="ZeL-Q4-sR3" secondAttribute="centerX" id="daG-3a-ABO"/>
-                            <constraint firstItem="F3X-jL-gEE" firstAttribute="top" secondItem="PYY-ar-Kkd" secondAttribute="topMargin" id="goj-kR-kln"/>
+                            <constraint firstItem="F3X-jL-gEE" firstAttribute="top" secondItem="PYY-ar-Kkd" secondAttribute="top" id="goj-kR-kln"/>
                             <constraint firstItem="GB5-Tg-OB9" firstAttribute="leading" secondItem="mK7-HB-Tws" secondAttribute="leading" id="pP7-D9-l4K"/>
                             <constraint firstItem="ZeL-Q4-sR3" firstAttribute="trailing" secondItem="KjW-tZ-6A2" secondAttribute="trailing" id="q7T-DL-XSR"/>
                             <constraint firstAttribute="trailing" secondItem="mK7-HB-Tws" secondAttribute="trailing" constant="8" id="qJJ-5D-nK5"/>

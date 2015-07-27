@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().barTintColor = BRAND_COLOR
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-    UINavigationBar.appearance().translucent = false
 
     UITabBar.appearance().tintColor = BRAND_COLOR
-    UITabBar.appearance().translucent = false
 
     UITableView.appearance().backgroundColor = BACKGROUND_COLOR
 
@@ -33,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     self.window?.rootViewController = storyBoard?.instantiateInitialViewController() as? UIViewController
+    if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
+      UINavigationBar.appearance().translucent = false
+      UITabBar.appearance().translucent = false
+    } else {
+      if self.window?.rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) == true {
+        let tabBarController = self.window?.rootViewController as! UITabBarController
+        tabBarController.tabBar.translucent = false
+      }
+    }
     self.window?.makeKeyAndVisible()
 
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadUserInfoSuccessNotification:"), name: "loadUserInfoSuccessNotification", object: nil)

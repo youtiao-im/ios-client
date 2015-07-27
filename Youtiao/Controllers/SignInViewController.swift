@@ -78,6 +78,13 @@ class SignInViewController: UITableViewController {
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.sharedApplication().delegate?.window??.rootViewController = mainStoryBoard.instantiateInitialViewController() as? UIViewController
+
+        if NSString(string: UIDevice.currentDevice().systemVersion).floatValue < 8.0 {
+          if UIApplication.sharedApplication().delegate?.window??.rootViewController?.isKindOfClass(NSClassFromString("UITabBarController")) == true {
+            let tabBarController = UIApplication.sharedApplication().delegate?.window??.rootViewController as! UITabBarController
+            tabBarController.tabBar.translucent = false
+          }
+        }
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate?
         appDelegate?.setBulletinTabItemBadge(UIApplication.sharedApplication().applicationIconBadgeNumber)
       }, failure: { (error: NSError) -> Void in

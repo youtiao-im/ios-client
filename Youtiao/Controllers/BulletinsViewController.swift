@@ -8,6 +8,8 @@ class BulletinsViewController: UIViewController {
   var warningAlertView: UIAlertView!
   var lastVisibleBeginCellIndexPath: NSIndexPath?
 
+  var prototypeCell: BulletinCell!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -15,8 +17,10 @@ class BulletinsViewController: UIViewController {
 
     let bulletinCellNib = UINib(nibName: "BulletinCell", bundle: nil)
     self.bulletinsTableView.registerNib(bulletinCellNib, forCellReuseIdentifier: "BulletinCell")
-    self.bulletinsTableView.rowHeight = UITableViewAutomaticDimension
-    self.bulletinsTableView.estimatedRowHeight = 160.0
+    if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
+      self.bulletinsTableView.rowHeight = UITableViewAutomaticDimension
+      self.bulletinsTableView.estimatedRowHeight = 160.0
+    }
 
     self.bulletinsTableView.tableFooterView = UIView()
 
@@ -46,6 +50,9 @@ class BulletinsViewController: UIViewController {
     dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
       self.bulletinsTableView.ins_beginPullToRefresh()
     }
+
+    let viewArray: NSArray = NSBundle.mainBundle().loadNibNamed("BulletinCell", owner: self, options: nil)
+    self.prototypeCell = viewArray.objectAtIndex(0) as! BulletinCell
   }
 
   override func didReceiveMemoryWarning() {
@@ -243,8 +250,10 @@ extension BulletinsViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     cell.separatorInset = UIEdgeInsetsZero
-    cell.preservesSuperviewLayoutMargins = false
-    cell.layoutMargins = UIEdgeInsetsZero
+    if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
+      cell.preservesSuperviewLayoutMargins = false
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
 
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -253,6 +262,17 @@ extension BulletinsViewController: UITableViewDelegate {
     } else {
       return 0.0
     }
+  }
+
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    let stringText = self.bulletins[indexPath.section].text
+    self.prototypeCell.textContentLabel.text = stringText
+    let size = self.prototypeCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize) as CGSize
+    return size.height + 1
+  }
+
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 160.0
   }
 
   func scrollViewDidScroll(scrollView: UIScrollView) {
