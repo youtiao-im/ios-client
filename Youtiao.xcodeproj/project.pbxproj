@@ -12,9 +12,6 @@
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
 		6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
-		6EB730661B61E71900DCBCD9 /* icon60.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB730631B61E71900DCBCD9 /* icon60.png */; };
-		6EB730671B61E71900DCBCD9 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB730641B61E71900DCBCD9 /* icon120.png */; };
-		6EB730681B61E71900DCBCD9 /* icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB730651B61E71900DCBCD9 /* icon180.png */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
 		6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */; };
 		6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */; };
@@ -75,9 +72,6 @@
 		6E7EB0031B60A5DB006E9F5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EB730621B61E2C800DCBCD9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		6EB730631B61E71900DCBCD9 /* icon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon60.png; path = ImageResources/icon60.png; sourceTree = "<group>"; };
-		6EB730641B61E71900DCBCD9 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon120.png; path = ImageResources/icon120.png; sourceTree = "<group>"; };
-		6EB730651B61E71900DCBCD9 /* icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon180.png; path = ImageResources/icon180.png; sourceTree = "<group>"; };
 		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
 		6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBulletinViewController.swift; sourceTree = "<group>"; };
 		6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinCell.swift; sourceTree = "<group>"; };
@@ -146,16 +140,6 @@
 			name = Internationalization;
 			sourceTree = "<group>";
 		};
-		6EB730501B6104DD00DCBCD9 /* ImageResources */ = {
-			isa = PBXGroup;
-			children = (
-				6EB730631B61E71900DCBCD9 /* icon60.png */,
-				6EB730641B61E71900DCBCD9 /* icon120.png */,
-				6EB730651B61E71900DCBCD9 /* icon180.png */,
-			);
-			name = ImageResources;
-			sourceTree = "<group>";
-		};
 		9C72B5BD1B313753000211E2 = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +163,6 @@
 		9C72B5C81B313753000211E2 /* Youtiao */ = {
 			isa = PBXGroup;
 			children = (
-				6EB730501B6104DD00DCBCD9 /* ImageResources */,
 				9C72B5CB1B313753000211E2 /* AppDelegate.swift */,
 				9C7F85A91B423F5600E37EBD /* Controllers */,
 				9C8E5BF61B3A5CEC0088BA76 /* Extensions */,
@@ -400,12 +383,9 @@
 				6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */,
 				6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */,
 				9C72B5D31B313753000211E2 /* Main.storyboard in Resources */,
-				6EB730681B61E71900DCBCD9 /* icon180.png in Resources */,
-				6EB730661B61E71900DCBCD9 /* icon60.png in Resources */,
 				6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */,
 				9C72B5D81B313753000211E2 /* LaunchScreen.xib in Resources */,
 				9C72B5D51B313753000211E2 /* Images.xcassets in Resources */,
-				6EB730671B61E71900DCBCD9 /* icon120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +623,7 @@
 			baseConfigurationReference = 49F866BA1EDE08E3548187D7 /* Pods-Youtiao.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
@@ -660,6 +641,7 @@
 			baseConfigurationReference = 23B70BE568A5C8719971BD38 /* Pods-Youtiao.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";

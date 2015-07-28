@@ -57,7 +57,7 @@ class TimeHelper {
   static func currentSystemLanguage() -> String! {
     var lang: String? = NSUserDefaults.standardUserDefaults().objectForKey("AppleLanguages")?.objectAtIndex(0) as? String
     if lang != nil {
-      if lang == "zh_Hans" || lang == "zh_Hant" {
+      if lang == "zh-Hans" || lang == "zh-Hant" {
         return "zh_CN"
       } else {
         return "en_US"

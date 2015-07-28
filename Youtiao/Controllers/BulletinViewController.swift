@@ -14,9 +14,10 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     super.viewDidLoad()
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-
-    self.stampsTableView.rowHeight = UITableViewAutomaticDimension
-    self.stampsTableView.estimatedRowHeight = 160.0
+    if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
+      self.stampsTableView.rowHeight = UITableViewAutomaticDimension
+      self.stampsTableView.estimatedRowHeight = 160.0
+    }
     self.stampsTableView.tableFooterView = UIView()
 
     self.stampsTableView.ins_addInfinityScrollWithHeight(60.0,
@@ -127,7 +128,9 @@ extension BulletinViewController: UITableViewDataSource {
 extension BulletinViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-    cell.preservesSuperviewLayoutMargins = false
-    cell.layoutMargins = UIEdgeInsetsZero
+    if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
+      cell.preservesSuperviewLayoutMargins = false
+      cell.layoutMargins = UIEdgeInsetsZero
+    }
   }
 }
