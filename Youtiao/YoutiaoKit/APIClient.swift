@@ -10,7 +10,7 @@ class APIClient: AFHTTPRequestOperationManager{
 
   init() {
     super.init(baseURL: NSURL(string: "http://api.youtiao.im:3000/v1"))
-
+    
     self.requestSerializer = AFJSONRequestSerializer()
     self.responseSerializer = AFJSONResponseSerializer()
   }
@@ -130,14 +130,14 @@ class APIClient: AFHTTPRequestOperationManager{
   func signInWithEmail(email: String, password: String, success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters = [
       "username": email,
-      "password": password,
-      "grant_type": "password"]
+      "password": password]
 
     var requestURLString = signInBaseURL
     requestURLString += "?grant_type=password"
     for (fieldKey, fieldValue) in parameters {
       requestURLString += "&\(fieldKey)=\(fieldValue)"
     }
+
     var signInRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
     signInRequest.HTTPMethod = "POST"
     let signInOperation: AFHTTPRequestOperation = AFHTTPRequestOperation(request: signInRequest)
