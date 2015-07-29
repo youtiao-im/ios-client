@@ -9,7 +9,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     MobClick.startWithAppkey("55adf7b467e58ec60a001538", reportPolicy: BATCH, channelId: nil)
-    MobClick.setLogEnabled(true)
 
     UINavigationBar.appearance().barStyle = UIBarStyle.Black
     UINavigationBar.appearance().barTintColor = BRAND_COLOR
@@ -43,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.makeKeyAndVisible()
 
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadUserInfoSuccessNotification:"), name: "loadUserInfoSuccessNotification", object: nil)
-    APService.setDebugMode()
     APService.registerForRemoteNotificationTypes(UIUserNotificationType.Badge.rawValue | UIUserNotificationType.Sound.rawValue | UIUserNotificationType.Alert.rawValue, categories: nil)
     APService.setupWithOption(launchOptions)
 

@@ -134,7 +134,7 @@ class BulletinsViewController: UIViewController {
       success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.bulletinsTableView.reloadData()
       }, failure: { (error: NSError) -> Void in
         var errorMessage: String
         if error is ForbiddenError || error is NotFoundError {
@@ -153,7 +153,7 @@ class BulletinsViewController: UIViewController {
       success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.bulletinsTableView.reloadData()
       }, failure: { (error: NSError) -> Void in
         var errorMessage: String
         if error is ForbiddenError || error is NotFoundError {
@@ -266,9 +266,23 @@ extension BulletinsViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     let stringText = self.bulletins[indexPath.section].text
-    self.prototypeCell.textContentLabel.text = stringText
+    self.prototypeCell.textContentLabel.preferredMaxLayoutWidth = self.view.bounds.size.width - 27
+    let bulletin = self.bulletins[indexPath.section] as Bulletin
+    var ownerName = bulletin.createdBy?.name
+    if ownerName == nil {
+      ownerName = NSLocalizedString("Unknown user", comment:"Unknown user")
+    }
+    var textContent = bulletin.text
+    var prefixText = ownerName! + ": "
+    textContent = prefixText + textContent!
+    var mutableAttributedString = NSMutableAttributedString(string: textContent!)
+    mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+    self.prototypeCell.textContentLabel.attributedText = mutableAttributedString
+    self.prototypeCell.setNeedsLayout()
+    self.prototypeCell.layoutIfNeeded()
     let size = self.prototypeCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize) as CGSize
-    return size.height + 1
+    return size.height + 1.0
   }
 
   func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
