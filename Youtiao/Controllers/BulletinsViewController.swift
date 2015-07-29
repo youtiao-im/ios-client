@@ -134,7 +134,7 @@ class BulletinsViewController: UIViewController {
       success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.bulletinsTableView.reloadData()
       }, failure: { (error: NSError) -> Void in
         var errorMessage: String
         if error is ForbiddenError || error is NotFoundError {
@@ -153,7 +153,7 @@ class BulletinsViewController: UIViewController {
       success: { (bulletin: Bulletin) -> Void in
         let row = sender.tag
         self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: row)], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.bulletinsTableView.reloadData()
       }, failure: { (error: NSError) -> Void in
         var errorMessage: String
         if error is ForbiddenError || error is NotFoundError {
