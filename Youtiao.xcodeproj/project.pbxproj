@@ -12,6 +12,7 @@
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
 		6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
+		6EB8E9451B69CAD9005AC454 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EB8E9471B69CAD9005AC454 /* InfoPlist.strings */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
 		6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */; };
 		6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */; };
@@ -69,9 +70,11 @@
 		6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
 		6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
-		6E7EB0031B60A5DB006E9F5B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EB730621B61E2C800DCBCD9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6EB8E9461B69CAD9005AC454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6EB8E9481B69CADD005AC454 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		6EB8E9491B69CD0E005AC454 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
 		6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBulletinViewController.swift; sourceTree = "<group>"; };
 		6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinCell.swift; sourceTree = "<group>"; };
@@ -183,8 +186,9 @@
 		9C72B5C91B313753000211E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6E7EB0031B60A5DB006E9F5B /* Info.plist */,
+				6EB8E9491B69CD0E005AC454 /* Info.plist */,
 				6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */,
+				6EB8E9471B69CAD9005AC454 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -380,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */,
+				6EB8E9451B69CAD9005AC454 /* InfoPlist.strings in Resources */,
 				6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */,
 				6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */,
 				9C72B5D31B313753000211E2 /* Main.storyboard in Resources */,
@@ -508,6 +513,15 @@
 			name = Landing.storyboard;
 			sourceTree = "<group>";
 		};
+		6EB8E9471B69CAD9005AC454 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6EB8E9461B69CAD9005AC454 /* Base */,
+				6EB8E9481B69CADD005AC454 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		9C72B5D11B313753000211E2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -547,7 +561,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -571,7 +585,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Youtiao;
-				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
+				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -595,7 +609,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feng Ye (N3V6KDTFUA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -612,7 +626,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Youtiao;
-				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
+				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -630,7 +644,7 @@
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
+				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -648,7 +662,7 @@
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
+				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 			};
 			name = Release;
