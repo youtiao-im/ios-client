@@ -1,7 +1,7 @@
 import Foundation
 
-let signInBaseURL = "http://youtiao.im:3000/oauth/token"
-let signOutBaseURL = "http://youtiao.im:3000/oauth/revoke"
+let signInBaseURL = "http://youtiao.im/oauth/token"
+let signOutBaseURL = "http://youtiao.im/oauth/revoke"
 
 class APIClient: AFHTTPRequestOperationManager{
   static let sharedInstance = APIClient()
@@ -9,8 +9,8 @@ class APIClient: AFHTTPRequestOperationManager{
   var accessToken: String?
 
   init() {
-    super.init(baseURL: NSURL(string: "http://api.youtiao.im:3000/v1"))
-    
+    super.init(baseURL: NSURL(string: "http://api.youtiao.im/v1"))
+
     self.requestSerializer = AFJSONRequestSerializer()
     self.responseSerializer = AFJSONResponseSerializer()
   }
