@@ -127,25 +127,43 @@ class APIClient: AFHTTPRequestOperationManager{
     )
   }
 
+  private func encodedStringForURLParameterString(stringValue: String) -> String? {
+    let encodedString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, stringValue, nil, ":/?#[]@!$&'()*+,;=", CFStringBuiltInEncodings.UTF8.rawValue) as String
+    return encodedString
+  }
+
   func signInWithEmail(email: String, password: String, success: (([NSObject: AnyObject]) -> Void)?, failure: ((NSError) -> Void)?) {
     let parameters = [
+      "grant_type": "password",
       "username": email,
       "password": password]
 
     var requestURLString = signInBaseURL
-    requestURLString += "?grant_type=password"
+    var queryString: String? = nil
     for (fieldKey, fieldValue) in parameters {
-      requestURLString += "&\(fieldKey)=\(fieldValue)"
+      if let encodedKey = self.encodedStringForURLParameterString(fieldKey) {
+        if let encodedValue = self.encodedStringForURLParameterString(fieldValue) {
+          if queryString == nil {
+            queryString = "?"
+          } else {
+            queryString! += "&"
+          }
+          queryString! += encodedKey + "=" + encodedValue
+        }
+      }
+    }
+    if queryString != nil {
+      requestURLString += queryString!
     }
 
     var signInRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: requestURLString)!)
     signInRequest.HTTPMethod = "POST"
     let signInOperation: AFHTTPRequestOperation = AFHTTPRequestOperation(request: signInRequest)
     signInOperation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
-        let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
-        let dictionaryObj = jsonObject as! NSDictionary
-        self.accessToken = dictionaryObj.valueForKey("access_token") as? String
-        success?(jsonObject as! [NSObject: AnyObject])
+      let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(responseObject as! NSData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+      let dictionaryObj = jsonObject as! NSDictionary
+      self.accessToken = dictionaryObj.valueForKey("access_token") as? String
+      success?(jsonObject as! [NSObject: AnyObject])
       }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
         failure?(self.convertError(operation: operation, error: error))
       }

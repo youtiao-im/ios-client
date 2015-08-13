@@ -585,7 +585,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Youtiao;
-				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -626,7 +626,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Youtiao;
-				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -644,7 +644,7 @@
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -662,7 +662,7 @@
 				INFOPLIST_FILE = Youtiao/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9986d872-eea9-4bfe-a67a-d7fdc3c4cdde";
+				PROVISIONING_PROFILE = "6223a218-3daf-44c9-ae9f-4878c1fd7352";
 				SWIFT_OBJC_BRIDGING_HEADER = "Youtiao/Youtiao-Bridging-Header.h";
 			};
 			name = Release;
