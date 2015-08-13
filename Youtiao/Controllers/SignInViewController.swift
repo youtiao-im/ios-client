@@ -60,7 +60,7 @@ class SignInViewController: UITableViewController {
   }
 
   @IBAction func forgotPassword(sender: AnyObject) {
-    let urlBaseURLString = "http://youtiao.im:3000"
+    let urlBaseURLString = "http://youtiao.im"
     let pageURL = urlBaseURLString + "/users/password/new"
     let forgotPasswordUrl: NSURL? = NSURL(string: pageURL)
     UIApplication.sharedApplication().openURL(forgotPasswordUrl!)
@@ -125,6 +125,9 @@ extension SignInViewController: UITextFieldDelegate {
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if textField == emailTextField {
       passwordTextField.becomeFirstResponder()
+      return true
+    } else if textField == passwordTextField {
+      self.signIn(self.navigationItem.rightBarButtonItem!)
       return true
     }
     return true
