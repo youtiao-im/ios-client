@@ -149,7 +149,6 @@ extension GroupMembersViewController: UITableViewDataSource {
       cell!.detailTextLabel?.text = NSLocalizedString("member", comment: "member")
     }
     cell!.detailTextLabel?.font = UIFont.systemFontOfSize(15.0)
-//    cell?.userInteractionEnabled = false
     return cell!
   }
 }

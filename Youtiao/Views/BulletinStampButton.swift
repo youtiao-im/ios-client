@@ -1,11 +1,3 @@
-//
-//  BulletinStampButton.swift
-//  Youtiao
-//
-//  Created by Banmayun on 15/7/15.
-//  Copyright (c) 2015年 youtiao.im. All rights reserved.
-//
-
 import UIKit
 
 class BulletinStampButton: UIButton {
