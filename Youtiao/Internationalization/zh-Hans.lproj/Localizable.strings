@@ -8,12 +8,15 @@
 "Bulletin text is too long." = "公告内容太长了。";
 "Bulletin text is too short." = "公告内容太短了。";
 
+"Can not send email from this device, you should change configuration for email first" = "无法从该设备发送邮件，在发送邮件之前请修改邮箱配置信息";
 "Cancel" = "取消";
 "Create a Group" = "创建群组";
 
 " day ago" = "天前";
 " days ago" = "天前";
+"Demote as Member" = "设为普通成员";
 
+"Email" = "邮箱地址";
 "Email invalid" = "邮箱地址无效";
 "Email should not be empty" = "邮箱地址不能为空";
 "Enter message" = "编写消息";
@@ -40,11 +43,13 @@
 "Join a Group" = "加入群组";
 "just now" = "刚刚";
 
+"Mail send failed" = "发送邮件失败";
 "member" = "成员";
 "Members" = "普通成员";
 " minute ago" = "分钟前";
 " minutes ago" = "分钟前";
 
+"Name" = "名字";
 "Network Error" = "网络错误";
 
 "OK" = "好的";
@@ -53,6 +58,8 @@
 
 "Password invalid" = "密码无效";
 "Please try again later." = "请稍后重试。";
+"Problem Feedback" = "问题反馈";
+"Promote as Admin" = "设为管理员";
 
 " second ago" = "秒前";
 " seconds ago" = "秒前";

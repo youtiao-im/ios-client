@@ -8,12 +8,15 @@
 "Bulletin text is too long." = "Bulletin text is too long.";
 "Bulletin text is too short." = "Bulletin text is too short.";
 
+"Can not send email from this device, you should change configuration for email first" = "Can not send email from this device, you should change configuration for email first";
 "Cancel" = "Cancel";
 "Create a Group" = "Create a Group";
 
 " day ago" = " day ago";
 " days ago" = " days ago";
+"Demote as Member" = "Set as Member";
 
+"Email" = "Email";
 "Email invalid" = "Email is invalid";
 "Email should not be empty" = "Email should not be empty";
 "Enter message" = "Enter message";
@@ -40,11 +43,13 @@
 "Join a Group" = "Join a Group";
 "just now" = "just now";
 
+"Mail send failed" = "Mail send failed";
 "member" = "member";
 "Members" = "Members";
 " minute ago" = " minute ago";
 " minutes ago" = " minutes ago";
 
+"Name" = "Name";
 "Network Error" = "Network Error";
 
 "OK" = "OK";
@@ -53,6 +58,8 @@
 
 "Password invalid" = "Password is invalid";
 "Please try again later." = "Please try again later.";
+"Problem Feedback" = "Problem Feedback";
+"Promote as Admin" = "Set as Administrator";
 
 " second ago" = " second ago";
 " seconds ago" = " seconds ago";

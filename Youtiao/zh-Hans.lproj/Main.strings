@@ -8,23 +8,29 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "2Nm-uC-Pj3"; */
 "2Nm-uC-Pj3.text" = "Detail";
 
+/* Class = "UILabel"; text = "QQ Group"; ObjectID = "3aY-k0-A0y"; */
+"3aY-k0-A0y.text" = "QQ群";
+
 /* Class = "UINavigationItem"; title = "Group Settings"; ObjectID = "42C-II-yqV"; */
 "42C-II-yqV.title" = "群组设置";
 
-/* Class = "UILabel"; text = "To:"; ObjectID = "4fP-5a-Off"; */
-"4fP-5a-Off.text" = "To:";
+/* Class = "UILabel"; text = "Name"; ObjectID = "58x-ou-Qxn"; */
+"58x-ou-Qxn.text" = "名字";
+
+/* Class = "UILabel"; text = "138578696"; ObjectID = "5On-ad-D63"; */
+"5On-ad-D63.text" = "138578696";
 
 /* Class = "UINavigationItem"; title = "Join Group"; ObjectID = "5tk-9Q-CGh"; */
 "5tk-9Q-CGh.title" = "加入群组";
+
+/* Class = "UIButton"; normalTitle = "Log Out"; ObjectID = "6zr-fg-g2n"; */
+"6zr-fg-g2n.normalTitle" = "退出登录";
 
 /* Class = "UITextField"; placeholder = "Group Name"; ObjectID = "7dv-TU-BJ5"; */
 "7dv-TU-BJ5.placeholder" = "群组名称";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "7mf-Le-GHv"; */
 "7mf-Le-GHv.text" = "Detail";
-
-/* Class = "UIButton"; normalTitle = "Sign Out"; ObjectID = "8aW-Px-fd7"; */
-"8aW-Px-fd7.normalTitle" = "退出登录";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "CHe-YG-tfa"; */
 "CHe-YG-tfa.title" = "保存";
@@ -41,11 +47,20 @@
 /* Class = "UINavigationItem"; title = "Group Code"; ObjectID = "FHC-GN-snr"; */
 "FHC-GN-snr.title" = "群组识别码";
 
+/* Class = "UILabel"; text = "Feedback"; ObjectID = "J7e-nK-OBd"; */
+"J7e-nK-OBd.text" = "问题反馈";
+
 /* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "K6S-h1-Ycf"; */
 "K6S-h1-Ycf.title" = "创建";
 
+/* Class = "UILabel"; text = "Detail"; ObjectID = "KW6-1p-VxN"; */
+"KW6-1p-VxN.text" = "Detail";
+
 /* Class = "UITextField"; placeholder = "Group Code"; ObjectID = "KaO-RR-NQh"; */
 "KaO-RR-NQh.placeholder" = "群组识别码";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Kkk-5N-tHf"; */
+"Kkk-5N-tHf.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Group Code"; ObjectID = "Ktd-Th-3Qa"; */
 "Ktd-Th-3Qa.text" = "群组识别码";
@@ -86,6 +101,9 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "asn-eA-xz9"; */
 "asn-eA-xz9.text" = "Detail";
 
+/* Class = "UINavigationItem"; title = "Details"; ObjectID = "axX-JW-2Nk"; */
+"axX-JW-2Nk.title" = "详细信息";
+
 /* Class = "UILabel"; text = "Name"; ObjectID = "c8w-95-uqL"; */
 "c8w-95-uqL.text" = "名字";
 
@@ -94,6 +112,9 @@
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "cRZ-23-cAv"; */
 "cRZ-23-cAv.title" = "设置";
+
+/* Class = "UILabel"; text = "To:"; ObjectID = "eOn-m6-T33"; */
+"eOn-m6-T33.text" = "To:";
 
 /* Class = "UILabel"; text = "Version"; ObjectID = "ft5-NT-riN"; */
 "ft5-NT-riN.text" = "版本号";
@@ -104,23 +125,26 @@
 /* Class = "UILabel"; text = "Members"; ObjectID = "gkj-B3-xmD"; */
 "gkj-B3-xmD.text" = "成员";
 
-/* Class = "UINavigationItem"; title = "Group"; ObjectID = "h9d-gZ-UyN"; */
-"h9d-gZ-UyN.title" = "群组";
-
 /* Class = "UINavigationItem"; title = "New Bulletin"; ObjectID = "hLE-gx-LMv"; */
 "hLE-gx-LMv.title" = "新公告";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "iga-p1-Sbc"; */
 "iga-p1-Sbc.text" = "Detail";
 
-/* Class = "UIButton"; normalTitle = "Delete and Leave"; ObjectID = "jDh-2W-jtx"; */
+/* Class = "UIButton"; normalTitle = "Leave Group"; ObjectID = "jDh-2W-jtx"; */
 "jDh-2W-jtx.normalTitle" = "退出群组";
 
 /* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "jtP-Kw-Sir"; */
 "jtP-Kw-Sir.title" = "创建";
 
+/* Class = "UILabel"; text = "Detail"; ObjectID = "kZy-m2-5dA"; */
+"kZy-m2-5dA.text" = "Detail";
+
 /* Class = "UILabel"; text = "Email"; ObjectID = "lC1-3D-3V1"; */
 "lC1-3D-3V1.text" = "邮箱地址";
+
+/* Class = "UINavigationItem"; title = "Feedback"; ObjectID = "m6d-IN-YUX"; */
+"m6d-IN-YUX.title" = "问题反馈";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "mBZ-wj-BI7"; */
 "mBZ-wj-BI7.text" = "Detail";
@@ -130,6 +154,9 @@
 
 /* Class = "UIBarButtonItem"; title = "Join"; ObjectID = "udM-wd-Fbf"; */
 "udM-wd-Fbf.title" = "加入";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "v4a-zK-s4K"; */
+"v4a-zK-s4K.text" = "邮箱地址";
 
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "vG7-L1-lyv"; */
 "vG7-L1-lyv.title" = "保存";
@@ -145,3 +172,6 @@
 
 /* Class = "UILabel"; text = "Group Name"; ObjectID = "ysy-7F-5Sj"; */
 "ysy-7F-5Sj.text" = "群组名称";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "ziE-gQ-bIg"; */
+"ziE-gQ-bIg.text" = "发送邮件";

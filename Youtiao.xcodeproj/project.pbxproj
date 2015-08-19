@@ -15,6 +15,9 @@
 		6EB8E9451B69CAD9005AC454 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EB8E9471B69CAD9005AC454 /* InfoPlist.strings */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
 		6EBBE0991B57997F007F281F /* NewBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */; };
+		6ECE134A1B82D76D0051EEE5 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE13491B82D76D0051EEE5 /* FeedbackViewController.swift */; };
+		6ECE134C1B831CEA0051EEE5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECE134B1B831CEA0051EEE5 /* MessageUI.framework */; };
+		6ECE134E1B8346FC0051EEE5 /* MemberDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE134D1B8346FC0051EEE5 /* MemberDetailsViewController.swift */; };
 		6EE3CBC71B4BA08300C142C4 /* BulletinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */; };
 		6EE3CBC81B4BA08300C142C4 /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */; };
 		6EE3CBCA1B4BBE1600C142C4 /* BulletinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */; };
@@ -67,7 +70,6 @@
 		6E26780E1B4678F4005EC1EB /* GroupMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		6E4AD9AB1B4F912500BB23CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6E4AD9AD1B4F912900BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
 		6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,10 @@
 		6EB8E9491B69CD0E005AC454 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinStampButton.swift; sourceTree = "<group>"; };
 		6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBulletinViewController.swift; sourceTree = "<group>"; };
+		6ECE13491B82D76D0051EEE5 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		6ECE134B1B831CEA0051EEE5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6ECE134D1B8346FC0051EEE5 /* MemberDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberDetailsViewController.swift; sourceTree = "<group>"; };
+		6ECE13501B841A030051EEE5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinCell.swift; sourceTree = "<group>"; };
 		6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinCell.xib; sourceTree = "<group>"; };
 		6EE3CBC91B4BBE1600C142C4 /* BulletinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinsViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECE134C1B831CEA0051EEE5 /* MessageUI.framework in Frameworks */,
 				A4710678925CB497C22D2FAD /* libPods-Youtiao.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +260,8 @@
 				9C7F85B61B423F9E00E37EBD /* SignUpViewController.swift */,
 				6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */,
 				6EBBE0981B57997F007F281F /* NewBulletinViewController.swift */,
+				6ECE13491B82D76D0051EEE5 /* FeedbackViewController.swift */,
+				6ECE134D1B8346FC0051EEE5 /* MemberDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 		DACDD3F359AB2C47DC8C1BFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6ECE134B1B831CEA0051EEE5 /* MessageUI.framework */,
 				35C34B4D6E3D4E9A0B3AE6EB /* libPods-Youtiao.a */,
 			);
 			name = Frameworks;
@@ -464,10 +474,12 @@
 				6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */,
 				9C87CBC91B3BCF3500F58461 /* Errors.swift in Sources */,
 				9C72B6281B32FD5E000211E2 /* Blob.swift in Sources */,
+				6ECE134E1B8346FC0051EEE5 /* MemberDetailsViewController.swift in Sources */,
 				9C7F85BC1B423F9E00E37EBD /* GroupsViewController.swift in Sources */,
 				9C7F85B91B423F9E00E37EBD /* EditGroupCodeViewController.swift in Sources */,
 				9C72B5F91B3139BE000211E2 /* Comment.swift in Sources */,
 				9C7F85C01B423F9E00E37EBD /* NewGroupViewController.swift in Sources */,
+				6ECE134A1B82D76D0051EEE5 /* FeedbackViewController.swift in Sources */,
 				9C7F85C31B423F9E00E37EBD /* SignUpViewController.swift in Sources */,
 				9C7F85C11B423F9E00E37EBD /* SettingsViewController.swift in Sources */,
 				9C7F85BA1B423F9E00E37EBD /* EditGroupNameViewController.swift in Sources */,
@@ -526,7 +538,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9C72B5D21B313753000211E2 /* Base */,
-				6E6B9C1C1B5DDACE00AA74F8 /* zh-Hans */,
+				6ECE13501B841A030051EEE5 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
