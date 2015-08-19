@@ -11,12 +11,43 @@ class GroupMembersViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     membersTableView.tableFooterView = UIView()
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handlePromoteMembershipSuccessNotification:"), name: "promoteMembershipSuccessNotification", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleDemoteMembershipSuccessNotification:"), name: "demoteMembershipSuccessNotification", object: nil)
+
     self.loadAllMemberships()
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+
+  deinit{
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "promoteMembershipSuccessNotification", object: nil)
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "demoteMembershipSuccessNotification", object: nil)
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let selectedIndexPath = self.membersTableView.indexPathForSelectedRow()
+    if selectedIndexPath?.row < 0 || selectedIndexPath?.row > self.memberships.count {
+      return
+    }
+    let selectedMembership = self.memberships[selectedIndexPath!.row]
+    if let memberDetailsViewController = segue.destinationViewController as? MemberDetailsViewController {
+      memberDetailsViewController.membership = selectedMembership
+      var owner: User? = nil
+      for member in self.memberships {
+        if let role = member.role {
+          if role == "owner" {
+            owner = member.user
+            break
+          }
+        }
+      }
+      memberDetailsViewController.groupOwner = owner
+    }
   }
 
   func loadAllMemberships() {
@@ -53,6 +84,38 @@ class GroupMembersViewController: UIViewController {
     warningAlertView = UIAlertView(title: title, message: errorMsg, delegate: nil, cancelButtonTitle: NSLocalizedString("OK", comment: "OK"))
     warningAlertView.show()
   }
+
+  func handlePromoteMembershipSuccessNotification(notification: NSNotification) {
+    let userInfoDict = notification.userInfo as! [String: AnyObject]
+    let originalMembership = userInfoDict["originalMembership"] as! Membership
+    let newMembership = userInfoDict["newMembership"] as! Membership
+    let originalMembershipId = originalMembership.id
+    for var i = 0; i < self.memberships.count; ++i {
+      let itemMembership = self.memberships[i]
+      let itemMembershipId = itemMembership.id
+      if itemMembershipId != nil && originalMembershipId != nil && itemMembershipId == originalMembershipId {
+        self.memberships[i] = newMembership
+        break
+      }
+    }
+    self.membersTableView.reloadData()
+  }
+
+  func handleDemoteMembershipSuccessNotification(notification: NSNotification) {
+    let userInfoDict = notification.userInfo as! [String: AnyObject]
+    let originalMembership = userInfoDict["originalMembership"] as! Membership
+    let newMembership = userInfoDict["newMembership"] as! Membership
+    let originalMembershipId = originalMembership.id
+    for var i = 0; i < self.memberships.count; ++i {
+      let itemMembership = self.memberships[i]
+      let itemMembershipId = itemMembership.id
+      if itemMembershipId != nil && originalMembershipId != nil && itemMembershipId == originalMembershipId {
+        self.memberships[i] = newMembership
+        break
+      }
+    }
+    self.membersTableView.reloadData()
+  }
 }
 
 // MARK: - UITableViewDataSource
@@ -86,7 +149,7 @@ extension GroupMembersViewController: UITableViewDataSource {
       cell!.detailTextLabel?.text = NSLocalizedString("member", comment: "member")
     }
     cell!.detailTextLabel?.font = UIFont.systemFontOfSize(15.0)
-    cell?.userInteractionEnabled = false
+//    cell?.userInteractionEnabled = false
     return cell!
   }
 }
@@ -94,6 +157,7 @@ extension GroupMembersViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension GroupMembersViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    self.performSegueWithIdentifier("showMemberDetailsSegue", sender: self)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 

@@ -31,6 +31,8 @@ class SettingsViewController: UITableViewController, UIImagePickerControllerDele
     var cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
     cell.userInteractionEnabled = false
     cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+    cell.userInteractionEnabled = true
+    cell = tableView(self.tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
     cell.userInteractionEnabled = false
   }
 

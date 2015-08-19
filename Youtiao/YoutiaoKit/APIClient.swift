@@ -366,6 +366,33 @@ class APIClient: AFHTTPRequestOperationManager{
     )
   }
 
+  func promoteMembership(membership: Membership, success: ((Membership) -> Void)?, failure: ((NSError) -> Void)?) {
+    if membership.id == nil {
+      return
+    }
+    let toBePromotedMembershipId = membership.id! as String
+    let parameters: [NSObject: AnyObject] = ["id": toBePromotedMembershipId]
+    self.post("memberships.promote", parameters: parameters, responseClass: Membership.self, success: { (model: AnyObject) -> Void in
+      success?(model as! Membership)
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
+  func demoteMembership(membership: Membership, success:((Membership) -> Void)?, failure:((NSError) -> Void)?) {
+    if membership.id == nil {
+      return
+    }
+    let parameters: [NSObject: AnyObject] = ["id": membership.id!]
+    self.post("memberships.demote", parameters: parameters, responseClass: Membership.self, success: { (model: AnyObject) -> Void in
+      success?(model as! Membership)
+      }, failure: { (error: NSError) -> Void in
+        failure?(error)
+      }
+    )
+  }
+
   func fetchBulletins(#success: (([Bulletin]) -> Void)?, failure: ((NSError) -> Void)?) {
     self.gets("bulletins.list", parameters: nil, responseElementClass: Bulletin.self,
       success: { (models: [AnyObject]) -> Void in
