@@ -163,7 +163,7 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
 
   @IBAction func addGroup(sender: AnyObject) {
     var actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: NSLocalizedString("Cancel", comment: "Cancel"), destructiveButtonTitle: nil, otherButtonTitles: NSLocalizedString("Create a Group", comment: "Create a Group"), NSLocalizedString("Join a Group", comment: "Join a Group"))
-    actionSheet.showInView(self.view)
+    actionSheet.showFromTabBar(self.navigationController?.tabBarController?.tabBar)
   }
 
   func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
