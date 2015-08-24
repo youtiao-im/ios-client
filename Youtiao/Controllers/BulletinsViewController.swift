@@ -25,7 +25,6 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.tableFooterView = UIView()
 
     self.bulletinsTableView.ins_addPullToRefreshWithHeight(60.0, handler: { (scrollView: UIScrollView!) -> Void in
-        self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
         self.loadBulletins()
       }
     )
@@ -43,13 +42,7 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
 
-    self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
-
-    var delayTime: dispatch_time_t
-    delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * NSEC_PER_MSEC))
-    dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-      self.bulletinsTableView.ins_beginPullToRefresh()
-    }
+    self.bulletinsTableView.ins_beginPullToRefresh()
 
     let viewArray: NSArray = NSBundle.mainBundle().loadNibNamed("BulletinCell", owner: self, options: nil)
     self.prototypeCell = viewArray.objectAtIndex(0) as! BulletinCell
@@ -125,7 +118,7 @@ class BulletinsViewController: UIViewController {
             ErrorsHelper.handleCommonErrors(error)
           }
         )
-    }
+     }
   }
 
   func checkBulletin(sender: UIButton!) {
