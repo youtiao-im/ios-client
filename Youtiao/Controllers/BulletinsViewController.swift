@@ -25,7 +25,6 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.tableFooterView = UIView()
 
     self.bulletinsTableView.ins_addPullToRefreshWithHeight(60.0, handler: { (scrollView: UIScrollView!) -> Void in
-        self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
         self.loadBulletins()
       }
     )
@@ -42,8 +41,6 @@ class BulletinsViewController: UIViewController {
     let infinityIndicator = INSDefaultInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     self.bulletinsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
-
-    self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = false
 
     var delayTime: dispatch_time_t
     delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * NSEC_PER_MSEC))
