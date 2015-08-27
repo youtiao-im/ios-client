@@ -35,6 +35,9 @@ class EditUserNameViewController: UITableViewController {
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         self.user = user
         self.delegate?.editUserNameViewController(self, didUpdateUser: user)
+        let newUserInfo = MTLJSONAdapter.JSONDictionaryFromModel(user, error: nil)
+        NSUserDefaults.standardUserDefaults().setValue(newUserInfo, forKey: "user")
+        NSUserDefaults.standardUserDefaults().synchronize()
       }, failure: { (error: NSError) -> Void in
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         if error is ForbiddenError || error is NotFoundError || error is UnprocessableEntityError {

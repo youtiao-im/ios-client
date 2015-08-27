@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     APService.setupWithOption(launchOptions)
 
     let userDefaultsInfo = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
-    let userId = userDefaultsInfo["user_id"] as! String?
+    let currentUser = userDefaultsInfo["user"] as? [String : AnyObject]
+    let userId = currentUser?["id"] as! String?
     if userId != nil {
       self.bindsAliasWithUserId(userId!)
     }

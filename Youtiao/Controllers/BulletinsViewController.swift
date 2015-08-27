@@ -8,18 +8,19 @@ class BulletinsViewController: UIViewController {
   var warningAlertView: UIAlertView!
   var lastVisibleBeginCellIndexPath: NSIndexPath?
 
-  var prototypeCell: BulletinCell!
+  var prototypeCell: BulletinSketchCell!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
-    let bulletinCellNib = UINib(nibName: "BulletinCell", bundle: nil)
-    self.bulletinsTableView.registerNib(bulletinCellNib, forCellReuseIdentifier: "BulletinCell")
+    let bulletinStetchCellNib = UINib(nibName: "BulletinSketchCell", bundle: nil)
+    self.bulletinsTableView.registerNib(bulletinStetchCellNib, forCellReuseIdentifier: "BulletinSketchCell")
+
     if NSString(string: UIDevice.currentDevice().systemVersion).floatValue >= 8.0 {
       self.bulletinsTableView.rowHeight = UITableViewAutomaticDimension
-      self.bulletinsTableView.estimatedRowHeight = 160.0
+      self.bulletinsTableView.estimatedRowHeight = 60.0
     }
 
     self.bulletinsTableView.tableFooterView = UIView()
@@ -44,12 +45,18 @@ class BulletinsViewController: UIViewController {
 
     self.bulletinsTableView.ins_beginPullToRefresh()
 
-    let viewArray: NSArray = NSBundle.mainBundle().loadNibNamed("BulletinCell", owner: self, options: nil)
-    self.prototypeCell = viewArray.objectAtIndex(0) as! BulletinCell
+    let viewArray: NSArray = NSBundle.mainBundle().loadNibNamed("BulletinSketchCell", owner: self, options: nil)
+    self.prototypeCell = viewArray.objectAtIndex(0) as! BulletinSketchCell
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleStampBulletinSuccessNotification:"), name: "stampBulletinSuccessNotification", object: nil)
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "stampBulletinSuccessNotification", object: nil)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -120,43 +127,19 @@ class BulletinsViewController: UIViewController {
         )
      }
   }
-
-  func checkBulletin(sender: UIButton!) {
-    let bulletin = self.bulletins[sender.tag]
-    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "check",
-      success: { (bulletin: Bulletin) -> Void in
-        let row = sender.tag
-        self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadData()
-      }, failure: { (error: NSError) -> Void in
-        var errorMessage: String
-        if error is ForbiddenError || error is NotFoundError {
-          errorMessage = ErrorsHelper.errorMessageForError(error)
-          self.displayErrorMessageWithTitle(NSLocalizedString("Warning", comment: "Warning"), message: errorMessage)
-        } else {
-          ErrorsHelper.handleCommonErrors(error)
-        }
+  
+  func handleStampBulletinSuccessNotification(notification: NSNotification) {
+    let userInfo = notification.userInfo as! [String: AnyObject]
+    let originalBulletinObject = userInfo["originalBulletin"] as! Bulletin
+    let newBulletinObject = userInfo["newBulletin"] as! Bulletin
+    for var i = 0; i < self.bulletins.count; i++ {
+      let bulletinItem = self.bulletins[i]
+      if bulletinItem.id == originalBulletinObject.id {
+        self.bulletins[i] = newBulletinObject
+        break
       }
-    )
-  }
-
-  func crossBulletin(sender: UIButton) {
-    let bulletin = self.bulletins[sender.tag]
-    APIClient.sharedInstance.stampBulletin(bulletin, withSymbol: "cross",
-      success: { (bulletin: Bulletin) -> Void in
-        let row = sender.tag
-        self.bulletins[row] = bulletin
-        self.bulletinsTableView.reloadData()
-      }, failure: { (error: NSError) -> Void in
-        var errorMessage: String
-        if error is ForbiddenError || error is NotFoundError {
-          errorMessage = ErrorsHelper.errorMessageForError(error)
-          self.displayErrorMessageWithTitle(NSLocalizedString("Warning", comment: "Warning"), message: errorMessage)
-        } else {
-          ErrorsHelper.handleCommonErrors(error)
-        }
-      }
-    )
+    }
+    self.bulletinsTableView.reloadData()
   }
 
   func displayErrorMessageWithTitle(title: String, message: String) {
@@ -191,12 +174,10 @@ extension BulletinsViewController: UITableViewDataSource {
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("BulletinCell") as! BulletinCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("BulletinSketchCell") as! BulletinSketchCell
     let bulletin = self.bulletins[indexPath.section]
 
     cell.groupNameLabel.text = bulletin.group?.name
-    cell.checksCountLabel.text = bulletin.checksCount?.stringValue
-    cell.crossesCountLabel.text = bulletin.crossesCount?.stringValue
     let postTime = bulletin.createdAt?.doubleValue
     let postTimeString = TimeHelper.formattedTime(postTime!)
     var ownerName = bulletin.createdBy?.name
@@ -210,27 +191,16 @@ extension BulletinsViewController: UITableViewDataSource {
     var mutableAttributedString = NSMutableAttributedString(string: textContent!)
     mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
     mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-    cell.textContentLabel.attributedText = mutableAttributedString
+    cell.textContentSketchLabel.attributedText = mutableAttributedString
 
     if bulletin.currentStamp != nil {
-      switch bulletin.currentStamp!.symbol! {
-        case "check":
-          cell.checked = true
-          cell.crossed = false
-        case "cross":
-          cell.checked = false
-          cell.crossed = true
-      default:
-        break
-      }
+      cell.readFlagImageView.image = nil
     } else {
-      cell.checked = false
-      cell.crossed = false
+      var image = UIImage(named: "circle")
+      image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+      cell.readFlagImageView.tintColor = BLUE_COLOR
+      cell.readFlagImageView.image = image
     }
-    cell.checkButton.tag = indexPath.section
-    cell.checkButton.addTarget(self, action: Selector("checkBulletin:"), forControlEvents: UIControlEvents.TouchUpInside)
-    cell.crossButton.tag = indexPath.section
-    cell.crossButton.addTarget(self, action: Selector("crossBulletin:"), forControlEvents: UIControlEvents.TouchUpInside)
     return cell
   }
 }
@@ -259,19 +229,19 @@ extension BulletinsViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     let stringText = self.bulletins[indexPath.section].text
-    self.prototypeCell.textContentLabel.preferredMaxLayoutWidth = self.view.bounds.size.width - 27
+    self.prototypeCell.textContentSketchLabel.preferredMaxLayoutWidth = self.view.bounds.size.width - 27
     let bulletin = self.bulletins[indexPath.section] as Bulletin
     var ownerName = bulletin.createdBy?.name
     if ownerName == nil {
-      ownerName = NSLocalizedString("Unknown user", comment:"Unknown user")
+      ownerName = NSLocalizedString("Unknown user", comment: "Unknown user")
     }
     var textContent = bulletin.text
-    var prefixText = ownerName! + ": "
+    var prefixText = ownerName! + ":"
     textContent = prefixText + textContent!
     var mutableAttributedString = NSMutableAttributedString(string: textContent!)
     mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-    self.prototypeCell.textContentLabel.attributedText = mutableAttributedString
+    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location:0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+    self.prototypeCell.textContentSketchLabel.attributedText = mutableAttributedString
     self.prototypeCell.setNeedsLayout()
     self.prototypeCell.layoutIfNeeded()
     let size = self.prototypeCell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize) as CGSize
@@ -279,7 +249,7 @@ extension BulletinsViewController: UITableViewDelegate {
   }
 
   func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 160.0
+    return 60.0
   }
 
   func scrollViewDidScroll(scrollView: UIScrollView) {

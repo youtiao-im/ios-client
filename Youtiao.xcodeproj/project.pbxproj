@@ -11,6 +11,8 @@
 		6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AD9AC1B4F912500BB23CB /* Localizable.strings */; };
 		6E6EC8CF1B4D1F5E004FB01B /* EditUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */; };
 		6E7EAFFF1B5FB0C5006E9F5B /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */; };
+		6E88B98F1B8DB41F00DA9C25 /* BulletinSketchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88B98D1B8DB41F00DA9C25 /* BulletinSketchCell.swift */; };
+		6E88B9901B8DB41F00DA9C25 /* BulletinSketchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E88B98E1B8DB41F00DA9C25 /* BulletinSketchCell.xib */; };
 		6EA0750F1B53E39100F1CA76 /* Landing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EA075111B53E39100F1CA76 /* Landing.storyboard */; };
 		6EB8E9451B69CAD9005AC454 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6EB8E9471B69CAD9005AC454 /* InfoPlist.strings */; };
 		6EBBE0971B5694C8007F281F /* BulletinStampButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */; };
@@ -72,6 +74,8 @@
 		6E4AD9AD1B4F912900BB23CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6E6EC8CE1B4D1F5E004FB01B /* EditUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserNameViewController.swift; sourceTree = "<group>"; };
 		6E7EAFFE1B5FB0C5006E9F5B /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6E88B98D1B8DB41F00DA9C25 /* BulletinSketchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletinSketchCell.swift; sourceTree = "<group>"; };
+		6E88B98E1B8DB41F00DA9C25 /* BulletinSketchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BulletinSketchCell.xib; sourceTree = "<group>"; };
 		6EA075101B53E39100F1CA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Landing.storyboard; sourceTree = "<group>"; };
 		6EB730621B61E2C800DCBCD9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6EB8E9461B69CAD9005AC454 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				6EE3CBC51B4BA08300C142C4 /* BulletinCell.swift */,
 				6EE3CBC61B4BA08300C142C4 /* BulletinCell.xib */,
 				6EBBE0961B5694C8007F281F /* BulletinStampButton.swift */,
+				6E88B98D1B8DB41F00DA9C25 /* BulletinSketchCell.swift */,
+				6E88B98E1B8DB41F00DA9C25 /* BulletinSketchCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				6E4AD9AA1B4F912500BB23CB /* Localizable.strings in Resources */,
 				9C72B5D81B313753000211E2 /* LaunchScreen.xib in Resources */,
 				9C72B5D51B313753000211E2 /* Images.xcassets in Resources */,
+				6E88B9901B8DB41F00DA9C25 /* BulletinSketchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +474,7 @@
 				9C72B5F11B313997000211E2 /* Group.swift in Sources */,
 				9C72B5F51B3139B1000211E2 /* Bulletin.swift in Sources */,
 				9C7F85BB1B423F9E00E37EBD /* GroupSettingsViewController.swift in Sources */,
+				6E88B98F1B8DB41F00DA9C25 /* BulletinSketchCell.swift in Sources */,
 				9C7F85BE1B423F9E00E37EBD /* JoinGroupViewController.swift in Sources */,
 				9C7F85D21B42697600E37EBD /* ErrorsHelper.swift in Sources */,
 				6E26780F1B4678F4005EC1EB /* GroupMembersViewController.swift in Sources */,

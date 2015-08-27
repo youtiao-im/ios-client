@@ -7,6 +7,7 @@ class Bulletin : MTLModel, MTLJSONSerializing {
   var createdById: String?
   var checksCount: NSNumber?
   var crossesCount: NSNumber?
+  var eyesCount: NSNumber?
   var commentsCount: NSNumber?
   var group: Group?
   var createdBy: User?
@@ -21,6 +22,7 @@ class Bulletin : MTLModel, MTLJSONSerializing {
       "createdById": "created_by_id",
       "checksCount": "checks_count",
       "crossesCount": "crosses_count",
+      "eyesCount": "eyes_count",
       "commentsCount": "comments_count",
       "group": "group",
       "createdBy": "created_by",
