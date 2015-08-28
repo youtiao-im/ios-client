@@ -83,4 +83,5 @@
 "Warning" = "警告";
 "We cannot find any group with the given code." = "指定群组识别码的群组不存在";
 
+"You" = "你";
 "You must select a group to create a bulletin" = "为了创建公告，请先选择一个目标群组。";

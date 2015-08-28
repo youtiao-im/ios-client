@@ -94,7 +94,18 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
   }
 
   private func handleLoadStampsSuccess(stamps: [Stamp]) -> Void {
-    self.stamps += stamps
+    if self.stamps.count > 0 {
+      let firstStampItem = self.stamps[0]
+      let firstStampId = firstStampItem.id
+      for var i = 0; i < stamps.count; i++ {
+        let oneStampItem = stamps[i]
+        if oneStampItem.id != firstStampId {
+          self.stamps.append(oneStampItem)
+        }
+      }
+    } else {
+      self.stamps += stamps
+    }
     self.stampsTableView.reloadData()
   }
 
@@ -102,7 +113,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     APIClient.sharedInstance.stampBulletin(self.bulletin, withSymbol: "check", success: { (bulletin: Bulletin) -> Void in
         let originalBulletinObject: Bulletin = self.bulletin
         self.bulletin = bulletin
-        self.stampsTableView.reloadData()
         let userInfo = ["originalBulletin": originalBulletinObject, "newBulletin": bulletin]
         NSNotificationCenter.defaultCenter().postNotificationName("stampBulletinSuccessNotification", object: nil, userInfo: userInfo)
       }, failure: { (error: NSError) -> Void in
@@ -121,7 +131,6 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
     APIClient.sharedInstance.stampBulletin(self.bulletin, withSymbol: "cross", success: { (bulletin: Bulletin) -> Void in
         let originalBulletinObject: Bulletin = self.bulletin
         self.bulletin = bulletin
-        self.stampsTableView.reloadData()
         let userInfo = ["originalBulletin": originalBulletinObject, "newBulletin": bulletin]
         NSNotificationCenter.defaultCenter().postNotificationName("stampBulletinSuccessNotification", object: nil, userInfo: userInfo)
       }, failure:{ (error: NSError) -> Void in
@@ -173,10 +182,12 @@ class BulletinViewController: UIViewController, UITableViewDataSource, UITableVi
         }
       }
       if foundStampIndex >= 0 {
+        self.stampsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
         self.stampsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: foundStampIndex, inSection: 1)], withRowAnimation: UITableViewRowAnimation.None)
       } else {
         self.stamps.insert(newCurrentStamp, atIndex: 0)
         self.stampsTableView.beginUpdates()
+        self.stampsTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
         self.stampsTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Middle)
         self.stampsTableView.endUpdates()
       }
@@ -285,29 +296,28 @@ extension BulletinViewController: UITableViewDataSource {
         cell?.imageView?.image = image
       }
       var stampCreatorName: String? = stamps[indexPath.row].createdBy?.name
-      if stampCreatorName == nil {
-        var stampCreatorId: String? = stamps[indexPath.row].createdBy?.id
-        if stampCreatorId == nil {
-          stampCreatorId = stamps[indexPath.row].createdById
-        }
-        if stampCreatorId != nil {
-          let userDefaultsInfo = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
-          let currentLoginUser = userDefaultsInfo["user"] as! [String: AnyObject]
-          let currentLoginUserId = currentLoginUser["id"] as? String
-          if currentLoginUserId == nil {
-            stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
+      var stampCreatorId: String? = stamps[indexPath.row].createdBy?.id
+      if stampCreatorId == nil {
+        stampCreatorId = stamps[indexPath.row].createdById
+      }
+      if stampCreatorId == nil {
+        stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
+      } else {
+        let userDefaultsInfo = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
+        let currentLoginUser = userDefaultsInfo["user"] as! [String:AnyObject]
+        let currentLoginUserId = currentLoginUser["id"] as? String
+        if currentLoginUserId != nil {
+          if stampCreatorId == currentLoginUserId {
+            stampCreatorName = NSLocalizedString("You", comment: "You")
           } else {
-            if currentLoginUserId == stampCreatorId {
-              let currentLoginUsername = currentLoginUser["name"] as? String
-              if currentLoginUsername != nil {
-                stampCreatorName = currentLoginUsername
-              } else {
-                stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
-              }
+            if stampCreatorName == nil {
+              stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
             }
           }
         } else {
-          stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
+          if stampCreatorName == nil {
+            stampCreatorName = NSLocalizedString("Unknown user", comment: "Unknown user")
+          }
         }
       }
       cell?.textLabel?.text = stampCreatorName

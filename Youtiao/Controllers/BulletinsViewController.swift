@@ -43,7 +43,7 @@ class BulletinsViewController: UIViewController {
     self.bulletinsTableView.ins_infiniteScrollBackgroundView.addSubview(infinityIndicator)
     infinityIndicator.startAnimating()
 
-    self.bulletinsTableView.ins_beginPullToRefresh()
+    self.checkUserInfoForUpdatingAndLoadBulletins()
 
     let viewArray: NSArray = NSBundle.mainBundle().loadNibNamed("BulletinSketchCell", owner: self, options: nil)
     self.prototypeCell = viewArray.objectAtIndex(0) as! BulletinSketchCell
@@ -116,7 +116,6 @@ class BulletinsViewController: UIViewController {
             self.bulletinsTableView.insertSections(NSIndexSet(index: currentSectionsCount + i), withRowAnimation: UITableViewRowAnimation.Top)
           }
           self.bulletinsTableView.endUpdates()
-          self.bulletinsTableView.reloadData()
           self.bulletinsTableView.scrollToRowAtIndexPath(self.lastVisibleBeginCellIndexPath!, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
           self.bulletinsTableView.ins_endInfinityScrollWithStoppingContentOffset(true)
           self.bulletinsTableView.ins_infiniteScrollBackgroundView.enabled = bulletins.count >= 25
@@ -278,5 +277,37 @@ extension BulletinsViewController: NewBulletinViewControllerDelegate {
 
   func newBulletinViewControllerDidCancel(controller: NewBulletinViewController) {
     self.dismissViewControllerAnimated(true, completion: nil)
+  }
+}
+
+extension BulletinsViewController {
+  func checkUserInfoForUpdatingAndLoadBulletins() {
+    let userInfoDict = NSUserDefaults.standardUserDefaults().valueForKey("user") as? [String: AnyObject]
+    if userInfoDict == nil {
+      self.loadAndUpdateUserInfo()
+    } else {
+      self.bulletinsTableView.ins_beginPullToRefresh()
+    }
+  }
+  func loadAndUpdateUserInfo() {
+    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    APIClient.sharedInstance.fetchCurrentUser(success: { (user: User) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        let userInfoDict = MTLJSONAdapter.JSONDictionaryFromModel(user, error: nil)
+        if userInfoDict != nil {
+          NSUserDefaults.standardUserDefaults().setObject(userInfoDict, forKey: "user")
+          NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        self.bulletinsTableView.ins_beginPullToRefresh()
+      }, failure: { (error: NSError) -> Void in
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        if error is ForbiddenError || error is NotFoundError || error is UnprocessableEntityError {
+          var errMsg = ErrorsHelper.errorMessageForError(error)
+          self.displayErrorMessageWithTitle(NSLocalizedString("Warning", comment: "Warning"), message: errMsg)
+        } else {
+          ErrorsHelper.handleCommonErrors(error)
+        }
+      }
+    )
   }
 }
