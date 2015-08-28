@@ -12,6 +12,6 @@ let MUTED_ICON_COLOR = UIColor(hex: 0xd0d0e0)
 
 let GREEN_COLOR = UIColor.flatGreenColor()
 let RED_COLOR = UIColor.flatRedColor()
-let BLUE_COLOR = UIColor.flatBlueColor()
+let YELLOW_COLOR = UIColor.flatYellowColor()
 
 let PAGE_SIZE = 25

@@ -76,7 +76,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIS-ez-djU">
-                        <rect key="frame" x="193" y="129" width="36" height="16"/>
+                        <rect key="frame" x="195" y="129" width="36" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="kGT-XW-HZH" secondAttribute="height" id="VuX-h5-Hq2"/>
                     <constraint firstAttribute="bottom" secondItem="EzQ-9R-HQI" secondAttribute="bottom" constant="12" id="WQ2-mW-wwz"/>
                     <constraint firstItem="Vnx-tq-5X0" firstAttribute="height" secondItem="kGT-XW-HZH" secondAttribute="height" id="b8H-Y7-M32"/>
-                    <constraint firstItem="rIS-ez-djU" firstAttribute="leading" secondItem="Vnx-tq-5X0" secondAttribute="trailing" constant="2" id="bzc-ru-eYS"/>
+                    <constraint firstItem="rIS-ez-djU" firstAttribute="leading" secondItem="Vnx-tq-5X0" secondAttribute="trailing" constant="4" id="bzc-ru-eYS"/>
                     <constraint firstItem="rIS-ez-djU" firstAttribute="top" secondItem="Vnx-tq-5X0" secondAttribute="top" id="co4-0Y-AOF"/>
                     <constraint firstAttribute="trailing" secondItem="fDU-fj-oR1" secondAttribute="trailing" constant="12" id="dp6-gf-h4k"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="f5V-2d-txK" secondAttribute="height" id="kPr-km-bWo"/>

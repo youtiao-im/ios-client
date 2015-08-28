@@ -198,7 +198,7 @@ extension BulletinsViewController: UITableViewDataSource {
     } else {
       var image = UIImage(named: "circle")
       image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-      cell.readFlagImageView.tintColor = BLUE_COLOR
+      cell.readFlagImageView.tintColor = BRAND_COLOR
       cell.readFlagImageView.image = image
     }
     return cell
@@ -229,7 +229,7 @@ extension BulletinsViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     let stringText = self.bulletins[indexPath.section].text
-    self.prototypeCell.textContentSketchLabel.preferredMaxLayoutWidth = self.view.bounds.size.width - 27
+    self.prototypeCell.textContentSketchLabel.preferredMaxLayoutWidth = self.view.bounds.size.width - 29
     let bulletin = self.bulletins[indexPath.section] as Bulletin
     var ownerName = bulletin.createdBy?.name
     if ownerName == nil {

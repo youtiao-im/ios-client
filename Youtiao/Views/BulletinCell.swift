@@ -44,6 +44,8 @@ class BulletinCell: UITableViewCell {
     self.checkButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
     self.crossesCountLabel.textColor = MUTED_TEXT_COLOR
     self.crossButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
+    self.eyeCountLabel.textColor = MUTED_TEXT_COLOR
+    self.eyeButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
   }
 
   func tappedCheckButton() {

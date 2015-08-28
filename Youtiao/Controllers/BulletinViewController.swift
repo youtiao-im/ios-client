@@ -280,6 +280,8 @@ extension BulletinViewController: UITableViewDataSource {
         cell?.imageView?.image = image
       } else if oneStamp.symbol == "eye" {
         var image = UIImage(named: "eye")
+        image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        cell?.imageView?.tintColor = YELLOW_COLOR
         cell?.imageView?.image = image
       }
       var stampCreatorName: String? = stamps[indexPath.row].createdBy?.name
