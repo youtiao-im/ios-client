@@ -9,13 +9,14 @@ class BulletinCell: UITableViewCell {
   @IBOutlet weak var checksCountLabel: UILabel!
   @IBOutlet weak var crossesCountLabel: UILabel!
 
+  @IBOutlet weak var eyeButton: UIButton!
+  @IBOutlet weak var eyeCountLabel: UILabel!
+
   var checked: Bool = false {
     didSet {
       if (self.checked) {
         self.checksCountLabel.textColor = GREEN_COLOR
         self.checkButton.setImageTintColor(GREEN_COLOR, forState: UIControlState.Normal)
-//        self.checkButton.enabled = false
-//        self.crossButton.enabled = true
       } else {
         self.checksCountLabel.textColor = MUTED_TEXT_COLOR
         self.checkButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
@@ -27,11 +28,7 @@ class BulletinCell: UITableViewCell {
     didSet {
       if (self.crossed) {
         self.crossesCountLabel.textColor = RED_COLOR
-//        self.crossButton.setImageTintColor(UIColor(hex: 0x000000), forState: UIControlState.Normal)
         self.crossButton.setImageTintColor(RED_COLOR, forState: UIControlState.Normal)
-//        self.crossButton.
-//        self.crossButton.enabled = false
-//        self.checkButton.enabled = true
       } else {
         self.crossesCountLabel.textColor = MUTED_TEXT_COLOR
         self.crossButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
@@ -47,6 +44,8 @@ class BulletinCell: UITableViewCell {
     self.checkButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
     self.crossesCountLabel.textColor = MUTED_TEXT_COLOR
     self.crossButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
+    self.eyeCountLabel.textColor = MUTED_TEXT_COLOR
+    self.eyeButton.setImageTintColor(MUTED_ICON_COLOR, forState: UIControlState.Normal)
   }
 
   func tappedCheckButton() {

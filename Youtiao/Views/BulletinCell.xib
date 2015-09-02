@@ -66,11 +66,27 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vnx-tq-5X0">
+                        <rect key="frame" x="175" y="129" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="VPk-De-4sj"/>
+                        </constraints>
+                        <state key="normal" image="eye">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIS-ez-djU">
+                        <rect key="frame" x="195" y="129" width="36" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zNe-gz-ueH" firstAttribute="leading" secondItem="EzQ-9R-HQI" secondAttribute="trailing" constant="2" id="0hU-HL-rpw"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="zNe-gz-ueH" secondAttribute="top" id="0ha-55-Ezz"/>
                     <constraint firstItem="f5V-2d-txK" firstAttribute="leading" secondItem="kGT-XW-HZH" secondAttribute="trailing" constant="2" id="256-vt-cM4"/>
+                    <constraint firstItem="Vnx-tq-5X0" firstAttribute="leading" secondItem="kGT-XW-HZH" secondAttribute="leading" constant="80" id="324-BJ-Glf"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="zNe-gz-ueH" secondAttribute="height" id="3Fh-n5-EvU"/>
                     <constraint firstItem="fDU-fj-oR1" firstAttribute="leading" secondItem="XJV-cS-tHX" secondAttribute="trailing" constant="8" id="CAm-9d-296"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="D3Z-75-EMW"/>
@@ -82,10 +98,15 @@
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="8Oj-CY-fwC" secondAttribute="bottom" constant="12" id="ShW-wH-gVz"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="kGT-XW-HZH" secondAttribute="height" id="VuX-h5-Hq2"/>
                     <constraint firstAttribute="bottom" secondItem="EzQ-9R-HQI" secondAttribute="bottom" constant="12" id="WQ2-mW-wwz"/>
+                    <constraint firstItem="Vnx-tq-5X0" firstAttribute="height" secondItem="kGT-XW-HZH" secondAttribute="height" id="b8H-Y7-M32"/>
+                    <constraint firstItem="rIS-ez-djU" firstAttribute="leading" secondItem="Vnx-tq-5X0" secondAttribute="trailing" constant="4" id="bzc-ru-eYS"/>
+                    <constraint firstItem="rIS-ez-djU" firstAttribute="top" secondItem="Vnx-tq-5X0" secondAttribute="top" id="co4-0Y-AOF"/>
                     <constraint firstAttribute="trailing" secondItem="fDU-fj-oR1" secondAttribute="trailing" constant="12" id="dp6-gf-h4k"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="height" secondItem="f5V-2d-txK" secondAttribute="height" id="kPr-km-bWo"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="centerY" secondItem="fDU-fj-oR1" secondAttribute="centerY" id="lx0-FK-kIW"/>
+                    <constraint firstItem="rIS-ez-djU" firstAttribute="height" secondItem="Vnx-tq-5X0" secondAttribute="height" id="r2S-k5-EH2"/>
                     <constraint firstItem="XJV-cS-tHX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="rNa-Rt-fly"/>
+                    <constraint firstItem="Vnx-tq-5X0" firstAttribute="top" secondItem="kGT-XW-HZH" secondAttribute="top" id="tyY-05-pae"/>
                     <constraint firstItem="EzQ-9R-HQI" firstAttribute="top" secondItem="kGT-XW-HZH" secondAttribute="top" id="uHk-QQ-PIm"/>
                     <constraint firstItem="kGT-XW-HZH" firstAttribute="leading" secondItem="EzQ-9R-HQI" secondAttribute="leading" constant="80" id="x8R-zA-ZRR"/>
                 </constraints>
@@ -95,6 +116,8 @@
                 <outlet property="checksCountLabel" destination="zNe-gz-ueH" id="HJD-rl-UE4"/>
                 <outlet property="crossButton" destination="kGT-XW-HZH" id="c8n-Rc-6Mc"/>
                 <outlet property="crossesCountLabel" destination="f5V-2d-txK" id="MMK-UF-Faf"/>
+                <outlet property="eyeButton" destination="Vnx-tq-5X0" id="Cit-fe-y17"/>
+                <outlet property="eyeCountLabel" destination="rIS-ez-djU" id="TLA-ZB-5Tv"/>
                 <outlet property="groupNameLabel" destination="XJV-cS-tHX" id="XFh-0c-kpb"/>
                 <outlet property="textContentLabel" destination="8Oj-CY-fwC" id="f8v-eL-ab8"/>
                 <outlet property="timeLabel" destination="fDU-fj-oR1" id="niG-4F-GRW"/>
@@ -104,6 +127,7 @@
     </objects>
     <resources>
         <image name="check" width="16" height="16"/>
+        <image name="eye" width="16" height="16"/>
         <image name="times" width="16" height="16"/>
     </resources>
 </document>

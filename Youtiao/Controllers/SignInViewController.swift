@@ -71,7 +71,8 @@ class SignInViewController: UITableViewController {
     APIClient.sharedInstance.fetchCurrentUser(
       success: { (user: User) -> Void in
         let userId = user.id
-        NSUserDefaults.standardUserDefaults().setValue(userId, forKey: "user_id")
+        let userInfoDict = MTLJSONAdapter.JSONDictionaryFromModel(user, error: nil)
+        NSUserDefaults.standardUserDefaults().setValue(userInfoDict, forKey: "user")
         NSUserDefaults.standardUserDefaults().synchronize()
         let userInfo = ["user": user]
         NSNotificationCenter.defaultCenter().postNotificationName("loadUserInfoSuccessNotification", object: nil, userInfo: userInfo)

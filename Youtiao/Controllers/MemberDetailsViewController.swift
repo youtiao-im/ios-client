@@ -21,7 +21,8 @@ class MemberDetailsViewController: UITableViewController {
 
   func getCurrentUserId() -> String? {
     let currentUserDefaults = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
-    let currentUserId = currentUserDefaults["user_id"] as? String
+    let currentUserInfo = currentUserDefaults["user"] as? [String: AnyObject]
+    let currentUserId = currentUserInfo?["id"] as! String?
     return currentUserId
   }
 
