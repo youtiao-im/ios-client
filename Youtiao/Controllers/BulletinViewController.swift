@@ -251,8 +251,8 @@ extension BulletinViewController: UITableViewDataSource {
       var prefixText = ownerName! + ": "
       textContent = prefixText + textContent!
       var mutableAttributedString = NSMutableAttributedString(string: textContent!)
-      mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range:NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-      mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+      mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSMakeRange(0, count(prefixText)))
+      mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, count(prefixText)))
       theCell.textContentLabel.attributedText = mutableAttributedString
       if self.bulletin.currentStamp != nil {
         switch self.bulletin.currentStamp!.symbol! {
@@ -351,8 +351,8 @@ extension BulletinViewController: UITableViewDelegate {
       var prefixText = ownerName! + ": "
       textContent = prefixText + textContent!
       var mutableAttributedString = NSMutableAttributedString(string: textContent!)
-      mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-      mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+      mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSMakeRange(0, count(prefixText)))
+      mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, count(prefixText)))
       self.prototypeCell.textContentLabel.attributedText = mutableAttributedString
       self.prototypeCell.setNeedsLayout()
       self.prototypeCell.layoutIfNeeded()
