@@ -188,8 +188,8 @@ extension BulletinsViewController: UITableViewDataSource {
     var prefixText = ownerName! + ": "
     textContent = prefixText + textContent!
     var mutableAttributedString = NSMutableAttributedString(string: textContent!)
-    mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+    mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSMakeRange(0, count(prefixText)))
+    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, count(prefixText)))
     cell.textContentSketchLabel.attributedText = mutableAttributedString
 
     if bulletin.currentStamp != nil {
@@ -238,8 +238,8 @@ extension BulletinsViewController: UITableViewDelegate {
     var prefixText = ownerName! + ":"
     textContent = prefixText + textContent!
     var mutableAttributedString = NSMutableAttributedString(string: textContent!)
-    mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSRange(location: 0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSRange(location:0, length: prefixText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+    mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSMakeRange(0, count(prefixText)))
+    mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, count(prefixText)))
     self.prototypeCell.textContentSketchLabel.attributedText = mutableAttributedString
     self.prototypeCell.setNeedsLayout()
     self.prototypeCell.layoutIfNeeded()
